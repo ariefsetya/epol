@@ -18,6 +18,7 @@ use DB;
 use PDF;
 use File;
 use Validator;
+use QRCode;
 use Mail;
 use Session;
 use App\Exports\ProductExport;
