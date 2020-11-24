@@ -39,7 +39,7 @@
                     <br>
                     <div style="width:50%; margin:0 auto;">
                         <div style="background: white;padding:20px;">
-                            <img style="width: 100%" src="{{url('barcode/'.Auth::user()->reg_number.'.png'}}">
+                            <img style="width: 100%" src="{{url('barcode/'.Auth::user()->reg_number.'.png')}}">
                         </div>
                     </div>
                     <br>
