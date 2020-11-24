@@ -50,35 +50,49 @@ func main() {
 		fmt.Println("connected:", s.ID())
 		return nil
 	})
-	server.OnEvent("/", "scan-gold", func(s socketio.Conn, msg string) string {
 
-		var lpm Structs.LotteryParticipantMain
-		err := Models.GetByQRCode(&lpm, msg, "1")
-		if err != nil {
-			return msg
-		} else {
-			return lpm.Number + "-" + lpm.Name + "-" + lpm.City + "-" + msg
+
+	var lpcm []Structs.LotteryParticipantCategoryMain
+	err := Models.GetAllParticipantCategory(&lpcm)
+	if err != nil {
+		fmt.Println("info:", err)
+	} else {
+
+		for _, n := range lpcm {
+			fmt.Println("info:", "category set: " + "scan-" + n.Id)
+			server.OnEvent("/", "scan-"+n.Id, func(s socketio.Conn, msg string) string {
+
+				var lpm Structs.LotteryParticipantMain
+				fmt.Println("data:", msg);
+				err := Models.GetByQRCode(&lpm, msg, n.Id)
+				fmt.Println("result:", err);
+				if err != nil {
+					fmt.Println("error:", err);
+					return "Data Not Found"
+				} else {
+
+
+					var lh Structs.LotteryHistoryMain
+					lh.LotteryParticipantId = lpm.Id
+					lh.Status = true
+
+					err := Models.CreateLotteryHistory(&lh)
+
+					if err != nil {
+						fmt.Println("error:", err);
+						return "Data Not Saved"
+					} else {
+
+						var result = lpm.Number + "-" + lpm.Name + "-" + lpm.City + "-" + msg
+						fmt.Println("result:", lpm);
+
+						server.BroadcastToRoom("", "bcast", "display", result)
+						return result
+					}
+				}
+			})
 		}
-
-	})
-
-	server.OnEvent("/", "data", func(s socketio.Conn, msg string) {
-		server.BroadcastToRoom("", "bcast", "display", msg)
-		fmt.Println("display:", msg)
-		//s.Emit("display", msg);
-	})
-
-	server.OnEvent("/", "scan-silver", func(s socketio.Conn, msg string) string {
-
-		var lpm Structs.LotteryParticipantMain
-		err := Models.GetByQRCode(&lpm, msg, "2")
-		if err != nil {
-			return msg
-		} else {			
-			return lpm.Number + "-" + lpm.Name + "-" + lpm.City + "-" + msg
-		}
-
-	})
+	}
 
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
@@ -91,10 +105,46 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	router.Use(GinMiddleware("http://localhost"))
+	router.Use(GinMiddleware("http://localhost:8000"))
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))
+		router.GET("/table_data/participant/list", func(c *gin.Context) {
+			var lptd []Structs.LotteryParticipantTableData
+			err := Models.GetAllParticipant(&lptd)
+			if err != nil {
+				c.AbortWithStatus(http.StatusNotFound)
+			} else {
+				table := Structs.LotteryParticipantTable{
+					Header: []Structs.LotteryParticipantTableHeader{
+						Structs.LotteryParticipantTableHeader{
+							Name: "number",
+							Title: "Number",
+							Sortable: true,
+						},
+						Structs.LotteryParticipantTableHeader{
+							Name: "name",
+							Title: "Name",
+							Sortable: true,
+						},
+						Structs.LotteryParticipantTableHeader{
+							Name: "city",
+							Title: "City",
+							Sortable: true,
+						},
+						Structs.LotteryParticipantTableHeader{
+							Name: "category_name",
+							Title: "Category",
+							Sortable: true,
+						},
+					},
+					Data: lptd,
+				}
+
+
+				c.JSON(http.StatusOK, table)
+			}
+		})
 
 		router.Run("localhost:3000")
 	}
