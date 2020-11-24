@@ -20,6 +20,7 @@ use File;
 use Validator;
 use Mail;
 use Session;
+use Response;
 use App\Exports\ProductExport;
 use App\Exports\QuizExport;
 use Maatwebsite\Excel\Facades\Excel;
