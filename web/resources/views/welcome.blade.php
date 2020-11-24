@@ -29,8 +29,8 @@
     <!-- <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"> -->
     <!-- <link rel="icon" href="../../favicon.ico" type="image/x-icon"> -->
 
-    <link href="http://aqua-japan.com/css/metro-all.css?ver=@b-version" rel="stylesheet">
-    <link href="http://aqua-japan.com/css/start/start.css" rel="stylesheet">
+    <link href="{{url('/css/metro-all.css?ver=@b-version')}}" rel="stylesheet">
+    <link href="{{url('/css/start/start.css')}}" rel="stylesheet">
 
     <title>Start screen demo - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
@@ -89,11 +89,11 @@
             </div>
 
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Lottery">
-                <a data-role="tile" data-size="wide" href="http://aqua-japan.com/lottery/scan">
+                <a data-role="tile" data-size="wide" href="{{url('/lottery/scan')}}">
                     <span class="mif-qrcode icon"></span>
                     <span class="branding-bar">Scan</span>
                 </a>
-                <a href="http://aqua-japan.com/lottery/display" data-role="tile" class="bg-white fg-black">
+                <a href="{{url('/lottery/display')}}" data-role="tile" class="bg-white fg-black">
                     <span class="mif-display icon"></span>
                     <span class="branding-bar">Display</span>
                 </a>
@@ -101,7 +101,7 @@
                     <span class="mif-file-text icon"></span>
                     <span class="branding-bar">Report</span>
                 </div>
-                <a href="http://aqua-japan.com/participant/list" data-role="tile" class="bg-indigo fg-white" data-size="wide">
+                <a href="{{url('/participant/list')}}" data-role="tile" class="bg-indigo fg-white" data-size="wide">
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Participant</span>
                     <span class="badge-bottom">10</span>
@@ -127,8 +127,8 @@
     </div>
 
 
-    <script src="http://aqua-japan.com/js/metro.js"></script>
-    <script src="http://aqua-japan.com/js/start/start.js"></script>
+    <script src="{{url('/js/metro.js')}}"></script>
+    <script src="{{url('/js/start/start.js')}}"></script>
 
 </body>
 </html>
