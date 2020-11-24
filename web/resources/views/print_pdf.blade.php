@@ -39,7 +39,7 @@
                     <br>
                     <div style="width:50%; margin:0 auto;">
                         <div style="background: white;padding:20px;">
-                            <img style="width: 100%" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_url')->first()->content.Auth::user()->reg_number}}">
+                            {!! QrCode::format('png')->size(200)->generate(Auth::user()->reg_number); !!}
                         </div>
                     </div>
                     <br>
