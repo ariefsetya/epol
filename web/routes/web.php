@@ -43,6 +43,7 @@ Route::get('/quiz_result_data/{polling_id}','HomeController@quiz_result_data')->
 
 Route::post('/join_quiz/{id}', 'HomeController@join_quiz')->name('join_quiz');
 Route::get('/downloadBarcode', 'HomeController@downloadBarcode')->name('downloadBarcode');
+Route::get('/viewBarcode', 'HomeController@viewBarcode')->name('viewBarcode');
 Route::get('/sendEmailBarcode', 'HomeController@sendEmailBarcode')->name('sendEmailBarcode');
 
 Route::get('/logout','CustomAuthController@logout')->name('logout');

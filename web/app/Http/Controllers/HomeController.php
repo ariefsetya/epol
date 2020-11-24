@@ -192,110 +192,115 @@ class HomeController extends Controller
     {
         if($polling_question_id > 0 and $polling_answer_id > 0){
             if(PollingParticipant::where('event_id',Session::get('event_id'))->where('polling_id',PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id)
-                ->where('user_id',Auth::user()->id)->exists()){
+                ->where('user_id',Auth::user()->id)->exists())
+            {
                 return response()->json(['message'=>'saved!','win'=>false],200);
-        }else{ 
-            if(PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id)->where('user_id',Auth::user()->id)->exists()){
-                $id = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id)->where('user_id',Auth::user()->id)->first()->id;
-                $data = PollingResponse::where('event_id',Session::get('event_id'))->whereId($id)->first();
-                $data->polling_answer_id = $polling_answer_id;
-                $data->answer_text = PollingAnswer::where('event_id',Session::get('event_id'))->whereId($polling_answer_id)->first()->content;
-                $data->save();
-
-                if(PollingAnswer::where('event_id',Session::get('event_id'))->where('is_correct',1)->where('polling_question_id',$polling_question_id)->first()->id==$polling_answer_id){
-                    $data->is_winner = 1;
+            }else{ 
+                if(PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id)->where('user_id',Auth::user()->id)->exists()){
+                    $id = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id)->where('user_id',Auth::user()->id)->first()->id;
+                    $data = PollingResponse::where('event_id',Session::get('event_id'))->whereId($id)->first();
+                    $data->polling_answer_id = $polling_answer_id;
+                    $data->answer_text = PollingAnswer::where('event_id',Session::get('event_id'))->whereId($polling_answer_id)->first()->content;
                     $data->save();
-                }
 
-                if($this->check_winner($data->polling_id, Auth::user()->id)){
-                    return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()],200);
+                    if(PollingAnswer::where('event_id',Session::get('event_id'))->where('is_correct',1)->where('polling_question_id',$polling_question_id)->first()->id==$polling_answer_id){
+                        $data->is_winner = 1;
+                        $data->save();
+                    }
+
+                    if($this->check_winner($data->polling_id, Auth::user()->id)){
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()],200);
+                    }else{
+                        return response()->json(['message'=>'saved!','win'=>false],200);
+                    }
                 }else{
-                    return response()->json(['message'=>'saved!','win'=>false],200);
-                }
-            }else{
-                $data = new PollingResponse;
-                $data->event_id = Session::get('event_id');
-                $data->polling_id = PollingQuestion::whereId($polling_question_id)->first()->polling_id;
-                $data->user_id = Auth::user()->id;
-                $data->polling_question_id = $polling_question_id;
-                $data->polling_answer_id = $polling_answer_id;
-                $data->answer_text = PollingAnswer::whereId($polling_answer_id)->first()->content;
-                $data->save();
-
-                if(PollingAnswer::where('event_id',Session::get('event_id'))->where('is_correct',1)->where('polling_question_id',$polling_question_id)->first()->id==$polling_answer_id){
-                    $data->is_winner = 1;
+                    $data = new PollingResponse;
+                    $data->event_id = Session::get('event_id');
+                    $data->polling_id = PollingQuestion::whereId($polling_question_id)->first()->polling_id;
+                    $data->user_id = Auth::user()->id;
+                    $data->polling_question_id = $polling_question_id;
+                    $data->polling_answer_id = $polling_answer_id;
+                    $data->answer_text = PollingAnswer::whereId($polling_answer_id)->first()->content;
                     $data->save();
-                }
 
-                if($this->check_winner($data->polling_id, Auth::user()->id)){
-                    return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()],200);
-                }else{
-                    return response()->json(['message'=>'saved!','win'=>false],200);
+                    if(PollingAnswer::where('event_id',Session::get('event_id'))->where('is_correct',1)->where('polling_question_id',$polling_question_id)->first()->id==$polling_answer_id){
+                        $data->is_winner = 1;
+                        $data->save();
+                    }
+
+                    if($this->check_winner($data->polling_id, Auth::user()->id)){
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()],200);
+                    }else{
+                        return response()->json(['message'=>'saved!','win'=>false],200);
+                    }
                 }
             }
         }
     }
-}
-public function response_product($code = "", $response = "")
-{
-    if($code !="" and $response != ""){
-        if(Product::where('code',$code)->exists()){
-            $pro = Product::where('code',$code)->first();
+    public function response_product($code = "", $response = "")
+    {
+        if($code !="" and $response != ""){
+            if(Product::where('code',$code)->exists()){
+                $pro = Product::where('code',$code)->first();
 
-            $data = new ProductResponse;
-            $data->product_id = $pro->id;
-            $data->response_id = $response;
-            $data->save();
+                $data = new ProductResponse;
+                $data->product_id = $pro->id;
+                $data->response_id = $response;
+                $data->save();
 
-            \Session::put($code,$response);
+                \Session::put($code,$response);
 
-            return response()->json(['message'=>'saved!'],200);
-        }else{
-            return response()->json(['message'=>'product does not exists!'],200);
+                return response()->json(['message'=>'saved!'],200);
+            }else{
+                return response()->json(['message'=>'product does not exists!'],200);
+            }
+
         }
-
     }
-}
-public function product_report()
-{
-    $data['summary'] = Product::all();
+    public function product_report()
+    {
+        $data['summary'] = Product::all();
 
-    return view('product.report')->with($data);
-}
-public function product_chart($id)
-{
-    $data['summary'] = ProductResponse::select(DB::raw('product_id, coalesce(sum(case when response_id=1 then 1 end),0) as yes,coalesce(sum(case when response_id=0 then 1 end),0) as no'))->with(['product'])->groupBy('product_id')->where('product_id',$id)->first();
+        return view('product.report')->with($data);
+    }
+    public function product_chart($id)
+    {
+        $data['summary'] = ProductResponse::select(DB::raw('product_id, coalesce(sum(case when response_id=1 then 1 end),0) as yes,coalesce(sum(case when response_id=0 then 1 end),0) as no'))->with(['product'])->groupBy('product_id')->where('product_id',$id)->first();
 
-    return view('product.chart')->with($data);
-}
-public function product_export_excel()
-{
-    return Excel::download(new ProductExport, 'laporan_produk.xlsx');
-}
-public function downloadBarcode()
-{
+        return view('product.chart')->with($data);
+    }
+    public function product_export_excel()
+    {
+        return Excel::download(new ProductExport, 'laporan_produk.xlsx');
+    }
+    public function viewBarcode()
+    {
+        return view('print_pdf',['status'=>'print']);
+    }
+    public function downloadBarcode()
+    {
     // Ghostscript::setGsPath("C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe");
 
-    File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-    $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
+        File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+        $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
 
-    $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
+        $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
 
-    $img = new \Spatie\PdfToImage\Pdf(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
-    $img->saveImage(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
+        $img = new \Spatie\PdfToImage\Pdf(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
+        $img->saveImage(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
 
-    return response()->download(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
-}
-public function sendEmailBarcode()
-{
-    File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-    $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
-    $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
-    Mail::to(Auth::user()->email)->send(new sendBarcode());
-    return redirect()->route('home')->with('success','sent');
-}
-public function qrcode($text)
-{
-    return QRCode::text($text)->setSize(20)->setMargin(0)->png();
-}
+        return response()->download(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
+    }
+    public function sendEmailBarcode()
+    {
+        File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+        $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
+        $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
+        Mail::to(Auth::user()->email)->send(new sendBarcode());
+        return redirect()->route('home')->with('success','sent');
+    }
+    public function qrcode($text)
+    {
+        return QRCode::text($text)->setSize(20)->setMargin(0)->png();
+    }
 }
