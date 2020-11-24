@@ -8,6 +8,7 @@ use App\EventDetail;
 use App\User;
 use App\RSVP;
 use Str;
+use Session;
 
 class EventController extends Controller
 {

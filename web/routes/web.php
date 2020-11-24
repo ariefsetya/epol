@@ -63,6 +63,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    Route::resource('event_detail','EventDetailController');
+    Route::resource('user','InvitationController');
+    Route::resource('polling','PollingController');
+    Route::resource('polling_answer','PollingAnswerController');
+    Route::resource('polling_question','PollingQuestionController');
     Route::get('/product/chart/{id}','HomeController@product_chart')->name('product.chart');
     Route::get('/product/report','HomeController@product_report')->name('product.report');
     Route::get('/product/report/excel','HomeController@product_export_excel')->name('product.export_excel');
@@ -77,11 +82,6 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::post('/user/import', 'InvitationController@process_import')->name('user.process_import');
     Route::get('/polling/{polling_id?}/{question_id?}','PollingController@detail')->name('polling.detail');
     Route::get('/screen','HomeController@screen')->name('screen');
-    Route::resource('event_detail','EventDetailController');
-    Route::resource('user','InvitationController');
-    Route::resource('polling','PollingController');
-    Route::resource('polling_answer','PollingAnswerController');
-    Route::resource('polling_question','PollingQuestionController');
 });
 
 Route::get('qrcode/{text}', 'HomeController@qrcode');
