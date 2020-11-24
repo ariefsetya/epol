@@ -20,7 +20,7 @@ Route::get('/participant_category/list','LotteryController@participant_category'
 Route::get('/lottery/display','LotteryController@display');
 Route::post('/upload/csv','LotteryController@upload_csv');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index');
 
 
 //--------------------------import from er
