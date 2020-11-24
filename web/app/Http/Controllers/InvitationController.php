@@ -110,9 +110,9 @@ class InvitationController extends Controller
         return view('auth.register_face');
     }
 
-    public function show($id)
+    public function show()
     {
-        # code...
+        return view('user.import');
     }
 
     public function process_register_face(Request $r)
