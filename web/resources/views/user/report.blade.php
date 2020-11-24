@@ -16,9 +16,8 @@
                 <th>Nama</th>
                 <th>E-Mail</th>
                 <th>Telp</th>
-	    		<th>Perusahaan</th>
-                <th>Tempat Lahir</th>
-                <th>Tanggal Lahir</th>
+                <th>Guest / Quota</th>
+                <th>Confirm Status</th>
                 <th>Check In</th>
 	    	</tr>
     	</thead>
@@ -33,7 +32,6 @@
                         <td>{{$key[4]}}</td>
                         <td>{{$key[5]}}</td>
                         <td>{{$key[6]}}</td>
-                        <td>{{$key[7]}}</td>
         			</tr>
         		@endif
             @endforeach

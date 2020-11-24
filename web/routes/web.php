@@ -13,22 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/core', function () {return view('welcome');});
-Route::get('/lottery/scan',function(){return view('scan.lottery');});
-Route::get('/participant/list',function(){return view('participant.list');});
-Route::get('/participant_category/list',function(){return view('participant_category.list');});
-Route::get('/polling/list',function(){return view('polling.list');});
-Route::get('/lottery/display',function(){return view('scan.display');});
-Route::get('/wa',function(){return '<a href="https://api.whatsapp.com/send?phone=628994800089&text=klik disini untuk QR anda https://web.whatsapp.com/">Kirim</a>';});
-Route::post('/upload/csv',function(Illuminate\Http\Request $r)
-{
-	$file = $r->file('f');
-	$ext = $file->getClientOriginalExtension();
-	$filename = uniqid().".{$ext}";
-	$file->move(base_path()."/../data/", $filename);
-	return ['status'=>'OK','filename'=>$filename];
-});
-Auth::routes();
+Route::get('/core', 'LotteryController@core');
+Route::get('/lottery/scan','LotteryController@scan');
+Route::get('/participant/list','LotteryController@participant');
+Route::get('/participant_category/list','LotteryController@participant_category');
+Route::get('/lottery/display','LotteryController@display');
+Route::post('/upload/csv','LotteryController@upload_csv');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -94,9 +84,6 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/screen','HomeController@screen')->name('screen');
 });
 
-Route::get('qrcode/{text}', function ($text) 
-{
-    return QRCode::text($text)->setSize(20)->setMargin(0)->png();    
-});
+Route::get('qrcode/{text}', 'HomeController@qrcode');
 Route::post('/rsvp/confirm','RSVPController@confirm')->name('rsvp.confirm');
 Route::post('/rsvp/update','RSVPController@update')->name('rsvp.update');

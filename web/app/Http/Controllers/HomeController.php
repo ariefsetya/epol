@@ -293,4 +293,8 @@ public function sendEmailBarcode()
     Mail::to(Auth::user()->email)->send(new sendBarcode());
     return redirect()->route('home')->with('success','sent');
 }
+public function qrcode($text)
+{
+    return QRCode::text($text)->setSize(20)->setMargin(0)->png();
+}
 }

@@ -22,9 +22,8 @@ class PresenceExport implements FromCollection
                 'Nama',
                 'E-Mail ',
                 'Telp ',
-    			'Perusahaan ',
-                'Tempat Lahir ',
-                'Tanggal Lahir ',
+                'Guest / Quota ',
+                'RSVP ',
     			'Check In'
     		];
     	foreach ($data as $key) {
@@ -33,27 +32,23 @@ class PresenceExport implements FromCollection
         			$key->user->reg_number,
                     $key->user->name,
                     $key->user->email,
-                    $key->invitation->phone,
-        			$key->invitation->company,
-                    $key->invitation->custom_field_1,
-                    $key->invitation->custom_field_2,
+                    $key->user->phone,
+                    $key->user->rsvp->guest_qty . "/" . $key->user->custom_field_1,
+                    $key->user->rsvp->confirm_status,
         			$key->start_time
         		];
             }
     	}
 
-
-        $data = User::where('event_id',Session::get('event_id'))->where('user_type_id',2)->whereNotIn('id',array_values($data->toArray()))->get();
-
+        $data = User::where('event_id',Session::get('event_id'))->where('user_type_id',2)->whereNotIn('id',$data->pluck('user_id'))->get();
         foreach ($data as $key) {
                 $arr[] = [
                     $key->reg_number,
                     $key->name,
                     $key->email,
                     $key->phone,
-                    $key->company,
-                    $key->custom_field_1,
-                    $key->custom_field_2,
+                    $key->rsvp->guest_qty . "/" . $key->custom_field_1,
+                    $key->rsvp->confirm_status,
                     ''
                 ];
         }

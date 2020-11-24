@@ -18,9 +18,7 @@ class RSVPController extends Controller
 		}else{
 			$rsvp->confirm_status = 2;
 		}
-		if($r->has('guest_qty')){
-			$rsvp->guest_qty = $r->input('guest_qty');
-		}
+		$rsvp->guest_qty = $r->input('guest_qty') ?? $rsvp->guest_qty;
 		$rsvp->save();
 
 		return redirect(url('/'));
