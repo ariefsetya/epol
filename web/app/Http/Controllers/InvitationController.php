@@ -110,6 +110,11 @@ class InvitationController extends Controller
         return view('auth.register_face');
     }
 
+    public function show($id)
+    {
+        # code...
+    }
+
     public function process_register_face(Request $r)
     {
         $image = $r->image;  // your base64 encoded

@@ -21,7 +21,7 @@ min-height: 100% !important;">
 <div id="app">
   <main class="py-4">
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first())
-    <div class="col-md-3 text-center" style="margin:0 auto;">
+    <div class="col-md-1 text-center" style="margin:0 auto;">
       <div class="">
         <img class="mb-4 text-center" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first()->content ?? ''}}" alt="" style="width: 100%;">
       </div>
