@@ -48,7 +48,7 @@ Route::get('/sendEmailBarcode', 'HomeController@sendEmailBarcode')->name('sendEm
 Route::get('/logout','CustomAuthController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
