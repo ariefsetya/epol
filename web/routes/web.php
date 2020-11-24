@@ -87,3 +87,4 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 Route::get('qrcode/{text}', 'HomeController@qrcode');
 Route::post('/rsvp/confirm','RSVPController@confirm')->name('rsvp.confirm');
 Route::post('/rsvp/update','RSVPController@update')->name('rsvp.update');
+Route::get('/rsvp/reset','RSVPController@reset')->name('rsvp.reset');

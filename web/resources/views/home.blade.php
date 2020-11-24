@@ -38,9 +38,11 @@
     Silahkan lengkapi data Anda
     <form method="POST" action="{{url('/rsvp/update')}}">
         {{csrf_field()}}
-        <input type="email" name="email" data-role="input" data-prepend="Email">
+        <input type="email" name="email" data-role="input" data-prepend="Email" required>
         <hr>
         <button class="button primary" style="width: 100%" type="submit" name="submit">Update</button>
+        <br>
+        <a class="button" style="width: 100%" href="{{url('/rsvp/reset')}}">Kembali</a>
     </form>
     @endif
 
@@ -52,9 +54,11 @@
     Mohon menginformasikan alamat Anda, kami akan mengirimkan Souvenir
     <form method="POST" action="{{url('/rsvp/update')}}">
         {{csrf_field()}}
-        <input type="email" name="" data-role="input" data-prepend="Alamat" value="{{Auth::user()->rsvp->address_location}}">
+        <input type="text" name="address_location" required data-role="input" data-prepend="Alamat" value="{{Auth::user()->rsvp->address_location}}">
         <hr>
         <button class="button primary" style="width: 100%" type="submit" name="submit">Update</button>
+        <br>
+        <a class="button" style="width: 100%" href="{{url('/rsvp/reset')}}">Kembali</a>
     </form>
     @endif
 

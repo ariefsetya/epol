@@ -38,4 +38,13 @@ class RSVPController extends Controller
 
 		return redirect(url('/'));
 	}
+	public function reset()
+	{
+		$rsvp = RSVP::whereEventId(Session::get('event_id'))->whereUserId(Auth::user()->id)->first();
+		$rsvp->confirm_status = 0;
+		$rsvp->guest_qty = Auth::user()->custom_field_1;
+		$rsvp->save();
+
+		return redirect(url('/'));
+	}
 }
