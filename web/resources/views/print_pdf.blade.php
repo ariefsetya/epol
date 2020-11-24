@@ -25,7 +25,11 @@
                 <div style="width:90%; margin:0 auto;position: relative;display: block;clear: both;">
                     <br>
                     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first())
-                    <img class="mb-4 text-center" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first()->content}}" alt="" style="width: 30%;margin:0 auto;">
+                    <div style="width:30%; margin:0 auto;">
+                        <div style="">
+                            <img style="width: 100%" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first()->content}}">
+                        </div>
+                    </div>
                     @endif
                     <br>
                     <br>

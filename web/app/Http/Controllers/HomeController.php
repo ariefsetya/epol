@@ -18,13 +18,13 @@ use DB;
 use PDF;
 use File;
 use Validator;
-use QRCode;
 use Mail;
 use Session;
 use App\Exports\ProductExport;
 use App\Exports\QuizExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Org_Heigl\Ghostscript\Ghostscript;
+use QrCode;
 
 class HomeController extends Controller
 {
@@ -301,6 +301,6 @@ class HomeController extends Controller
     }
     public function qrcode($text)
     {
-        return QRCode::text($text)->setSize(20)->setMargin(0)->png();
+        return QrCode::size(200)->generate($text);
     }
 }
