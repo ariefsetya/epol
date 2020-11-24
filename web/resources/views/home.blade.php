@@ -60,6 +60,8 @@
         <br>
         <a class="button" style="width: 100%" href="{{url('/rsvp/reset')}}">Kembali</a>
     </form>
+    @else
+    Terima kasih telah melakukan konfirmasi RSVP
     @endif
 
     @endif
