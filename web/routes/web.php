@@ -48,7 +48,7 @@ Route::get('/sendEmailBarcode', 'HomeController@sendEmailBarcode')->name('sendEm
 Route::get('/logout','CustomAuthController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 
-// Auth::routes();
+Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
@@ -75,13 +75,13 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/','HomeController@admin')->name('admin');
     Route::get('/user/import', 'InvitationController@import')->name('user.import');
     Route::post('/user/import', 'InvitationController@process_import')->name('user.process_import');
+    Route::get('/polling/{polling_id?}/{question_id?}','PollingController@detail')->name('polling.detail');
+    Route::get('/screen','HomeController@screen')->name('screen');
     Route::resource('event_detail','EventDetailController');
     Route::resource('user','InvitationController');
     Route::resource('polling','PollingController');
-    Route::get('/polling/{polling_id?}/{question_id?}','PollingController@detail')->name('polling.detail');
     Route::resource('polling_answer','PollingAnswerController');
     Route::resource('polling_question','PollingQuestionController');
-    Route::get('/screen','HomeController@screen')->name('screen');
 });
 
 Route::get('qrcode/{text}', 'HomeController@qrcode');
