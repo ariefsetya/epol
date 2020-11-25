@@ -57,10 +57,6 @@
                     <span class="mif-chart-pie icon"></span>
                     <span class="branding-bar">Polling</span>
                 </div>
-                <div data-role="tile" class="bg-green fg-white">
-                    <span class="mif-rocket icon"></span>
-                    <span class="branding-bar">Product</span>
-                </div>
                 <a data-role="tile" class="bg-brown fg-white" data-size="wide">
                     <span class="mif-tags icon"></span>
                     <span class="branding-bar">Lottery Participant Category</span>
@@ -69,7 +65,7 @@
             </div>
 
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Report">
-                <a href="{{url('admin/presence/report')}}" data-role="tile" class="bg-blue fg-white" data-size="wide">
+                <a href="{{url('admin/presence/report')}}" data-role="tile" class="bg-blue fg-white" >
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Presence</span>
                 </a>
@@ -77,15 +73,6 @@
                     <span class="mif-chart-pie icon"></span>
                     <span class="branding-bar">Polling</span>
                 </div>
-                <div data-role="tile" class="bg-green fg-white">
-                    <span class="mif-rocket icon"></span>
-                    <span class="branding-bar">Product</span>
-                </div>
-                <a data-role="tile" class="bg-brown fg-white" data-size="wide">
-                    <span class="mif-tags icon"></span>
-                    <span class="branding-bar">Lottery Participant Category</span>
-                    <span class="badge-bottom">10</span>
-                </a>
             </div>
 
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Lottery">

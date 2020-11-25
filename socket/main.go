@@ -94,6 +94,15 @@ func main() {
 		}
 	}
 
+	server.OnEvent("/", "winners", func(s socketio.Conn, msg string) string {
+		server.BroadcastToRoom("", "bcast", "initialize", msg)
+		return "initialized";
+	})
+	server.OnEvent("/", "start", func(s socketio.Conn, msg string) string {
+		server.BroadcastToRoom("", "bcast", "start", msg)
+		return "started";
+	})
+
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
 	})
@@ -105,7 +114,7 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	router.Use(GinMiddleware("http://localhost:8000"))
+	router.Use(GinMiddleware("http://aqua-japan.com:8000"))
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))

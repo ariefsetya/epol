@@ -20,6 +20,8 @@ class CreateLotteryParticipantsTable extends Migration
             $table->string('number');
             $table->string('name');
             $table->string('city');
+            $table->string('organization');
+            $table->string('department');
             $table->timestamps();
         });
     }

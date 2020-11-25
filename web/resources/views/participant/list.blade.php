@@ -46,7 +46,7 @@
 			.then(response => response.json())
 			.then(async data => {
 				try {
-					let x = await fetch("{{env('DATA_URL').'data/csv_insert.php?f='}}" + data.filename, {method: "GET"});
+					let x = await fetch("{!!env('DATA_URL')."data/csv_insert.php?event_id=".Session::get('event_id')."&f="!!}" + data.filename, {method: "GET"});
 					console.log(x);
 				}catch(e){
 					console.log('error 1:', e);
