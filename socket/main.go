@@ -8,6 +8,7 @@ import (
 	"socket/Models"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/autotls"
 	"github.com/jinzhu/gorm"
 
 	socketio "github.com/googollee/go-socket.io"
@@ -155,5 +156,7 @@ func main() {
 			}
 		})
 
-		router.Run("localhost:3000")
+		// router.Run("localhost:3000")
+		log.Fatal(autotls.Run(router, "faraakbarwedding.com:3000"))
+
 	}
