@@ -280,9 +280,10 @@ class HomeController extends Controller
     }
     public function downloadBarcode()
     {
+        
         // Ghostscript::setGsPath("C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe");
         File::makeDirectory(public_path('/barcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-        QrCode::format('png')->size(200)->generate($text, public_path('/barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png'));
+        QrCode::format('png')->size(200)->generate(Auth::user()->reg_number, public_path('/barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png'));
 
         File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
         $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
@@ -298,7 +299,7 @@ class HomeController extends Controller
     public function sendEmailBarcode()
     {
         File::makeDirectory(public_path('/barcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-        QrCode::format('png')->size(200)->generate(, public_path('/barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png'));
+        QrCode::format('png')->size(200)->generate(Auth::user()->reg_number, public_path('/barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png'));
 
         File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
         $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
