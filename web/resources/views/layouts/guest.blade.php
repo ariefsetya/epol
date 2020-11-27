@@ -18,7 +18,13 @@
 background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content ?? ''}});background-size: 100%;
 @endif
 min-height: 100% !important;">
-<div id="app">
+<div id="app" style="
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);">
   <main class="py-4">
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first())
     <div class="text-center" style="width:30%;margin:0 auto;">
