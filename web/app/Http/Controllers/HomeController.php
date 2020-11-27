@@ -309,7 +309,7 @@ class HomeController extends Controller
     public function qrcode($text)
     {
         File::makeDirectory(public_path('/barcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-        $response = Response::make(QrCode::format('png')->size(200)->generate($text)), 200);
+        $response = Response::make(QrCode::format('png')->size(200)->generate($text), 200);
         $response->header("Content-Type", 'image/png');
         return $response;
     }
