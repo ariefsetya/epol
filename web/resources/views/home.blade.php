@@ -8,60 +8,51 @@
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
 
     @if((Auth::user()->rsvp->confirm_status ?? 0) == 0)
-    <form method="POST" action="{{url('/rsvp/confirm')}}">
-        {{csrf_field()}}
-        Halo, {{Auth::user()->name}},<br>
-        Terima Kasih telah melakukan RSVP<br>
-        Acara : AKAD NIKAH<br>
-        Pukul : 10.00 WIB - selesai<br>
-        Nomor Meja : 19<br>
-        Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="background:rgba(0,0,0,0); border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
-        <br>
-        <br>
-        <br>
-        Mohon klik salah satu tombol dibawah ini
-        <br>
-        <div>
+    <div style="width:100%;padding:10px; background: rgba(255,255,255,0.4);">
+
+        <form method="POST" action="{{url('/rsvp/confirm')}}">
+            {{csrf_field()}}
+            Halo, {{Auth::user()->name}},<br>
+            Terima Kasih telah melakukan RSVP<br>
+            Acara : AKAD NIKAH<br>
+            Pukul : 10.00 WIB - selesai<br>
+            Nomor Meja : 19<br>
+            Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="background:rgba(0,0,0,0); border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
+            <br>
+            <br>
+            <br>
+            Mohon klik salah satu tombol dibawah ini
+            <br>
             <div>
-                <button name="submit" type="submit" value="yes" class="button primary" style="width: 100%">Ya, saya akan hadir</button>
+                <div>
+                    <button name="submit" type="submit" value="yes" class="button primary" style="width: 100%">Ya, saya akan hadir</button>
+                </div>
+                <div class="mt-2">
+                    <button name="submit" type="submit" value="no" class="button" style="width: 100%">Maaf, saya tidak dapat hadir</button>
+                </div>
             </div>
-            <div class="mt-2">
-                <button name="submit" type="submit" value="no" class="button" style="width: 100%">Maaf, saya tidak dapat hadir</button>
-            </div>
-        </div>
-    </form>
-    @endif
-
-    @if(Auth::user()->rsvp->confirm_status == 1)
-
-    @if(Auth::user()->email == '')
-    Silahkan lengkapi data Anda
-    <form method="POST" action="{{url('/rsvp/update')}}">
-        {{csrf_field()}}
-        <input type="email" name="email" data-role="input" data-prepend="Email" required>
-        <hr>
-        <button class="button primary" style="width: 100%" type="submit" name="submit">Update</button>
-        <br>
-        <a class="button" style="width: 100%" href="{{url('/rsvp/reset')}}">Kembali</a>
-    </form>
-    @endif
-
+        </form>
+    </div>
     @endif
 
     @if(Auth::user()->rsvp->confirm_status == 2)
 
     @if(Auth::user()->rsvp->address_location == '')
-    Mohon menginformasikan alamat Anda, kami akan mengirimkan Souvenir
-    <form method="POST" action="{{url('/rsvp/update')}}">
-        {{csrf_field()}}
-        <input type="text" name="address_location" required data-role="input" data-prepend="Alamat" value="{{Auth::user()->rsvp->address_location}}">
-        <hr>
-        <button class="button primary" style="width: 100%" type="submit" name="submit">Update</button>
-        <br>
-        <a class="button" style="width: 100%" href="{{url('/rsvp/reset')}}">Kembali</a>
-    </form>
+    <div style="width:100%;padding:10px; background: rgba(255,255,255,0.4);">
+        Mohon menginformasikan alamat Anda, kami akan mengirimkan Souvenir
+        <form method="POST" action="{{url('/rsvp/update')}}">
+            {{csrf_field()}}
+            <input type="text" name="address_location" required data-role="input" data-prepend="Alamat" value="{{Auth::user()->rsvp->address_location}}">
+            <hr>
+            <button class="button primary" style="width: 100%" type="submit" name="submit">Update</button>
+            <br>
+            <a class="button" style="width: 100%" href="{{url('/rsvp/reset')}}">Kembali</a>
+        </form>
+    </div>
     @else
-    Terima kasih telah melakukan konfirmasi RSVP
+    <div style="width:100%;padding:10px; background: rgba(255,255,255,0.4);">
+        Terima kasih telah melakukan konfirmasi RSVP
+    </div>
     @endif
 
     @endif
@@ -122,7 +113,7 @@
     <div style="display: block;" id="overlay_home"></div>
     <a id="button_register" style="display:none;background: yellow; color: black;" href="{{route('registerPage')}}" class="btn btn-lg col-md-12">REGISTER</a>
     @else
-    @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_barcode' or (\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp' and Auth::user()->rsvp->confirm_status == 1 and Auth::user()->email != ''))
+    @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_barcode' or (\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp' and Auth::user()->rsvp->confirm_status == 1))
     <div style="width:100%; margin:0 auto;position: relative;display: block;clear: both;">
         <h5 style="color:white">{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_success_message')->first()->content}}</h5>
         <br>
@@ -141,6 +132,7 @@
         <div style="display: block;color: black;width:100%;margin:0 auto;padding:10px; background: rgba(255,255,255,0.4);">  
             <b>{{Auth::user()->name}}</b><br>
             Acara : {{Auth::user()->rsvp->session_invitation}}<br>           
+            Tanggal : 13 Desember 2020<br>                   
             Waktu : {{Auth::user()->rsvp->event_time}}<br>           
             Nomor Meja : {{Auth::user()->rsvp->seat_number}}<br>           
             Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br>  
@@ -154,6 +146,7 @@
         <div style="display: block;">
             <a class="button primary"  href="{{route('downloadBarcode')}}" style="width: 100%">SIMPAN</a>
             <a class="button primary mt-3"  href="{{route('sendEmailBarcode')}}" style="width: 100%">KIRIM EMAIL</a>
+            <a class="button primary mt-3"  href="{{route('sendEmailWA')}}" style="width: 100%">KIRIM WA</a>
         </div>
     </div>
     @endif
