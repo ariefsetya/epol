@@ -126,8 +126,8 @@
     <div style="width:100%; margin:0 auto;position: relative;display: block;clear: both;">
         <h5 style="color:white">{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_success_message')->first()->content}}</h5>
         <br>
-        <div style="width:50%; margin:0 auto;">
-            <div style="background: white;padding:10px;">
+        <div style="background: white;margin:0 auto;width: 220px;height: 220px;">
+            <div style="padding:10px;">
                 {!! QrCode::size(200)->generate(Auth::user()->reg_number); !!}
             </div>
         </div>
