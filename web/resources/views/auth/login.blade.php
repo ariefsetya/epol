@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-<div class="text-center  col-md-3" style="margin-top:80%;width:100%;padding:10px; background: rgba(255,255,255,0.4);">
+<div class="text-center  col-md-3" style="margin-top:85%;width:100%;padding:10px; background: rgba(255,255,255,0.4);">
   <form class="form-signin" method="post" action="{{route('phoneLogin')}}">
     {{csrf_field()}}
 
