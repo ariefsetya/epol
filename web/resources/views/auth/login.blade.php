@@ -11,8 +11,8 @@
     </div>
     @endif
     <br>
-    Selamat datang<br>di halaman RSVP<br>
-    Pernikahan<br>Fara & Akbar<br>
+    Selamat datang di halaman RSVP<br>
+    Pernikahan Fara & Akbar<br>
     <br>
     Silahkan masukkan nomor HP Anda
     <input type="hidden" name="country_id" value="100">
