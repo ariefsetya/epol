@@ -24,7 +24,7 @@
                 Tanggal : 13 Desember 2020<br>
                 Waktu : {{Auth::user()->rsvp->event_time}}<br>
                 Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br><br>
-                Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="border-color:black;background:rgba(0,0,0,0); border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
+                Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="border-color:black;background:white; border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
             </div>
             <br>
             <br>
@@ -158,7 +158,7 @@
         @endif
         <div style="display: block;">
             <a class="button primary"  href="{{route('downloadBarcode')}}" style="width: 100%;background-color: #82603B;">SIMPAN</a>
-            <a class="button primary mt-1"  href="{{route('setEmail')}}" style="width: 100%;background-color: #82603B;">KIRIM EMAIL</a>
+            <!-- <a class="button primary mt-1"  href="{{route('setEmail')}}" style="width: 100%;background-color: #82603B;">KIRIM EMAIL</a> -->
             <a class="button primary mt-1"  href="{{route('sendEmailWA')}}" style="width: 100%;background-color: #82603B;">KIRIM WA</a>
         </div>
     </div>

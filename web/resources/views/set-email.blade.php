@@ -16,7 +16,7 @@
             {{csrf_field()}}
             <input type="email" name="email" data-role="input" data-prepend="Email" required value="{{Auth::user()->email}}">
             <hr>
-            <button class="button primary" style="width: 100%" type="submit" name="submit">KIRIM</button>
+            <button class="button primary" style="width: 100%;background-color: #82603B;" type="submit" name="submit">KIRIM</button>
             <a class="mt-1 button" style="width: 100%" href="{{url('/')}}">KEMBALI</a>
         </form>
     </div>
