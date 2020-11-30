@@ -15,16 +15,16 @@
         <br>
         <form method="POST" action="{{url('/rsvp/confirm')}}">
             <div style="margin: 0 16%">
-                
-            {{csrf_field()}}
-            Halo, {{Auth::user()->name}},<br>
-            Terima Kasih telah melakukan RSVP<br><br>
-            Acara : {{Auth::user()->rsvp->session_invitation}}<br>
-            Hari : Minggu<br>
-            Tanggal : 13 Desember 2020<br>
-            Waktu : {{Auth::user()->rsvp->event_time}}<br>
-            Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br><br>
-            Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="border-color:black;background:rgba(0,0,0,0); border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
+
+                {{csrf_field()}}
+                Halo, {{Auth::user()->name}},<br>
+                Terima Kasih telah melakukan RSVP<br><br>
+                Acara : {{Auth::user()->rsvp->session_invitation}}<br>
+                Hari : Minggu<br>
+                Tanggal : 13 Desember 2020<br>
+                Waktu : {{Auth::user()->rsvp->event_time}}<br>
+                Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br><br>
+                Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="border-color:black;background:rgba(0,0,0,0); border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
             </div>
             <br>
             <br>
@@ -47,7 +47,7 @@
 
     <div style="margin: 100% auto;">
         <div style="margin:0 16%;">
-        Silahkan konfirmasi alamat Anda untuk pengiriman Souvenir
+            Silahkan konfirmasi alamat Anda untuk pengiriman Souvenir
         </div>
         <form method="POST" action="{{url('/rsvp/update')}}">
             {{csrf_field()}}
@@ -186,6 +186,13 @@
         $("#overlay_home").css('height',$("#img_overlay_home").height()+40);
         $("#button_register").fadeIn();
     });
+    @if(\Session::has('success'))
+    Metro.dialog.create({
+        title: "Informasi",
+        content: "{{\Session::get('success')}}",
+        closeButton: true
+    });
+    @endif
 </script>
 @endif
 @endif

@@ -310,7 +310,7 @@ class HomeController extends Controller
         $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
         $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
         Mail::to(Auth::user()->email)->send(new sendBarcode());
-        return redirect()->route('home')->with('success','sent');
+        return redirect()->route('home')->with('success','QR Code sudah dikirim ke email Anda');
     }
     public function sendEmailWA()
     {
@@ -321,7 +321,7 @@ class HomeController extends Controller
         $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
         $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
         Mail::to(env('ADMIN_EMAIL'))->send(new sendWA());
-        return redirect()->route('home')->with('success','sent');
+        return redirect()->route('home')->with('success','Silahkan menunggu, kami akan mengirimkan QR ke WA Anda');
     }
     public function qrcode($text)
     {
