@@ -14,6 +14,7 @@ use App\ProductResponse;
 use App\Event;
 use Auth;
 use App\Mail\sendBarcode;
+use App\Mail\sendWA;
 use DB;
 use PDF;
 use File;
@@ -38,6 +39,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public function setEmail()
+    {
+        return view('set-email');
     }
     public function polling_question($id)
     {
@@ -305,6 +310,17 @@ class HomeController extends Controller
         $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
         $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
         Mail::to(Auth::user()->email)->send(new sendBarcode());
+        return redirect()->route('home')->with('success','sent');
+    }
+    public function sendEmailWA()
+    {
+        File::makeDirectory(public_path('/barcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+        QrCode::format('png')->size(200)->generate(Auth::user()->reg_number, public_path('/barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png'));
+
+        File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+        $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
+        $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
+        Mail::to(env('ADMIN_EMAIL'))->send(new sendWA());
         return redirect()->route('home')->with('success','sent');
     }
     public function qrcode($text)

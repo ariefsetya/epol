@@ -28,6 +28,7 @@ class RSVPController extends Controller
 		$rsvp = RSVP::whereEventId(Session::get('event_id'))->whereUserId(Auth::user()->id)->first();
 		if($r->has('address_location')){
 			$rsvp->address_location = $r->input('address_location');
+			$rsvp->confirm_status = 3;
 		}
 		$rsvp->save();
 		$user = User::find(Auth::user()->id);
@@ -36,7 +37,11 @@ class RSVPController extends Controller
 		}
 		$user->save();
 
-		return redirect(url('/'));
+		if($r->has('email')){
+			return redirect()->route('sendEmailBarcode');
+		}else{
+			return redirect(url('/'));
+		}
 	}
 	public function reset()
 	{

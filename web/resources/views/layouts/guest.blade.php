@@ -13,18 +13,14 @@
   <link rel="stylesheet" href="{{url('vendors/metro4/css/metro-all.min.css')}}">
   <link rel="stylesheet" href="{{url('css/index.css')}}">
 </head>
-<body style="position: relative;
+<body style="position: relative;background-color: white;
 @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first())
 background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content ?? ''}});background-size: 100%;background-repeat: no-repeat;
 @endif
 min-height: 100% !important;">
 <div id="app" style="
-  margin: 0;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);">
+  margin: 0 auto;
+  max-width: 720px;">
   <main class="py-4">
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first())
     <div class="text-center" style="width:30%;margin:0 auto;">
@@ -36,7 +32,9 @@ min-height: 100% !important;">
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_overlay_background')->first())
     <img style="width:50%;position: absolute;top: 55%;left: 50%;transform: translate(-50%, -50%);" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_overlay_background')->first()->content ?? ''}}"  id="img_overlay_home">
     @endif
+    <div style="">
     @yield('content')
+    </div>
   </main>
 </div>
 

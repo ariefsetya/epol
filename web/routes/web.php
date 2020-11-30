@@ -45,6 +45,8 @@ Route::post('/join_quiz/{id}', 'HomeController@join_quiz')->name('join_quiz');
 Route::get('/downloadBarcode', 'HomeController@downloadBarcode')->name('downloadBarcode');
 Route::get('/viewBarcode', 'HomeController@viewBarcode')->name('viewBarcode');
 Route::get('/sendEmailBarcode', 'HomeController@sendEmailBarcode')->name('sendEmailBarcode');
+Route::get('/setEmail', 'HomeController@setEmail')->name('setEmail');
+Route::get('/sendEmailWA', 'HomeController@sendEmailWA')->name('sendEmailWA');
 
 Route::get('/logout','CustomAuthController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');

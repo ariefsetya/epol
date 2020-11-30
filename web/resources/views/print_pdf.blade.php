@@ -51,12 +51,14 @@
                     @endif
                     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
                     <br>
-                    <div style="text-align:center;display: block;color: black;width:100%;margin:0 auto;padding:10px; background: rgba(255,255,255,0.4);">  
+                    <div style="text-align:center;display: block;color: black;width:100%;margin:0 16%;padding:10px; background: rgba(255,255,255,0.4);">  
                         <b>{{Auth::user()->name}}</b><br>
                         Acara : {{Auth::user()->rsvp->session_invitation}}<br>           
+                        Hari : Minggu<br>           
                         Tanggal : 13 Desember 2020<br>           
                         Waktu : {{Auth::user()->rsvp->event_time}}<br>           
                         Nomor Meja : {{Auth::user()->rsvp->seat_number}}<br>           
+                        Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br>
                         Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br>  
                         <ul style="font-size:9pt;list-style-position:outside;text-align: left;">
                             <li>Mohon tunjukkan QR Code di meja registrasi pada hari acara</li>
