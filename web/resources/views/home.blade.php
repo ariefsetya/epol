@@ -148,7 +148,12 @@
             Tanggal : 13 Desember 2020<br>                   
             Waktu : {{Auth::user()->rsvp->event_time}}<br>       
             Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br>    
-            Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br>  
+            Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br><br>  
+            <div style="text-align: left;">
+            <b>Mengacu kepada peraturan protokol kesehatan, untuk itu kami mengharapkan Bapak/Ibu untuk</b><br>
+            - Datang tepat waktu<br>
+            - Tidak diperbolehkan bawa anak kecil<br>
+            </div>
             <ul style="font-size:9pt;list-style-position:outside;text-align: left;">
                 <li>Mohon tunjukkan QR Code di meja registrasi pada hari acara</li>
                 <li>Anda dapat menyimpan QR Code di gallery HP Anda atau kirim ke email Anda dengan klik salah satu tombol berikut</li>

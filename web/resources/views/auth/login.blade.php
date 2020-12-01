@@ -50,7 +50,7 @@
   </div>
   @endif
   <br>
-  Silahkan masukkan nomor HP Anda
+  Silahkan masukkan Nomor Handphone Anda untuk konfirmasi kehadiran
   <input type="hidden" name="country_id" value="100">
   <input class="input-large" type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
   <button class="mt-1 button shadowed primary col-md-12 large" type="submit" style="background-color: #82603B;">MASUK</button>
