@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="text-center  col-md-12" style="width:100%;padding:10px; background: rgba(255,255,255,0.4);">
+    @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
     <div style="margin: 0 15%;">
       <br>
       Assalamualaikum Warahmatullahi Wabarakatuh
@@ -41,6 +42,7 @@
       Wassalamualaikum Warahmatullahi Wabarakatuh.
       <br>
   </div>
+  @endif
   <form class="form-signin" method="post" action="{{route('phoneLogin')}}">
     {{csrf_field()}}
 
@@ -50,10 +52,19 @@
   </div>
   @endif
   <br>
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
   Silahkan masukkan Nomor Handphone Anda untuk konfirmasi kehadiran
+  @else
+  Silahkan masukkan kode undangan Anda untuk melanjutkan
+  @endif
   <input type="hidden" name="country_id" value="100">
   <input class="input-large" type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
   <button class="mt-1 button shadowed primary col-md-12 large" type="submit" style="background-color: #82603B;">MASUK</button>
+  @else
+  <button class="mt-1 button shadowed primary col-md-12 large" type="submit">MASUK</button>
+  @endif
+
 </form>
 </div>
 @endsection
