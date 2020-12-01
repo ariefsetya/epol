@@ -59,11 +59,13 @@
                         Waktu : {{Auth::user()->rsvp->event_time}}<br>                      
                         Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br>
                         Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br>  
+                    <br>
                         <div style="text-align: left;">
                             <b>Mengacu kepada peraturan protokol kesehatan, untuk itu kami mengharapkan Bapak/Ibu</b><br>
                             - Datang tepat waktu<br>
-                            - Tidak diperbolehkan membawa anak kecil<br>
+                            - Tidak membawa anak kecil<br>
                         </div>
+                    <br>
                         <small>Mohon tunjukkan QR Code di meja registrasi pada hari acara</small>
                     </div>
                     <br>

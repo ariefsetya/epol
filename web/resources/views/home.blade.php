@@ -152,7 +152,7 @@
             <div style="text-align: left;">
                 <b>Mengacu kepada peraturan protokol kesehatan, untuk itu kami mengharapkan Bapak/Ibu</b><br>
                 - Datang tepat waktu<br>
-                - Tidak diperbolehkan membawa anak kecil<br>
+                - Tidak membawa anak kecil<br>
             </div>
             <ul style="font-size:9pt;list-style-position:outside;text-align: left;">
                 <li>Mohon tunjukkan QR Code di meja registrasi pada hari acara</li>
