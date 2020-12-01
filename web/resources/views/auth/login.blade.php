@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-<div class="text-center  col-md-12" style="width:100%;padding:10px; background: rgba(255,255,255,0.4);">
+<div class="text-center  col-md-12" style="width:100%;padding:10px; background: rgba(255,255,255,0.6);">
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
     <div style="margin: 0 15%;">
       <br>

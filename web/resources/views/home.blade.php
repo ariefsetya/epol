@@ -4,7 +4,7 @@
 @section('content')
 
 
-<div class="text-center col-md-12" style="margin:0 auto;background: rgba(255,255,255,0.4);">
+<div class="text-center col-md-12" style="margin:0 auto;background: rgba(255,255,255,0.6);">
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
 
     @if((Auth::user()->rsvp->confirm_status ?? 0) == 0)
@@ -150,9 +150,9 @@
             Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br>    
             Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br><br>  
             <div style="text-align: left;">
-                <b>Mengacu kepada peraturan protokol kesehatan, untuk itu kami mengharapkan Bapak/Ibu untuk</b><br>
+                <b>Mengacu kepada peraturan protokol kesehatan, untuk itu kami mengharapkan Bapak/Ibu</b><br>
                 - Datang tepat waktu<br>
-                - Tidak diperbolehkan bawa anak kecil<br>
+                - Tidak diperbolehkan membawa anak kecil<br>
             </div>
             <ul style="font-size:9pt;list-style-position:outside;text-align: left;">
                 <li>Mohon tunjukkan QR Code di meja registrasi pada hari acara</li>

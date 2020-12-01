@@ -51,7 +51,7 @@
                     @endif
                     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
                     <br>
-                    <div style="text-align:center;display: block;color: black;width:100%;margin:0 16%;padding:10px; background: rgba(255,255,255,0.4);">  
+                    <div style="text-align:center;display: block;color: black;width:100%;margin:0 16%;padding:10px; background: rgba(255,255,255,0.6);">  
                         <b>{{Auth::user()->name}}</b><br>
                         Acara : {{Auth::user()->rsvp->session_invitation}}<br>           
                         Hari : Minggu<br>           
