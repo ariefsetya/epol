@@ -156,7 +156,7 @@
             </div>
             <ul style="font-size:9pt;list-style-position:outside;text-align: left;">
                 <li>Mohon tunjukkan QR Code di meja registrasi pada hari acara</li>
-                <li>Anda dapat menyimpan QR Code di gallery HP Anda atau kirim ke email Anda dengan klik salah satu tombol berikut</li>
+                <li>Anda dapat menyimpan QR Code di gallery HP atau kirim ke WA Anda</li>
             </ul>
         </div>
         <br>
