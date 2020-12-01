@@ -19,23 +19,25 @@ background-image: url({{\App\EventDetail::where('event_id',Session::get('event_i
 @endif
 min-height: 100% !important;">
 <div id="app" style="
-  margin: 0 auto;
-  max-width: 720px;">
-  <main class="py-4">
-    @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first())
-    <div class="text-center" style="width:30%;margin:0 auto;">
-      <div class="">
-        <img class="mb-4 text-center" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first()->content ?? ''}}" alt="" style="width: 100%;">
-      </div>
+margin: 0 auto;
+max-width: 720px;">
+<main>
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first())
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first()->content != "")
+  <div class="text-center" style="width:30%;margin:0 auto;">
+    <div class="">
+      <img class="mb-4 text-center" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_header_logo')->first()->content ?? ''}}" alt="" style="width: 100%;">
     </div>
-    @endif
-    @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_overlay_background')->first())
-    <img style="width:50%;position: absolute;top: 55%;left: 50%;transform: translate(-50%, -50%);" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_overlay_background')->first()->content ?? ''}}"  id="img_overlay_home">
-    @endif
-    <div style="">
+  </div>
+  @endif
+  @endif
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_overlay_background')->first())
+  <img style="width:50%;position: absolute;top: 55%;left: 50%;transform: translate(-50%, -50%);" src="{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_overlay_background')->first()->content ?? ''}}"  id="img_overlay_home">
+  @endif
+  <div style="">
     @yield('content')
-    </div>
-  </main>
+  </div>
+</main>
 </div>
 
 
