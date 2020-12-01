@@ -33,7 +33,7 @@
                     @endif
                     <br>
                     <br>
-                    <h2 style="color:black;margin:0 auto;text-align: center;font-family: sans-serif;">{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_success_message')->first()->content}}</h2>
+                    <h2 style="color:white;margin:0 auto;text-align: center;font-family: sans-serif;">{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_success_message')->first()->content}}</h2>
                     <br>
                     <br>
                     <br>
