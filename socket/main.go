@@ -158,6 +158,6 @@ func main() {
 		})
 
 		// router.Run("localhost:3000")
-		log.Fatal(autotls.Run(router, "aqjndg2020.com:3000"))
+		log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
 
 	}
