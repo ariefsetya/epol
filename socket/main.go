@@ -115,7 +115,7 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	router.Use(GinMiddleware("http://aqua-japan.com:8000"))
+	router.Use(GinMiddleware("https://aqjndg2020.com"))
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))
@@ -157,6 +157,6 @@ func main() {
 		})
 
 		// router.Run("localhost:3000")
-		log.Fatal(autotls.Run(router, "faraakbarwedding.com:3000"))
+		log.Fatal(autotls.Run(router, "aqjndg2020.com:3000"))
 
 	}
