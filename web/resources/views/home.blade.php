@@ -100,16 +100,16 @@
     @if(\App\PollingResponse::where('event_id',Session::get('event_id'))->where('user_id',Auth::user()->id)->count()==\App\PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$row->id)->count())
     <a class="btn btn-lg btn-secondary text-white col-md-12">{{$row->name}}</a>
     @else
-    <a href="{{route('quiz_response',[$row->id])}}" class="btn btn-lg btn-dark col-md-12">{{$row->name}}</a>
+    <a href="{{route('quiz_response',[$row->id])}}" class="button success large col-md-12">{{$row->name}}</a>
     @endif
     @else
-    <a href="{{route('quiz_join',[$row->id])}}" class="btn btn-lg btn-dark col-md-12">{{$row->name}}</a>
+    <a href="{{route('quiz_join',[$row->id])}}" class="button success large col-md-12">{{$row->name}}</a>
     @endif
     @else
     @if(\Session::has('polling_'.$row->id))
-    <a class="btn btn-lg btn-secondary text-white col-md-12">{{$row->name}}</a>
+    <a class="button large col-md-12">{{$row->name}}</a>
     @else
-    <a href="{{route('polling_response',[$row->id])}}" class="btn btn-lg btn-dark col-md-12">{{$row->name}}</a>
+    <a href="{{route('polling_response',[$row->id])}}" class="button primary large col-md-12">{{$row->name}}</a>
     @endif
     @endif
     <hr>
