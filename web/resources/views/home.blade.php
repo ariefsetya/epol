@@ -69,7 +69,7 @@
 
     @endif
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_barcode')
-    <div>
+    <div class="text-center col-md-12" style="margin:0 auto;">
 
 
     @if($message = Session::get('success'))
@@ -77,7 +77,7 @@
     @endif
 
     @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website','register_face']))
-    <div>
+    <div class="text-center col-md-12" style="margin:0 auto;">
     <h3>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
         @if(Auth::check())
         <br>
