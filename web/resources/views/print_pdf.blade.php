@@ -17,7 +17,7 @@
     </style>
 </head>
 <body @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;" @endif>
-    <div id="app">
+    <div id="app" style="background: rgba(255,255,255,0.6);">
         <main class="py-4">
 
             <div class="text-center" style="margin:0 auto;">
@@ -49,7 +49,7 @@
                     @endif
                     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
                     <br>
-                    <div style="text-align:center;display: block;color: black;width:100%;margin:0 16%;padding:10px; background: rgba(255,255,255,0.6);">  
+                    <div style="text-align:center;display: block;color: black;width:100%;margin:0 16%;padding:10px;">  
                         <b>{{Auth::user()->name}}</b><br>
                         Acara : {{Auth::user()->rsvp->session_invitation}}<br>           
                         Hari : Minggu<br>           
