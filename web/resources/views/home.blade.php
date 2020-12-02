@@ -98,7 +98,7 @@
     @if($row->polling_type_id==3)
     @if(Auth::check())
     @if(\App\PollingResponse::where('event_id',Session::get('event_id'))->where('user_id',Auth::user()->id)->count()==\App\PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$row->id)->count())
-    <a class="btn btn-lg btn-secondary text-white col-md-12">{{$row->name}}</a>
+    <a class="button large success col-md-12">{{$row->name}}</a>
     @else
     <a href="{{route('quiz_response',[$row->id])}}" class="button success large col-md-12">{{$row->name}}</a>
     @endif
