@@ -18,7 +18,7 @@ class InvitationImport implements ToModel
     {
         if(!in_array($row[0], ['code','NAMA'])){
 
-            if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content == 'register_barcode'){
+            if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode','polling_website']){
                 $user = new User([
                     'event_id'=>Session::get('event_id'),
                     'country_id'=>100,
@@ -34,13 +34,6 @@ class InvitationImport implements ToModel
                     'custom_field_3'=>$row[7]
                 ]);
                 $user->save();
-
-                $rsvp = new RSVP;
-                $rsvp->event_id = Session::get('event_id');
-                $rsvp->user_id = $user->id;
-                $rsvp->seat_number = $row[8];
-                $rsvp->session_invitation = $row[9];
-                $rsvp->save();
             }
             if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content == 'rsvp'){
                 $user = new User([
