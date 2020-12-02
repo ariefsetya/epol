@@ -15,6 +15,7 @@ use App\Event;
 use Auth;
 use App\Mail\sendBarcode;
 use App\Mail\sendWA;
+use App\Mail\sendAdmin;
 use DB;
 use PDF;
 use File;
