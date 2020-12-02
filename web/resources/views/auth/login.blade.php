@@ -45,33 +45,34 @@
   </div>
   @else
   <div class="text-center col-md-12" style="width:100%;margin-top:50%;padding:10px;">
-  @endif
-  <form class="form-signin" method="post" action="{{route('phoneLogin')}}">
-    {{csrf_field()}}
+      @endif
+      <form class="form-signin" method="post" action="{{route('phoneLogin')}}">
+        {{csrf_field()}}
 
-    @if (\Session::has('message'))
-    <div class="alert alert-danger">
-      {!! \Session::get('message') !!}
-  </div>
-  @endif
-  <br>
-  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
-  Silahkan masukkan Nomor Handphone Anda untuk konfirmasi kehadiran
-  @else
-  Silahkan masukkan kode undangan Anda untuk melanjutkan
-  @endif
-  <input type="hidden" name="country_id" value="100">
-  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
-  <input class="input-large" type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
-  @else
-  <input class="input-large" type="text" name="code" id="code" data-role="input" placeholder="Kode Undangan">
-  @endif
-</form>
-@if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
-<button class="mt-1 button shadowed primary col-md-12 large" type="submit" style="background-color: #82603B;">MASUK</button>
+        @if (\Session::has('message'))
+        <div class="alert alert-danger">
+          {!! \Session::get('message') !!}
+      </div>
+      @endif
+      <br>
+      @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
+      Silahkan masukkan Nomor Handphone Anda untuk konfirmasi kehadiran
+      @else
+      Silahkan masukkan kode undangan Anda untuk melanjutkan
+      @endif
+      <input type="hidden" name="country_id" value="100">
+      @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
+      <input class="input-large" type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
+      @else
+      <input class="input-large" type="text" name="code" id="code" data-role="input" placeholder="Kode Undangan">
+      @endif
+      @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
+      <button class="mt-1 button shadowed primary col-md-12 large" type="submit" style="background-color: #82603B;">MASUK</button>
+  </form>
 </div>
 @else
 <button class="mt-1 button shadowed primary col-md-12 large" type="submit">MASUK</button>
+</form>
 </div>
 @endif
 
