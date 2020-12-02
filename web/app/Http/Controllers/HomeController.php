@@ -299,6 +299,8 @@ class HomeController extends Controller
         $img = new \Spatie\PdfToImage\Pdf(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
         $img->saveImage(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
 
+        Mail::to(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','admin_email')->first()->content)->send(new sendWA());
+
         return response()->download(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
     }
     public function sendEmailBarcode()
@@ -320,7 +322,7 @@ class HomeController extends Controller
         File::makeDirectory(public_path('/pdf/'.Session::get('event_id').'/'), $mode = 0777, true, true);
         $pdf = PDF::loadView('print_pdf',['status'=>'print'])->setPaper([0,0,360,640], 'potrait');
         $pdf->save(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
-        Mail::to(env('ADMIN_EMAIL'))->send(new sendWA());
+        Mail::to(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','admin_email')->first()->content)->send(new sendWA());
         return redirect()->route('home')->with('success','Silahkan menunggu, kami akan mengirimkan QR ke WA Anda');
     }
     public function qrcode($text)

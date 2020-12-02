@@ -13,9 +13,9 @@
         <br>
         <br>
         <br>
-        <form method="POST" action="{{url('/rsvp/confirm')}}">
+        <form id="confirm_present" method="POST" action="{{url('/rsvp/confirm')}}">
+            <input type="hidden" name="guest_qty" id="guest_qty" value="{{Auth::user()->rsvp->guest_qty}}">
             <div style="margin: 0 16%">
-
                 {{csrf_field()}}
                 Halo, {{Auth::user()->name}},<br>
                 Terima Kasih telah melakukan RSVP<br><br>
@@ -24,7 +24,7 @@
                 Tanggal : 13 Desember 2020<br>
                 Waktu : {{Auth::user()->rsvp->event_time}}<br>
                 Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br><br>
-                Undangan : @if(Auth::user()->custom_field_1 > 1) <select name="guest_qty" style="border-color:black;background:white; border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif orang
+                Undangan : {{Auth::user()->rsvp->guest_qty}} orang
             </div>
             <br>
             <br>
@@ -33,7 +33,8 @@
             <br>
             <div>
                 <div>
-                    <button name="submit" type="submit" value="yes" class="button primary" style="background-color: #82603B;width: 100%">Ya, saya akan hadir</button>
+                    <a onclick="confirm_present()" class="button primary" style="background-color: #82603B;width: 100%">Ya, saya akan hadir</a>
+                    <button name="submit" type="submit" id="kirim" value="yes" class="button" style="display:none;width: 100%">Hadir</button>
                 </div>
                 <div class="mt-2">
                     <button name="submit" type="submit" value="no" class="button" style="width: 100%">Maaf, saya tidak dapat hadir</button>
@@ -138,9 +139,6 @@
         @endif
         @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
         <br>
-        <br>
-        <br>
-        <br>
         <div style="display: block;color: black;margin: 0 16%;">  
             <b>{{Auth::user()->name}}</b><br>
             Acara : {{Auth::user()->rsvp->session_invitation}}<br>           
@@ -166,7 +164,7 @@
         <div style="display: block;">
             <a class="button primary"  href="{{route('downloadBarcode')}}" style="width: 100%;background-color: #82603B;">SIMPAN</a>
             <!-- <a class="button primary mt-1"  href="{{route('setEmail')}}" style="width: 100%;background-color: #82603B;">KIRIM EMAIL</a> -->
-            <a class="button primary mt-1"  href="{{route('sendEmailWA')}}" style="width: 100%;background-color: #82603B;">KIRIM WA</a>
+            <!-- <a class="button primary mt-1"  href="{{route('sendEmailWA')}}" style="width: 100%;background-color: #82603B;">KIRIM WA</a> -->
         </div>
         @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website', 'register_barcode']))
         <div style="display: block;">
@@ -199,6 +197,11 @@
         $("#overlay_home").css('height',$("#img_overlay_home").height()+40);
         $("#button_register").fadeIn();
     });
+</script>
+@endif
+@endif
+<script type="text/javascript">
+    
     @if(\Session::has('success'))
     Metro.dialog.create({
         title: "Informasi",
@@ -206,8 +209,25 @@
         closeButton: true
     });
     @endif
+    function confirm_present() {
+        Metro.dialog.create({
+            title: "Konfirmasi Jumlah Undangan",
+            content: '<div class="col-md-12">Jumlah Undangan @if(Auth::user()->custom_field_1 > 1) <select style="border-color:black;background:white; border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif</div>',
+            actions: [
+                {
+                    caption: "Kirim",
+                    cls: "primary",
+                    onclick: function(){
+                        $("#kirim").trigger('click');
+                    }
+                },
+                {
+                    caption: "Batal",
+                    cls: "js-dialog-close"
+                }
+            ]
+        });
+    }
 </script>
-@endif
-@endif
 
 @endsection

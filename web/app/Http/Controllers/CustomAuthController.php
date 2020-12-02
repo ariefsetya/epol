@@ -45,30 +45,15 @@ class CustomAuthController extends Controller
 		return redirect()->route('home');
 	}
 
-    public function phoneLogin(Request $r)
-    {	
-		$country_id = $r->input('country_id');
-		$phone = ltrim($r->input('phone'),"0");
-		if(User::where('event_id',Session::get('event_id'))->where(['country_id'=>$country_id,'phone'=>$phone])->exists()){
-			$user = User::where('event_id',Session::get('event_id'))->where(['country_id'=>$country_id,'phone'=>$phone])->first();
-			
-			if($user->user_type_id==1){
-				
-				Auth::loginUsingId($user->id);
+	public function phoneLogin(Request $r)
+	{	
+		if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp'){
+			$country_id = $r->input('country_id');
+			$phone = ltrim($r->input('phone'),"0");
+			if(User::where('event_id',Session::get('event_id'))->where(['country_id'=>$country_id,'phone'=>$phone])->exists()){
+				$user = User::where('event_id',Session::get('event_id'))->where(['country_id'=>$country_id,'phone'=>$phone])->first();
 
-				$inv = User::where('event_id',Session::get('event_id'))->whereId($user->id)->first();
-				$inv->need_login = 0;
-				$inv->save();
-				
-				return redirect()->route('admin')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
-
-			}else if($user->user_type_id==2){
-
-				if(Presence::where('user_id',$user->id)->exists() and $user->need_login==0){
-
-					return redirect()->route('loginPage')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('already_login')->first()->content]);
-
-				}else{
+				if($user->user_type_id==1){
 
 					Auth::loginUsingId($user->id);
 
@@ -76,24 +61,77 @@ class CustomAuthController extends Controller
 					$inv->need_login = 0;
 					$inv->save();
 
-					return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+					return redirect()->route('admin')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+
+				}else if($user->user_type_id==2){
+
+					if(Presence::where('user_id',$user->id)->exists() and $user->need_login==0){
+
+						return redirect()->route('loginPage')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('already_login')->first()->content]);
+
+					}else{
+
+						Auth::loginUsingId($user->id);
+
+						$inv = User::where('event_id',Session::get('event_id'))->whereId($user->id)->first();
+						$inv->need_login = 0;
+						$inv->save();
+
+						return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+					}
 				}
+			}else{
+				return redirect()->route('loginPage',[1])->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
 			}
-		}else{
-			return redirect()->route('loginPage',[1])->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
 		}
-    }
-    public function loginPage()
-    {	
-        if(Auth::check()){
-            return redirect()->route('home');
-        }
+		else{
+			$code = trim($r->input('code'));
+			if(User::where('event_id',Session::get('event_id'))->where(['reg_number'=>$code])->exists()){
+				$user = User::where('event_id',Session::get('event_id'))->where(['reg_number'=>$code])->first();
+				
+				if($user->user_type_id==1){
+					
+					Auth::loginUsingId($user->id);
+
+					$inv = User::where('event_id',Session::get('event_id'))->whereId($user->id)->first();
+					$inv->need_login = 0;
+					$inv->save();
+					
+					return redirect()->route('admin')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+
+				}else if($user->user_type_id==2){
+
+					if(Presence::where('user_id',$user->id)->exists() and $user->need_login==0){
+
+						return redirect()->route('loginPage')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('already_login')->first()->content]);
+
+					}else{
+
+						Auth::loginUsingId($user->id);
+
+						$inv = User::where('event_id',Session::get('event_id'))->whereId($user->id)->first();
+						$inv->need_login = 0;
+						$inv->save();
+
+						return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+					}
+				}
+			}else{
+				return redirect()->route('loginPage',[1])->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
+			}
+		}
+	}
+	public function loginPage()
+	{	
+		if(Auth::check()){
+			return redirect()->route('home');
+		}
 		$data['country'] = \App\Country::all();
 		return view('auth.login')->with($data);
-    }
-    public function logout()
-    {
-    	if(Auth::check()){
+	}
+	public function logout()
+	{
+		if(Auth::check()){
 
 			$inv = User::where('event_id',Session::get('event_id'))->whereId(Auth::user()->id)->first();
 			$inv->need_login = 1;
@@ -102,9 +140,9 @@ class CustomAuthController extends Controller
 			Auth::logout();
 
 		}
-    	
-    	Session::flush();
+
+		Session::flush();
 
 		return redirect()->route('home');
-    }
+	}
 }

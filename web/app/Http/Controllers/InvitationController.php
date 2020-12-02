@@ -72,6 +72,10 @@ class InvitationController extends Controller
         $inv->need_login = 1;
         $inv->save();
 
+        if(RSVP::whereEventId(Session::get('event_id'))->whereUserId($id)->exists()){
+            RSVP::whereEventId(Session::get('event_id'))->whereUserId($id)->update(['confirm_status'=>0]);
+        }
+
         Presence::where('event_id',Session::get('event_id'))->where('user_id',$id)->delete();
 
         return redirect()->route('user.index');

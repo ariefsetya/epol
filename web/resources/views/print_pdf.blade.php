@@ -36,13 +36,11 @@
                     <h2 style="color:white;margin:0 auto;text-align: center;font-family: sans-serif;">{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_success_message')->first()->content}}</h2>
                     <br>
                     <br>
-                    <br>
                     <div style="width:50%; margin:0 auto;">
                         <div style="background: white;padding:20px;">
                             <img style="width: 100%" src="{{url('barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png')}}">
                         </div>
                     </div>
-                    <br>
                     <br>
                     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_barcode')
                     <br>

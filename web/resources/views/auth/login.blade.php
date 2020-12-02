@@ -7,6 +7,7 @@
       <br>
       Assalamualaikum Warahmatullahi Wabarakatuh
       <br>
+      <br>
       Dengan memohon rahmat dan ridho Allah SWT.
       <br>
       Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk berkenan hadir dan memberikan doa restu pada  pernikahan putra-putri kami:
@@ -58,7 +59,11 @@
   Silahkan masukkan kode undangan Anda untuk melanjutkan
   @endif
   <input type="hidden" name="country_id" value="100">
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
   <input class="input-large" type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
+  @else
+  <input class="input-large" type="text" name="code" id="code" data-role="input" placeholder="Kode Undangan">
+  @endif
   @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
   <button class="mt-1 button shadowed primary col-md-12 large" type="submit" style="background-color: #82603B;">MASUK</button>
   @else
