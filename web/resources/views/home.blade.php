@@ -77,7 +77,7 @@
     @endif
 
     @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website','register_face']))
-    <div class="text-center col-md-12" style="margin:0 auto;">
+    <div class="text-center col-md-12" style="margin:50% auto;">
     <h3>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
         @if(Auth::check())
         <br>
@@ -181,7 +181,7 @@
 
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','logout_button_visibility')->first()->content==1)
     @if(Auth::check())
-    @if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['polling_website','register_barcode']) or (\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp' and (Auth::user()->rsvp->confirm_status ?? 0 == 1) and Auth::user()->email != '') or (Auth::user()->rsvp->confirm_status ?? 0 ==3))
+    @if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode']) or (\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp' and (Auth::user()->rsvp->confirm_status ?? 0 == 1) and Auth::user()->email != '') or (Auth::user()->rsvp->confirm_status ?? 0 ==3))
     <br>
     <br>
     <a href="{{route('logout')}}" class="button" style="width: 100%">SELESAI</a>
