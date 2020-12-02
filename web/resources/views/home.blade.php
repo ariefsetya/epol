@@ -4,8 +4,8 @@
 @section('content')
 
 
+@if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
 <div class="text-center col-md-12" style="margin:0 auto;background: rgba(255,255,255,0.6);">
-    @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
 
     @if((Auth::user()->rsvp->confirm_status ?? 0) == 0)
     <div>
@@ -69,6 +69,7 @@
 
     @endif
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_barcode')
+    <div>
 
 
     @if($message = Session::get('success'))
@@ -76,6 +77,7 @@
     @endif
 
     @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website','register_face']))
+    <div>
     <h3>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
         @if(Auth::check())
         <br>
@@ -201,7 +203,7 @@
 @endif
 @endif
 <script type="text/javascript">
-    
+
     @if(\Session::has('success'))
     Metro.dialog.create({
         title: "Informasi",
@@ -214,17 +216,17 @@
             title: "Konfirmasi Jumlah Undangan",
             content: '<div class="col-md-12">Jumlah Undangan @if(Auth::user()->custom_field_1 > 1) <select style="border-color:black;background:white; border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif</div>',
             actions: [
-                {
-                    caption: "Kirim",
-                    cls: "primary",
-                    onclick: function(){
-                        $("#kirim").trigger('click');
-                    }
-                },
-                {
-                    caption: "Batal",
-                    cls: "js-dialog-close"
+            {
+                caption: "Kirim",
+                cls: "primary",
+                onclick: function(){
+                    $("#kirim").trigger('click');
                 }
+            },
+            {
+                caption: "Batal",
+                cls: "js-dialog-close"
+            }
             ]
         });
     }
