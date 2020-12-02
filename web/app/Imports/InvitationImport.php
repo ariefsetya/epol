@@ -18,7 +18,7 @@ class InvitationImport implements ToModel
     {
         if(!in_array($row[0], ['code','NAMA'])){
 
-            if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode','polling_website']){
+            if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode','polling_website'])){
                 $user = new User([
                     'event_id'=>Session::get('event_id'),
                     'country_id'=>100,
