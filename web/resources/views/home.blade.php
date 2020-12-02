@@ -156,7 +156,7 @@
             </div>
             <ul style="font-size:9pt;list-style-position:outside;text-align: left;">
                 <li>Mohon tunjukkan QR Code di meja registrasi pada hari acara</li>
-                <li>Anda dapat menyimpan QR Code di gallery HP atau kirim ke WA Anda</li>
+                <li>Anda dapat menyimpan QR Code di gallery HP Anda</li>
             </ul>
         </div>
         <br>
@@ -214,12 +214,13 @@
     function confirm_present() {
         Metro.dialog.create({
             title: "Konfirmasi Jumlah Undangan",
-            content: '<div class="col-md-12">Jumlah Undangan @if(Auth::user()->custom_field_1 > 1) <select style="border-color:black;background:white; border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif</div>',
+            content: '<div class="col-md-12">Jumlah Undangan @if(Auth::user()->custom_field_1 > 1) <select id="select_guest_qty" style="border-color:black;background:white; border-top:0;border-left:0;border-right: 0; width: 35px;clear: none;display: inline;">@for($i=1;$i<=Auth::user()->custom_field_1;$i++) <option value="{{$i}}" @if(Auth::user()->custom_field_1==$i) selected @endif>{{$i}}</option> @endfor</select> @else 1 @endif</div>',
             actions: [
             {
                 caption: "Kirim",
                 cls: "primary",
                 onclick: function(){
+                    $("#guest_qty").val($("#select_guest_qty").val());
                     $("#kirim").trigger('click');
                 }
             },

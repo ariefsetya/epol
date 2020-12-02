@@ -299,7 +299,7 @@ class HomeController extends Controller
         $img = new \Spatie\PdfToImage\Pdf(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.pdf'));
         $img->saveImage(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
 
-        Mail::to(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','admin_email')->first()->content)->send(new sendWA());
+        Mail::to(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','admin_email')->first()->content)->send(new sendAdmin());
 
         return response()->download(public_path('/pdf/'.Session::get('event_id').'/'.Auth::user()->name.'.jpg'));
     }
