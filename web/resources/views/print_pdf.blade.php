@@ -16,7 +16,7 @@
         body { margin: 0px !important; }
     </style>
 </head>
-<body @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;" @endif>
+<body @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;" @endif>
     <div id="app" style="background: rgba(255,255,255,0.6);">
         <main class="py-4">
 

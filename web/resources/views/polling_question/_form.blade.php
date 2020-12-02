@@ -10,7 +10,7 @@
   </div>
   <div class="form-group">
     <label for="name">Pertanyaan</label>
-    <input type="text" class="form-control" required name="content" id="content" placeholder="Pertanyaan" value="{{$polling_question->content ?? ''}}">
+    <textarea type="text" class="form-control" required name="content" id="content" placeholder="Pertanyaan">{{$polling_question->content ?? ''}}</textarea>
   </div>
 
   <div class="form-group">
@@ -20,14 +20,14 @@
       @foreach($polling_answer as $key)
         <div class="input-group mb-3 answer_data">
           <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="{{$key->content}}">
-          <select type="text" class="form-control" name="is_correct[]" value="{{$key->is_correct}}">
+          <select type="text" class="form-control" name="is_correct[]">
             <option value="1" {{$key->is_correct==1?'selected':''}}>Jawaban Benar</option>
             <option value="0" {{$key->is_correct==0?'selected':''}}>Jawaban Salah</option>
           </select>
           <div class="input-group-append">
-            <span class="input-group-text" onclick="adddata()"><i class="fa fa-plus"></i></span>
+            <span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span>
             @if(sizeof($polling_answer)>1)
-            <span class="input-group-text" onclick="cleardata(this)"><i class="fa fa-minus"></i></span>
+            <span class="input-group-text" onclick="cleardata(this)"><i class="mif mif-minus"></i></span>
             @endif
           </div>
         </div>
@@ -36,24 +36,24 @@
       @if(sizeof($polling_answer)==0)
       <div class="input-group mb-3 answer_data">
         <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="">
-        <select type="text" class="form-control" name="is_correct[]" value="{{$key->is_correct}}">
+        <select type="text" class="form-control" name="is_correct[]">
           <option value="1">Jawaban Benar</option>
           <option value="0">Jawaban Salah</option>
         </select>
         <div class="input-group-append">
-          <span class="input-group-text" onclick="adddata()"><i class="fa fa-plus"></i></span>
+          <span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span>
         </div>
       </div>
       @endif
     @else
       <div class="input-group mb-3 answer_data">
         <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="">
-        <select type="text" class="form-control" name="is_correct[]" value="{{$key->is_correct}}">
+        <select type="text" class="form-control" name="is_correct[]">
           <option value="1">Jawaban Benar</option>
           <option value="0">Jawaban Salah</option>
         </select>
         <div class="input-group-append">
-          <span class="input-group-text" onclick="adddata()"><i class="fa fa-plus"></i></span>
+          <span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span>
         </div>
       </div>
     @endif
@@ -66,7 +66,7 @@
   <script type="text/javascript">
     function adddata() {
       // $("div.answer_data").clone().appendTo("#answer_lists");
-      $("#answer_lists").append('<div class="input-group mb-3 answer_data"><input type="text" class="form-control" required name="answer[]" placeholder="Jawaban" value=""><select type="text" class="form-control" name="is_correct[]"><option value="1">Jawaban Benar</option><option value="0">Jawaban Salah</option></select><div class="input-group-append"><span class="input-group-text" onclick="adddata()"><i class="fa fa-plus"></i></span><span class="input-group-text" onclick="cleardata(this)"><i class="fa fa-minus"></i></span></div></div>');
+      $("#answer_lists").append('<div class="input-group mb-3 answer_data"><input type="text" class="form-control" required name="answer[]" placeholder="Jawaban" value=""><select type="text" class="form-control" name="is_correct[]"><option value="1">Jawaban Benar</option><option value="0">Jawaban Salah</option></select><div class="input-group-append"><span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span><span class="input-group-text" onclick="cleardata(this)"><i class="mif mif-minus"></i></span></div></div>');
     }
     function cleardata(e) {
       $(e).parent().parent().remove();

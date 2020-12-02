@@ -53,14 +53,24 @@
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Users</span>
                 </a>
-                <div data-role="tile" class="bg-orange fg-white">
-                    <span class="mif-chart-pie icon"></span>
-                    <span class="branding-bar">Polling</span>
-                </div>
                 <a data-role="tile" class="bg-brown fg-white" data-size="wide">
                     <span class="mif-tags icon"></span>
                     <span class="branding-bar">Lottery Participant Category</span>
                     <span class="badge-bottom">10</span>
+                </a>
+            </div>
+            <div class="tiles-grid tiles-group size-3 fg-white" data-group-title="Polling Website">
+                <a href="{{url('admin/polling')}}" data-role="tile" class="bg-teal fg-white">
+                    <span class="mif-chart-pie icon"></span>
+                    <span class="branding-bar">Polling</span>
+                </a>
+                <a href="{{url('admin/polling_question')}}" data-role="tile" class="bg-red fg-white" data-size="wide">
+                    <span class="mif-earth icon"></span>
+                    <span class="branding-bar">Question</span>
+                </a>
+                <a href="{{url('admin/polling_answer')}}" data-role="tile" class="bg-blue fg-white" data-size="wide">
+                    <span class="mif-users icon"></span>
+                    <span class="branding-bar">Answer</span>
                 </a>
             </div>
 
