@@ -7,6 +7,7 @@ import (
 	"fmt"
 	// "socket/Models"
 	"log"
+	"time"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/autotls"
 	"github.com/jinzhu/gorm"
@@ -72,11 +73,14 @@ func main() {
 					return "Data Not Found"
 				} else {
 
+					currentAmount := time.Now();
 
 					var lh Structs.LotteryHistoryMain
 					lh.EventId = 3
 					lh.LotteryParticipantId = lpm.Id
 					lh.Status = true
+					lh.CreatedAt = currentTime.Format("2006-01-02 15:04:05")
+					lh.UpdatedAt = currentTime.Format("2006-01-02 15:04:05")
 
 					err := Models.CreateLotteryHistory(&lh)
 
