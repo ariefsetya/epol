@@ -20,7 +20,9 @@
 		<textarea id="reason" onkeyup="selectdata(0,1)" rows="3"></textarea>
 		@endif
 		
+		<br>
 		{{$polling_question->render()}}
+		<br>
 		<br>
 	</div>
 </div>
