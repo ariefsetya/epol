@@ -21,7 +21,7 @@ class CreatePollingResponsesTable extends Migration
             $table->integer('user_id');
             $table->string('uuid');
             $table->integer('polling_answer_id');
-            $table->integer('answer_text');
+            $table->text('answer_text');
             $table->boolean('is_winner');
             $table->timestamps();
         });

@@ -96,6 +96,11 @@ class HomeController extends Controller
 
         return redirect()->route('quiz_response',[$id]);
     }
+    public function save_checkbox_essay(Request $r)
+    {
+        dd($r->input());
+        return redirect()->route('quiz_response');
+    }
     public function polling_response($id)
     {
         $data['polling'] = Polling::where('event_id',Session::get('event_id'))->whereId($id)->first();

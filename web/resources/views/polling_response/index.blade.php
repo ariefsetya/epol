@@ -8,7 +8,7 @@
 		@foreach($polling_answer as $key)
 		<div class="form-check">
 			@if($polling->polling_type_id==5)
-			<input style="width: 35px;height: 35px;" onclick="selectdata('{{$polling_question[0]->id}}', '{{$key->id}}')" type="checkbox" id="customRadio{{$key->id}}" name="customRadio{{$polling_question[0]->id}}" class="form-check-input input-lg">
+			<input style="width: 35px;height: 35px;" onclick="selectdata('{{$polling_question[0]->id}}', '{{$key->id}}')" type="checkbox" id="customRadio{{$key->id}}" data-value="{{$key->id}}" name="customRadio{{$polling_question[0]->id}}[]" class="form-check-input input-lg">
 			@else
 			<input style="width: 35px;height: 35px;" onclick="selectdata('{{$polling_question[0]->id}}', '{{$key->id}}')" type="radio" id="customRadio{{$key->id}}" name="customRadio{{$polling_question[0]->id}}" class="form-check-input input-lg">
 			@endif
@@ -29,21 +29,6 @@
 
 @section('footer')
 <script type="text/javascript">
-	function finish_polling() {
-		Metro.dialog.create({
-			title: "Informasi",
-			content: '{{$polling->finish_message}}',
-			actions: [
-			{
-				caption: "OK",
-				cls: "primary large col-md-12",
-				onclick: function(){
-					window.location='{{route('home')}}';
-				}
-			}
-			]
-		});
-	}
 	@if($polling->polling_type_id==5)
 
 	function selectdata(x,i) {
@@ -61,9 +46,39 @@
 		}
 	}
 
-	$(".for_button").on('click',function() {
-		
-	});
+	function finish_polling() {
+		var checked = [];
+		$("input[type=checkbox]:checked").each(function( index, value ) {
+			checked.push(value.dataset.value);
+		});
+		console.log(checked)
+		$.ajax({
+			url: "{{route('save_checkbox_essay')}}", 
+			dataType:'json',
+			data:{
+				_token:'{{csrf_token()}}',
+				check:checked,
+				essay:$("#reason").val(),
+				question_id:'{{$polling_question[0]->id}}'
+			},
+			method:'POST',
+			success: function(result){
+				Metro.dialog.create({
+					title: "Informasi",
+					content: '{{$polling->finish_message}}',
+					actions: [
+					{
+						caption: "OK",
+						cls: "primary large col-md-12",
+						onclick: function(){
+							window.location='{{route('home')}}';
+						}
+					}
+					]
+				});
+			}
+		});
+	}
 	@else
 	function selectdata(question_id, answer_id) {
 		$.ajax({
@@ -75,6 +90,21 @@
 				$(".for_button").removeClass("secondary");
 				$(".for_button").addClass("primary");
 			}
+		});
+	}
+	function finish_polling() {
+		Metro.dialog.create({
+			title: "Informasi",
+			content: '{{$polling->finish_message}}',
+			actions: [
+			{
+				caption: "OK",
+				cls: "primary large col-md-12",
+				onclick: function(){
+					window.location='{{route('home')}}';
+				}
+			}
+			]
 		});
 	}
 	@endif

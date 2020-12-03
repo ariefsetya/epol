@@ -14,6 +14,7 @@
     <style type="text/css">
         @page { margin: 0px !important; }
         body { margin: 0px !important; }
+        *{font-family: 'Segoe UI' !important;}
     </style>
 </head>
 <body @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;" @endif>
