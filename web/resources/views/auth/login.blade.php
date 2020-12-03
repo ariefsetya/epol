@@ -72,6 +72,8 @@
 @else
 <div style="width: calc(100% - 20px);padding:10px;position: fixed;bottom:0;" class="text-center">
 <button class="mt-1 button primary large" style="width:60%;border-radius: 100px;left:0;bottom: 0;" type="submit">MASUK</button>
+<br>
+<br>
 </div>
 </form>
 </div>

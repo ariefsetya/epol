@@ -19,9 +19,8 @@
 		<label>Alasan (minimal 10 karakter)</label>
 		<textarea id="reason" onkeyup="selectdata(0,1)" rows="3"></textarea>
 		@endif
-		<hr>
+		
 		{{$polling_question->render()}}
-		<hr>
 		<br>
 	</div>
 </div>
