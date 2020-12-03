@@ -53,7 +53,7 @@
             @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
             Silahkan masukkan Nomor Handphone Anda untuk konfirmasi kehadiran
             @else
-            Silahkan masukkan<br>nomor undangan Anda<br>untuk melanjutkan
+            Silahkan masukan<br>Nomor Undangan Anda<br>untuk melanjutkan
             @endif
         </div>
         <br>

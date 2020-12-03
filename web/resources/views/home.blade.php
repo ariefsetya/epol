@@ -87,7 +87,7 @@
                 <br>
                 <br>
                 @if(Auth::check())
-                {{Auth::user()->name}}<br>
+                <b>{{Auth::user()->name}}</b><br>
                 <br>
                 {{Auth::user()->company}}
                 <br>
