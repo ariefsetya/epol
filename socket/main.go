@@ -73,7 +73,7 @@ func main() {
 					return "Data Not Found"
 				} else {
 
-					currentAmount := time.Now();
+					currentTime := time.Now();
 
 					var lh Structs.LotteryHistoryMain
 					lh.EventId = 3
