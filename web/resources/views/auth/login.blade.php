@@ -75,8 +75,11 @@
 @section('footer')
 <script type="text/javascript">
     @if (\Session::has('message'))
-
-    {!! \Session::get('message') !!}
+    Metro.dialog.create({
+        title: "Informasi",
+        content: "{!! \Session::get('message') !!}",
+        closeButton: true
+    });
     @endif
 </script>
 @endsection
