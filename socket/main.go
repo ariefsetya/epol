@@ -15,24 +15,24 @@ import (
 )
 
 
-// func GinMiddleware(allowOrigin string) gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		c.Writer.Header().Set("Access-Control-Allow-Origin", allowOrigin)
-// 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-// 		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
-// 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Content-Type, Content-Length, X-CSRF-Token, Token, session, Origin, Host, Connection, Accept-Encoding, Accept-Language, X-Requested-With")
+func GinMiddleware(allowOrigin string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", allowOrigin)
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Content-Type, Content-Length, X-CSRF-Token, Token, session, Origin, Host, Connection, Accept-Encoding, Accept-Language, X-Requested-With")
 
 
-// 		if c.Request.Method == "OPTIONS" {
-// 			c.AbortWithStatus(204)
-// 			return
-// 		}
+		// if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
 
-// 		c.Request.Header.Del("Origin")
+		c.Request.Header.Del("Origin")
 
-// 		c.Next()
-// 	}
-// }
+		c.Next()
+	}
+}
 
 func main() {
 
@@ -116,7 +116,7 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	// router.Use(GinMiddleware("https://aqjndg2020.com"))
+	router.Use(GinMiddleware("https://aqjndg2020.com"))
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))
