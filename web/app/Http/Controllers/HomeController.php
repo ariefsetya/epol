@@ -98,8 +98,37 @@ class HomeController extends Controller
     }
     public function save_checkbox_essay(Request $r)
     {
-        dd($r->input());
-        return redirect()->route('quiz_response');
+        if(sizeof($r->input('check')) >= 3 and $r->input('essay') != "" and $r->input('question_id') > 0){
+            $polling_question_id = $r->input('question_id');
+            $answer['check'] = $r->input('check');
+            $answer['essay'] = $r->input('essay');
+            $polling_id = PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id;
+            if(PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('uuid',\Session::get('uuid'))->exists()){
+                $id = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('uuid',\Session::get('uuid'))->first()->id;
+                $data = PollingResponse::where('event_id',Session::get('event_id'))->whereId($id)->first();
+                $data->polling_answer_id = 0;
+                $data->answer_text = json_encode($answer);
+                $data->save();
+
+                \Session::put('polling_'.$polling_id,true);
+
+                return response()->json(['message'=>'saved!'],200);
+            }else{
+                $data = new PollingResponse;
+                $data->event_id = Session::get('event_id');
+                $data->polling_id = $polling_id;
+                $data->uuid = \Session::get('uuid');
+                $data->polling_question_id = $polling_question_id;
+                $data->polling_answer_id = 0;
+                $data->answer_text = json_encode($answer);
+                $data->save();
+
+                \Session::put('polling_'.$polling_id,true);
+
+                return response()->json(['message'=>'saved!'],200);
+            }
+        }
+        return true;
     }
     public function polling_response($id)
     {

@@ -17,7 +17,7 @@
 		@endforeach
 		@if($polling->polling_type_id==5)
 		<label>Alasan (minimal 10 karakter)</label>
-		<textarea id="reason" onkeyup="selectdata(0,1)"></textarea>
+		<textarea id="reason" onkeyup="selectdata(0,1)" rows="3"></textarea>
 		@endif
 		<hr>
 		{{$polling_question->render()}}
@@ -29,6 +29,12 @@
 
 @section('footer')
 <script type="text/javascript">
+	$('textarea').each(function () {
+		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+	}).on('input', function () {
+		this.style.height = 'auto';
+		this.style.height = (this.scrollHeight) + 'px';
+	});
 	@if($polling->polling_type_id==5)
 
 	function selectdata(x,i) {

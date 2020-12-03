@@ -21,10 +21,10 @@
 @endsection
 
 @section('footer')
-<script type="text/javascript" src="{{url('')}}:9000/socket.io/socket.io.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script type="text/javascript">
   var winner = [];
-  var socket = io("{{url('')}}:9000");
+  var socket = io("{{env("SOCKET_URL")}}");
   function selectdata(question_id, answer_id) {
     $.ajax({
      url: "{{route('select_quiz_response')}}/"+question_id+'/'+answer_id, 
@@ -41,19 +41,7 @@
   }
 
   function finish_quiz() {
-    Metro.dialog.create({
-      title: "Informasi",
-      content: '{{$polling->finish_message}}',
-      actions: [
-      {
-        caption: "OK",
-        cls: "primary large col-md-12",
-        onclick: function(){
-          window.location='{{route('home')}}';
-        }
-      }
-      ]
-    });
+    window.location='{{route('finish_quiz',$polling->id)}}';
   }
   function redirect_home() {
     if(winner.win){
