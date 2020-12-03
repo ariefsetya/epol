@@ -18,8 +18,8 @@
       }
       *{
         font-size: 35pt;
-      }
-  </style>
+    }
+</style>
 </head>
 <body style="overflow:hidden;background-color: #2d89ef;">
     <div style="width: 1920px;height:1080px;margin:auto;">
@@ -32,7 +32,7 @@
                     <th class="text-center">Nama</th>
                     <th class="text-center">Kota</th>
                 </thead>
-                <tbody>
+                <tbody id="data">
                     <tr>
                         <td class="text-center">1</td>
                         <td class="text-center">0002</td>
@@ -56,7 +56,13 @@
         console.log(msg)
         var data = msg.split("-")
         winner.push(data); 
-        console.log(winner)
+        $("#data").html('');
+        var html;
+        for (var i = winner.length - 1; i >= 0; i--) {
+            html += "<tr><td class='text-center'>"+(winner.length - i + 1)+"</td><td class='text-center'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center'>"+winner[i][2]+"</td>";
+        }
+        $("#data").html(html);
+
         // $('#code').html(data[0]);
         // $('#name').html(data[1]);
         // $('#city').html(data[2]);
