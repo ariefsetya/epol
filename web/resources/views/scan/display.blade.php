@@ -10,19 +10,19 @@
             <div class="main" >  
                 <h1 id="title" style="margin: 0;padding: 0;">&nbsp;</h1>
                 <div id="hadiah" style="font-family:'Verdana';color:cyan;font-size: 30pt;font-weight:bold;margin: 0;padding: 0;text-align: center;width: 100%;">&nbsp;</div>
-                <div class=" " style="margin-top:100px;">
+                <div class=" " style="margin-top:320px;">
                     <div class="countdown agile">
                         <div class="countdown-time agileits_w3layouts" style="color: #333;">
                             <ul class="clearfix w3_agileits" id="js-countDown" style="color: #333;">
-                                <li class=""><i class="" id="code" style="font-size: 120px;color:black;font-weight:bold;font-family:Tahoma;">000000000000000000</i></li>
+                                <li class=""><i class="" id="code" style="font-size: 120px;color:black;font-weight:bold;font-family:Tahoma;">XXXXXXXXX</i></li>
                             </ul>
                         </div>
                     </div>
                     <center>
                         <div class="agileits_newsletter" style="margin-top: 50px">
                             <div id="terpilih">
-                                <h1 id="name" style="font-size: 60px;color:black;font-weight:bold;font-family:Segoe UI;">John Doe</h1>
-                                <h3 id="city" style="font-size: 40px;color:black;font-weight:normal;font-family:Segoe UI;">Lorem Ipsum sit dolor amet</h3>
+                                <h1 id="name" style="font-size: 60px;color:black;font-weight:bold;font-family:Segoe UI;"></h1>
+                                <h3 id="city" style="font-size: 40px;color:black;font-weight:normal;font-family:Segoe UI;"></h3>
                             </div>
                         </div>
                     </center>
