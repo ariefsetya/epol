@@ -2,7 +2,11 @@
 @extends('layouts.guest')
 
 @section('content')
-
+<style type="text/css">
+    .brown{
+        background-color: #82603B;
+    }
+</style>
 
 @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
 <div class="text-center col-md-12" style="margin:0 auto;background: rgba(255,255,255,0.6);">
@@ -218,7 +222,7 @@
             actions: [
             {
                 caption: "Kirim",
-                cls: "primary",
+                cls: "brown",
                 onclick: function(){
                     $("#guest_qty").val($("#select_guest_qty").val());
                     $("#kirim").trigger('click');
