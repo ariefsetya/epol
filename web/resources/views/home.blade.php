@@ -83,7 +83,7 @@
 
         @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website','register_face']))
         <div class="text-center col-md-12" style="margin:50% auto;">
-            <h5>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
+            <h6>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
                 <br>
                 <br>
                 @if(Auth::check())
@@ -93,7 +93,7 @@
                 <br>
                 @endif
                 <br>
-            </h5>
+            </h6>
             @endif
 
             @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_face')
