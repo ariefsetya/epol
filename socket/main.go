@@ -59,7 +59,7 @@ func main() {
 
 		var lpm Structs.LotteryParticipantMain
 		fmt.Println("data:", msg);
-		err := Models.GetByQRCode(&lpm, msg, 1)
+		err := Models.GetByQRCode(&lpm, msg, "1")
 		fmt.Println("result:", err);
 		if err != nil {
 			fmt.Println("error:", err);
@@ -95,7 +95,7 @@ func main() {
 
 		var lpm Structs.LotteryParticipantMain
 		fmt.Println("data:", msg);
-		err := Models.GetByQRCode(&lpm, msg, 2)
+		err := Models.GetByQRCode(&lpm, msg, "2")
 		fmt.Println("result:", err);
 		if err != nil {
 			fmt.Println("error:", err);
