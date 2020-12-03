@@ -10,7 +10,7 @@
     <title>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_title')->first()->content}}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/metro-all.min.css') }}">
     <style type="text/css">
         @page { margin: 0px !important; }
         body { margin: 0px !important; }
