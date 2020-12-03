@@ -27,18 +27,12 @@
             <div style="height: 350px"></div>
             <table class="table striped">
                 <thead>
-                    <th class="text-center">No</th>
-                    <th class="text-center">Kode</th>
+                    <th class="text-center" style="width:8%">No</th>
+                    <th class="text-center" style="width:10%">Kode</th>
                     <th class="text-center">Nama</th>
-                    <th class="text-center">Kota</th>
+                    <th class="text-center" style="width:30%">Kota</th>
                 </thead>
                 <tbody id="data">
-                    <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">0002</td>
-                        <td class="text-center">CV</td>
-                        <td class="text-center">JAKARTA</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -59,7 +53,7 @@
         $("#data").html('');
         var html;
         for (var i = winner.length - 1; i >= 0; i--) {
-            html += "<tr><td class='text-center'>"+(winner.length - i + 1)+"</td><td class='text-center'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center'>"+winner[i][2]+"</td>";
+            html += "<tr><td class='text-center' style='width:8%'>"+(winner.length - i)+"</td><td class='text-center' style='width:10%'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center' style='width:30%'>"+winner[i][2]+"</td>";
         }
         $("#data").html(html);
 
