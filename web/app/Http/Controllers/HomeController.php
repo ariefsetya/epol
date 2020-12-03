@@ -22,6 +22,7 @@ use File;
 use Validator;
 use Mail;
 use Session;
+use Carbon\Carbon;
 use Response;
 use App\Exports\ProductExport;
 use App\Exports\QuizExport;
@@ -297,6 +298,23 @@ class HomeController extends Controller
             }
 
         }
+    }
+    public function finish_quiz($id)
+    {
+        $benar = 0;
+        $data['polling'] = Polling::find($id);
+        $data['polling_response'] = PollingResponse::where('polling_id',$id)->get();
+        foreach ($data['polling_response'] as $row) {
+            if($row->polling_answer->is_correct==1){
+                $benar++;
+            }
+        }
+        $data['benar'] = $benar;
+        $starttime = $data['polling_response'][0]->created_at;
+        $endtime = $data['polling_response'][sizeof($data['polling_response'])-1]->created_at;
+        $data['time'] = str_replace([" after"," before","seconds", "minutes","hours"], ["","","detik","menit","jam"], Carbon::parse($endtime)->diffForHumans($starttime));
+
+        return view('quiz_response.finish')->with($data);
     }
     public function product_report()
     {

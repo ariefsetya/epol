@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-md-3" style="margin:0 auto;">
-  <div style="margin-top:20%;">
+  <div style="margin-top:25%;">
     <h4>{{ $polling_question[0]->content }}</h4>
     @foreach($polling_answer as $key)
     <div class="form-check">
