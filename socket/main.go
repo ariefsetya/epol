@@ -23,7 +23,7 @@ func GinMiddleware(allowOrigin string) gin.HandlerFunc {
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Content-Type, Content-Length, X-CSRF-Token, Token, session, Origin, Host, Connection, Accept-Encoding, Accept-Language, X-Requested-With")
 
 
-		// if c.Request.Method == "OPTIONS" {
+		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(204)
 			return
 		}
