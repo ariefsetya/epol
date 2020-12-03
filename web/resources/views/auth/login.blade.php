@@ -83,7 +83,6 @@
 <script type="text/javascript">
     @if (\Session::has('message'))
     Metro.dialog.create({
-        title: "Informasi",
         content: "{!! \Session::get('message') !!}",
         closeButton: true
     });

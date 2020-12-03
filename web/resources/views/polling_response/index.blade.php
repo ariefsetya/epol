@@ -70,7 +70,6 @@
 			method:'POST',
 			success: function(result){
 				Metro.dialog.create({
-					title: "Informasi",
 					content: '{{$polling->finish_message}}',
 					actions: [
 					{
