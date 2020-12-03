@@ -5,6 +5,7 @@
 <style type="text/css">
     .brown{
         background-color: #82603B;
+        color: white;
     }
 </style>
 
