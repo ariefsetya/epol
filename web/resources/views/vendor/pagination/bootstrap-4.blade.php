@@ -1,3 +1,5 @@
+
+<div style="width: calc(100% - 20px);padding:10px;position: fixed;bottom:0;" class="text-center">
 @if ($paginator->hasPages())
     <nav>
         <div class="text-center">
@@ -16,6 +18,7 @@
         </div>
     </nav>
 @endif
+</div>
 
 <style type="text/css">
     .for_button.disabled {
