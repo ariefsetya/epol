@@ -76,6 +76,8 @@ class InvitationController extends Controller
             RSVP::whereEventId(Session::get('event_id'))->whereUserId($id)->update(['confirm_status'=>0]);
         }
 
+        PollingResponse::where('event_id',Session::get('event_id'))->where('user_id',$id)->delete();
+        PollingParticipant::where('event_id',Session::get('event_id'))->where('user_id',$id)->delete();
         Presence::where('event_id',Session::get('event_id'))->where('user_id',$id)->delete();
 
         return redirect()->route('user.index');
