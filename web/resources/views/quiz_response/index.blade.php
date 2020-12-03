@@ -11,9 +11,10 @@
       <label style="margin-left:10px;vertical-align: super !important;" onclick="selectdata('{{$polling_question[0]->id}}', '{{$key->id}}')" class="form-check-label form-control-lg" for="customRadio{{$key->id}}"><strong style="vertical-align: super !important;">{{$key->content}}</strong></label>
     </div>
     @endforeach
-    <hr>
+    <br>
+    <br>
     {{$polling_question->render('vendor.pagination.quiz')}}
-    <hr>
+    <br>
     <br>
   </div>
 </div>
