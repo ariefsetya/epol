@@ -54,51 +54,78 @@ func main() {
 	})
 
 
-	var lpcm []Structs.LotteryParticipantCategoryMain
-	err := Models.GetAllParticipantCategory(&lpcm)
-	if err != nil {
-		fmt.Println("info:", err)
-	} else {
+	fmt.Println("info:", "category set: " + "scan-1")
+	server.OnEvent("/", "scan-1", func(s socketio.Conn, msg string) string {
 
-		for _, n := range lpcm {
-			fmt.Println("info:", "category set: " + "scan-" + n.Id)
-			server.OnEvent("/", "scan-"+n.Id, func(s socketio.Conn, msg string) string {
+		var lpm Structs.LotteryParticipantMain
+		fmt.Println("data:", msg);
+		err := Models.GetByQRCode(&lpm, msg, 1)
+		fmt.Println("result:", err);
+		if err != nil {
+			fmt.Println("error:", err);
+			return "Data Not Found"
+		} else {
 
-				var lpm Structs.LotteryParticipantMain
-				fmt.Println("data:", msg);
-				err := Models.GetByQRCode(&lpm, msg, n.Id)
-				fmt.Println("result:", err);
-				if err != nil {
-					fmt.Println("error:", err);
-					return "Data Not Found"
-				} else {
+			currentTime := time.Now();
 
-					currentTime := time.Now();
+			var lh Structs.LotteryHistoryMain
+			lh.EventId = 3
+			lh.LotteryParticipantId = lpm.Id
+			lh.Status = true
+			lh.CreatedAt = currentTime.Format("2006-01-02 15:04:05")
+			lh.UpdatedAt = currentTime.Format("2006-01-02 15:04:05")
 
-					var lh Structs.LotteryHistoryMain
-					lh.EventId = 3
-					lh.LotteryParticipantId = lpm.Id
-					lh.Status = true
-					lh.CreatedAt = currentTime.Format("2006-01-02 15:04:05")
-					lh.UpdatedAt = currentTime.Format("2006-01-02 15:04:05")
+			err := Models.CreateLotteryHistory(&lh)
 
-					err := Models.CreateLotteryHistory(&lh)
+			if err != nil {
+				fmt.Println("error:", err);
+				return "Data Not Saved"
+			} else {
 
-					if err != nil {
-						fmt.Println("error:", err);
-						return "Data Not Saved"
-					} else {
+				var result = lpm.Number + "-" + lpm.Name + "-" + lpm.City + "-" + msg
+				fmt.Println("result:", lpm);
 
-						var result = lpm.Number + "-" + lpm.Name + "-" + lpm.City + "-" + msg
-						fmt.Println("result:", lpm);
-
-						server.BroadcastToRoom("", "bcast", "display", result)
-						return result
-					}
-				}
-			})
+				server.BroadcastToRoom("", "bcast", "display", result)
+				return result
+			}
 		}
-	}
+	})
+	fmt.Println("info:", "category set: " + "scan-2")
+	server.OnEvent("/", "scan-2", func(s socketio.Conn, msg string) string {
+
+		var lpm Structs.LotteryParticipantMain
+		fmt.Println("data:", msg);
+		err := Models.GetByQRCode(&lpm, msg, 2)
+		fmt.Println("result:", err);
+		if err != nil {
+			fmt.Println("error:", err);
+			return "Data Not Found"
+		} else {
+
+			currentTime := time.Now();
+
+			var lh Structs.LotteryHistoryMain
+			lh.EventId = 3
+			lh.LotteryParticipantId = lpm.Id
+			lh.Status = true
+			lh.CreatedAt = currentTime.Format("2006-01-02 15:04:05")
+			lh.UpdatedAt = currentTime.Format("2006-01-02 15:04:05")
+
+			err := Models.CreateLotteryHistory(&lh)
+
+			if err != nil {
+				fmt.Println("error:", err);
+				return "Data Not Saved"
+			} else {
+
+				var result = lpm.Number + "-" + lpm.Name + "-" + lpm.City + "-" + msg
+				fmt.Println("result:", lpm);
+
+				server.BroadcastToRoom("", "bcast", "display", result)
+				return result
+			}
+		}
+	})
 	
 
 	server.OnEvent("/", "winners", func(s socketio.Conn, msg string) string {
