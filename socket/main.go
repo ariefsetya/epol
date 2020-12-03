@@ -2,38 +2,38 @@ package main
 
 import (
 	"net/http"
-	"socket/Structs"
+	// "socket/Structs"
 	"socket/Config"
 	"fmt"
-	"socket/Models"
-	"log"
+	// "socket/Models"
+	// "log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/autotls"
+	// "github.com/gin-gonic/autotls"
 	"github.com/jinzhu/gorm"
 
 	socketio "github.com/googollee/go-socket.io"
 )
 
 
-func GinMiddleware(allowOrigin string) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", allowOrigin)
-		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Content-Type, Content-Length, X-CSRF-Token, Token, session, Origin, Host, Connection, Accept-Encoding, Accept-Language, X-Requested-With")
+// func GinMiddleware(allowOrigin string) gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		c.Writer.Header().Set("Access-Control-Allow-Origin", allowOrigin)
+// 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+// 		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
+// 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Content-Type, Content-Length, X-CSRF-Token, Token, session, Origin, Host, Connection, Accept-Encoding, Accept-Language, X-Requested-With")
 
 
-		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(204)
-			return
-		}
+// 		if c.Request.Method == "OPTIONS" {
+// 			c.AbortWithStatus(204)
+// 			return
+// 		}
 
-		c.Request.Header.Del("Origin")
+// 		c.Request.Header.Del("Origin")
 
-		c.Next()
-	}
-}
+// 		c.Next()
+// 	}
+// }
 
 func main() {
 
@@ -54,7 +54,7 @@ func main() {
 	})
 
 
-	var lpcm []Structs.LotteryParticipantCategoryMain
+	/*var lpcm []Structs.LotteryParticipantCategoryMain
 	err := Models.GetAllParticipantCategory(&lpcm)
 	if err != nil {
 		fmt.Println("info:", err)
@@ -95,6 +95,7 @@ func main() {
 			})
 		}
 	}
+	*/
 
 	server.OnEvent("/", "winners", func(s socketio.Conn, msg string) string {
 		server.BroadcastToRoom("", "bcast", "initialize", msg)
@@ -116,10 +117,11 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	router.Use(GinMiddleware("https://aqjndg2020.com"))
+	// router.Use(GinMiddleware("https://aqjndg2020.com"))
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))
+		/*
 		router.GET("/table_data/participant/list", func(c *gin.Context) {
 			var lptd []Structs.LotteryParticipantTableData
 			err := Models.GetAllParticipant(&lptd)
@@ -155,9 +157,9 @@ func main() {
 
 				c.JSON(http.StatusOK, table)
 			}
-		})
+		})*/
 
-		// router.Run("localhost:3000")
-		log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
+		router.Run(":3000")
+		//log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
 
 	}
