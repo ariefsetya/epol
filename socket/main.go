@@ -6,10 +6,9 @@ import (
 	"socket/Config"
 	"fmt"
 	// "socket/Models"
-	// "log"
-
+	"log"
 	"github.com/gin-gonic/gin"
-	// "github.com/gin-gonic/autotls"
+	"github.com/gin-gonic/autotls"
 	"github.com/jinzhu/gorm"
 
 	socketio "github.com/googollee/go-socket.io"
@@ -159,7 +158,7 @@ func main() {
 			}
 		})*/
 
-		router.Run(":3000")
-		//log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
+		// router.Run(":3000")
+		log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
 
 	}
