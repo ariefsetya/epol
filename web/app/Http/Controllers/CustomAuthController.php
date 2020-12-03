@@ -50,7 +50,7 @@ class CustomAuthController extends Controller
 		if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp'){
 			$country_id = $r->input('country_id');
 			$phone = ltrim($r->input('phone'),"0");
-			if(length(trim($phone))==0){
+			if(strlen(trim($phone))==0){
 				return redirect()->route('loginPage')->with(['message'=>'Nomor Telepon harus diisi']);
 			}
 			if(User::where('event_id',Session::get('event_id'))->where(['country_id'=>$country_id,'phone'=>$phone])->exists()){
@@ -89,7 +89,7 @@ class CustomAuthController extends Controller
 		}
 		else{
 			$code = trim($r->input('code'));
-			if(length(trim($code))==0){
+			if(strlen(trim($code))==0){
 				return redirect()->route('loginPage')->with(['message'=>'Kode Undangan harus diisi']);
 			}
 			if(User::where('event_id',Session::get('event_id'))->where(['reg_number'=>$code])->exists()){
