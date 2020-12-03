@@ -81,4 +81,8 @@ class PollingController extends Controller
         PollingParticipant::where('event_id',Session::get('event_id'))->where('polling_id',$polling_id)->where('user_id',$user_id)->delete();
         return redirect()->route('quiz_report',[$polling_id]);
     }
+    public function polling_setting()
+    {
+        return view('polling.setting');
+    }
 }

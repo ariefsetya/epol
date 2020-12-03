@@ -94,10 +94,10 @@
                     <span class="mif-display icon"></span>
                     <span class="branding-bar">Display</span>
                 </a>
-                <div data-role="tile" class="bg-teal fg-white">
+                <a href="{{url('/lottery/report')}}" data-role="tile" class="bg-teal fg-white">
                     <span class="mif-file-text icon"></span>
                     <span class="branding-bar">Report</span>
-                </div>
+                </a>
                 <a href="{{url('/participant/list')}}" data-role="tile" class="bg-indigo fg-white" data-size="wide">
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Participant</span>
@@ -105,14 +105,18 @@
                 </a>
             </div>
 
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Settings">
+            <div href="{{url('lottery_setting')}}" class="tiles-grid tiles-group size-2 fg-white" data-group-title="Settings">
                 <a data-role="tile" class="bg-green fg-white">
                     <span class="mif-cog icon"></span>
                     <span class="branding-bar">Lottery</span>
                 </a>
-                <a data-role="tile" class="bg-red fg-white">
+                <a href="{{url('polling_setting')}}" data-role="tile" class="bg-red fg-white">
                     <span class="mif-cog icon"></span>
                     <span class="branding-bar">Polling</span>
+                </a>
+                <a href="{{url('event_setting')}}" data-role="tile" class="bg-red fg-white">
+                    <span class="mif-cog icon"></span>
+                    <span class="branding-bar">Event</span>
                 </a>
                 <a data-role="tile" class="bg-blue fg-white" href="{{url('/admin/event_detail')}}">
                     <span class="mif-cog icon"></span>

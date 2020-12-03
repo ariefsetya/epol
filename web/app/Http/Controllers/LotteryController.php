@@ -20,6 +20,10 @@ class LotteryController extends Controller
 	{
 		return view('scan.display');
 	}
+	public function report()
+	{
+		return view('scan.report');
+	}
 	public function participant_category()
 	{
 		return view('participant_category.list');

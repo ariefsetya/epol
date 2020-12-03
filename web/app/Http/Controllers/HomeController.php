@@ -7,11 +7,13 @@ use App\PollingQuestion;
 use App\PollingResponse;
 use App\PollingAnswer;
 use App\PollingParticipant;
+use App\LotteryHistory;
 use App\Polling;
 use App\Product;
 use App\Presence;
 use App\ProductResponse;
 use App\Event;
+use App\RSVP;
 use Auth;
 use App\Mail\sendBarcode;
 use App\Mail\sendWA;
@@ -385,5 +387,30 @@ class HomeController extends Controller
         $response = Response::make(QrCode::format('png')->size(200)->generate($text), 200);
         $response->header("Content-Type", 'image/png');
         return $response;
+    }
+    public function reset_presence()
+    {
+        Presence::whereEventId(Session::get('event_id'))->delete();
+        RSVP::whereEventId(Session::get('event_id'))->update(['confirm_status'=>0]);
+        return redirect(url('/polling_setting'));
+    }
+    public function reset_lottery()
+    {
+        LotteryHistory::whereEventId(Session::get('event_id'))->delete();
+        return redirect(url('/polling_setting'));
+    }
+    public function reset_polling()
+    {
+        PollingResponse::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(1)->pluck('id'))->delete();
+        PollingResponse::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(5)->pluck('id'))->delete();
+        PollingParticipant::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(1)->pluck('id'))->delete();
+        PollingParticipant::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(5)->pluck('id'))->delete();
+        return redirect(url('/polling_setting'));
+    }
+    public function reset_quiz()
+    {
+        PollingResponse::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(3)->pluck('id'))->delete();
+        PollingParticipant::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(3)->pluck('id'))->delete();
+        return redirect(url('/polling_setting'));
     }
 }

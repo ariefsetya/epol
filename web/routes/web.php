@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/core', 'LotteryController@core');
 Route::get('/lottery/scan','LotteryController@scan');
+Route::get('/lottery/report','LotteryController@report');
+Route::get('/lottery/display','LotteryController@display');
 Route::get('/participant/list','LotteryController@participant');
 Route::get('/participant_category/list','LotteryController@participant_category');
-Route::get('/lottery/display','LotteryController@display');
 Route::post('/upload/csv','LotteryController@upload_csv');
 
 // Route::get('/home', 'HomeController@index');
@@ -32,6 +33,11 @@ Route::get('/create_event/{name}/{location}/{date}','EventController@create_even
 Route::post('/phoneLogin','CustomAuthController@phoneLogin')->name('phoneLogin');
 Route::get('/removeRedirectToHome','CustomAuthController@removeRedirectToHome')->name('removeRedirectToHome');
 
+Route::get('/setting/reset_presence','HomeController@reset_presence')->name('reset_presence');
+Route::get('/setting/reset_polling','HomeController@reset_polling')->name('reset_polling');
+Route::get('/setting/reset_quiz','HomeController@reset_quiz')->name('reset_quiz');
+Route::get('/setting/reset_lottery','HomeController@reset_lottery')->name('reset_lottery');
+Route::get('/polling_setting','PollingController@polling_setting')->name('polling_setting');
 Route::get('/quiz_join/{id}','HomeController@quiz_join')->name('quiz_join');
 Route::get('/finish_quiz/{id}','HomeController@finish_quiz')->name('finish_quiz');
 Route::get('/polling_question/{id?}','HomeController@polling_question')->name('polling_question');
