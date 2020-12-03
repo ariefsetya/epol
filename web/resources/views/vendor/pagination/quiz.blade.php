@@ -1,4 +1,3 @@
-
 <div style="width: calc(100% - 20px);padding:10px;position: fixed;bottom:0;" class="text-center">
 	@if ($paginator->hasPages())
 	<nav>
@@ -18,4 +17,7 @@
 		</div>
 	</nav>
 	@endif
+	
+	<br>
+	<br>
 </div>
