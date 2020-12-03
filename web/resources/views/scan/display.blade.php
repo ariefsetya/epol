@@ -6,7 +6,7 @@
 </head>
 <body style="overflow:hidden;background-color: #2d89ef;">
     <div style="width: 1920px;height:1080px;margin:auto;">
-        <div id="background" style="border:0px solid #000;width: 1920px;height:1080px;background-image:url();background-position: all;background-repeat: no-repeat; background-size: cover;">
+        <div id="background" @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','lottery_display_background')->exists()) style="border:0px solid #000;width: 1920px;height:1080px;background-image:url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','lottery_display_background')->first()->content}});background-position: all;background-repeat: no-repeat; background-size: cover;" @endif>
             <div class="main" >  
                 <h1 id="title" style="margin: 0;padding: 0;">&nbsp;</h1>
                 <div id="hadiah" style="font-family:'Verdana';color:cyan;font-size: 30pt;font-weight:bold;margin: 0;padding: 0;text-align: center;width: 100%;">&nbsp;</div>

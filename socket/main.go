@@ -53,7 +53,7 @@ func main() {
 	})
 
 
-	/*var lpcm []Structs.LotteryParticipantCategoryMain
+	var lpcm []Structs.LotteryParticipantCategoryMain
 	err := Models.GetAllParticipantCategory(&lpcm)
 	if err != nil {
 		fmt.Println("info:", err)
@@ -74,6 +74,7 @@ func main() {
 
 
 					var lh Structs.LotteryHistoryMain
+					lh.EventId = 3
 					lh.LotteryParticipantId = lpm.Id
 					lh.Status = true
 
@@ -94,7 +95,7 @@ func main() {
 			})
 		}
 	}
-	*/
+	
 
 	server.OnEvent("/", "winners", func(s socketio.Conn, msg string) string {
 		server.BroadcastToRoom("", "bcast", "initialize", msg)
@@ -120,7 +121,7 @@ func main() {
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))
-		/*
+		
 		router.GET("/table_data/participant/list", func(c *gin.Context) {
 			var lptd []Structs.LotteryParticipantTableData
 			err := Models.GetAllParticipant(&lptd)
@@ -156,7 +157,7 @@ func main() {
 
 				c.JSON(http.StatusOK, table)
 			}
-		})*/
+		})
 
 		// router.Run(":3000")
 		log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))

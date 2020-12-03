@@ -2,6 +2,7 @@ package Structs
 
 type LotteryHistoryMain struct {
 	Id      					uint   	`json:"id"`
+	EventId 					uint 	`json:"event_id"`
 	LotteryParticipantId 		uint 	`json:"lottery_participant_id"`
 	Status 						bool 	`json:"status"`
 	CreatedAt   				string 	`json:"created_at"`
