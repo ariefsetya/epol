@@ -54,7 +54,7 @@
         $("#data").html('');
         var html;
         for (var i = 0; i < winner.length; i++) {
-            html += "<tr><td class='text-center' style='width:8%'>"+(i+1)+"</td><td class='text-center' style='width:10%'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center' style='width:30%'>"+winner[i][2]+"</td><td class='text-center'>"+winner[i][3]+"</td><td class='text-center'>"+winner[i][4]+"</td></tr>";
+            html += "<tr><td class='text-center' style='width:8%'>"+(i+1)+"</td><td class='text-center'>"+winner[i][0]+"</td><td class='text-center' style='width:30%'>"+winner[i][1]+"</td><td class='text-center' >"+winner[i][2]+"</td><td class='text-center'>"+winner[i][3]+"</td></tr>";
         }
         $("#data").html(html);
 
