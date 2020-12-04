@@ -253,7 +253,7 @@ class HomeController extends Controller
                     }
 
                     if($this->check_winner($data->polling_id, Auth::user()->id)){
-                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()],200);
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>implode("|",Auth::user())],200);
                     }else{
                         return response()->json(['message'=>'saved!','win'=>false],200);
                     }
@@ -273,7 +273,7 @@ class HomeController extends Controller
                     }
 
                     if($this->check_winner($data->polling_id, Auth::user()->id)){
-                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()],200);
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>implode("|",Auth::user())],200);
                     }else{
                         return response()->json(['message'=>'saved!','win'=>false],200);
                     }
