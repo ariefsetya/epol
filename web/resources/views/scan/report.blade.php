@@ -53,7 +53,7 @@
         $("#data").html('');
         var html;
         for (var i = winner.length - 1; i >= 0; i--) {
-            html += "<tr><td class='text-center' style='width:8%'>"+(winner.length - i)+"</td><td class='text-center' style='width:10%'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center' style='width:30%'>"+winner[i][2]+"</td>";
+            html += "<tr><td class='text-center' style='width:8%'>"+(winner.length - i)+"</td><td class='text-center' style='width:10%'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center' style='width:30%'>"+winner[i][2]+"</td></tr>";
         }
         $("#data").html(html);
 

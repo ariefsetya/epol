@@ -47,7 +47,7 @@
     var s2 = io("{{env("SOCKET_URL")}}");
     var winner = [];
 
-    s2.on('quiz', function(msg){
+    s2.on('result_quiz', function(msg){
         console.log(msg)
         var data = msg.split("|");
         winner.push(data); 

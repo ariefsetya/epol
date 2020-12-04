@@ -133,7 +133,7 @@ func main() {
 		return "initialized";
 	})
 	server.OnEvent("/", "quiz", func(s socketio.Conn, msg string) string {
-		server.BroadcastToRoom("", "bcast", "quiz", msg)
+		server.BroadcastToRoom("", "bcast", "result_quiz", msg)
 		return "quiz";
 	})
 	server.OnEvent("/", "change-background", func(s socketio.Conn, msg string) string {
