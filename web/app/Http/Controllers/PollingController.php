@@ -103,12 +103,12 @@ class PollingController extends Controller
             $arr[] = [
                 'name'=>$key->user->name,
                 'company'=>$key->user->company,
-                'polling_response_count'=>$key->polling_response_count,
+                'polling_response_count'=>(int)$key->polling_response_count,
                 'created_at'=>$key->created_at,
             ];
         }
 
-        $collection = collect([$arr]);
+        $collection = collect($arr);
         $collection->sortByDesc('polling_response_count')->values();
 
         $data['report'] = $collection;
