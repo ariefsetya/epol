@@ -20,6 +20,7 @@ class CreatePollingsTable extends Migration
             $table->string('name');
             $table->string('finish_message');
             $table->string('max_winner');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

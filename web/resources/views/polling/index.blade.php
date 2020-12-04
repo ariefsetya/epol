@@ -16,7 +16,7 @@
 	    		<th>Tipe Polling</th>
 	    		<th>Nama</th>
                 <th>Pesan Selesai</th>
-	    		<th colspan="3">Action</th>
+	    		<th colspan="4">Action</th>
 	    	</tr>
     	</thead>
     	<tbody>
@@ -25,6 +25,7 @@
     				<td>{{$key->polling_type->name}}</td>
     				<td>{{$key->name}}</td>
                     <td>{{$key->finish_message}}</td>
+                    <td>@if($key->is_active) <a class="button alert" href="{{route('polling.deactivate',[$key->id])}}">Deactivate</a> @else <a href="{{route('polling.activate',[$key->id])}}" class="button success">Activate</a> @endif</td>
     				<td>@if($key->polling_type_id==3)<a class="button warning" href="{{route('quiz_display_report',[$key->id])}}">Quiz Display Report</a>@elseif($key->polling_type_id==5)<a class="button warning" href="{{route('polling_essay_report',[$key->id])}}">Polling Essay Report</a>@endif</td>
                     <td><a class="button warning" href="{{route('polling.edit',[$key->id])}}">Edit</a></td>
     				<td><form method="POST" action="{{route('polling.destroy',[$key->id])}}">{{csrf_field()}}<input type="hidden" name="_method" value="DELETE">

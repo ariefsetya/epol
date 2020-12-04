@@ -116,7 +116,7 @@
                 <a style="border-radius: 100px;width:60%;margin:0 auto;" class="button large col-md-12">{{$row->name}}</a>
                 <br>
                 @else
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('quiz_response',[$row->id])}}" class="button primary large col-md-12">{{$row->name}}</a>
+                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('quiz_response',[$row->id])}}" class="button @if($row->is_active) primary @endif large col-md-12">{{$row->name}}</a>
                 <br>
                 @endif
                 @else
@@ -128,7 +128,7 @@
                 <a style="border-radius: 100px;width:60%;margin:0 auto;" class="button large col-md-12">{{$row->name}}</a>
                 <br>
                 @else
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('polling_response',[$row->id])}}" class="button primary large col-md-12">{{$row->name}}</a>
+                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('polling_response',[$row->id])}}" class="button @if($row->is_active) primary @endif large col-md-12">{{$row->name}}</a>
                 <br>
                 @endif
                 @endif

@@ -136,13 +136,17 @@ class HomeController extends Controller
     public function polling_response($id)
     {
         $data['polling'] = Polling::where('event_id',Session::get('event_id'))->whereId($id)->first();
-        $data['polling_question'] = PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$id)->paginate(1);
-        if(isset($data['polling_question'][0])){
-            $data['polling_answer'] = PollingAnswer::where('event_id',Session::get('event_id'))->where('polling_question_id',$data['polling_question'][0]->id)->get();
+        if($data['polling']->is_active){
+            $data['polling_question'] = PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$id)->paginate(1);
+            if(isset($data['polling_question'][0])){
+                $data['polling_answer'] = PollingAnswer::where('event_id',Session::get('event_id'))->where('polling_question_id',$data['polling_question'][0]->id)->get();
 
-            return view('polling_response.index')->with($data);
+                return view('polling_response.index')->with($data);
+            }else{
+                abort(404);
+            }
         }else{
-            abort(404);
+            return redirect(url('/'));
         }
     }
     public function screen()
@@ -161,10 +165,15 @@ class HomeController extends Controller
     public function quiz_response($id)
     {
         $data['polling'] = Polling::where('event_id',Session::get('event_id'))->whereId($id)->first();
-        $data['polling_question'] = PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$id)->paginate(1);
-        $data['polling_answer'] = PollingAnswer::where('event_id',Session::get('event_id'))->where('polling_question_id',$data['polling_question'][0]->id)->get();
+        if($data['polling']->is_active){
+            $data['polling_question'] = PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$id)->paginate(1);
+            $data['polling_answer'] = PollingAnswer::where('event_id',Session::get('event_id'))->where('polling_question_id',$data['polling_question'][0]->id)->get();
 
-        return view('quiz_response.index')->with($data);
+            return view('quiz_response.index')->with($data);
+            
+        }else{
+            return redirect(url('/'));
+        }
     }
     public function admin()
     {

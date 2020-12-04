@@ -67,6 +67,22 @@ class PollingController extends Controller
 
         return redirect()->route('polling.index');
     }
+    public function activate($id)
+    {
+        $inv = Polling::where('event_id',Session::get('event_id'))->whereId($id)->first();
+        $inv->is_active = true;
+        $inv->save();
+
+        return redirect()->route('polling.index');
+    }
+    public function deactivate($id)
+    {
+        $inv = Polling::where('event_id',Session::get('event_id'))->whereId($id)->first();
+        $inv->is_active = false;
+        $inv->save();
+
+        return redirect()->route('polling.index');
+    }
     public function destroy($id)
     {
         Polling::where('event_id',Session::get('event_id'))->whereId($id)->delete();

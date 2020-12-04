@@ -1,4 +1,5 @@
 {{csrf_field()}}
+  <input type="hidden" name="is_active" value="{{$polling->is_active ?? false}}">
   <input type="hidden" name="event_id" value="{{Session::get('event_id')}}">
   <div class="form-group">
     <label for="polling_type_id">Tipe Polling</label>

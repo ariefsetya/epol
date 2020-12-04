@@ -94,6 +94,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/user/{id}/clear','InvitationController@clear')->name('user.clear');
     Route::get('/user/reset','InvitationController@reset')->name('user.reset');
     Route::get('/polling/report','PollingController@report')->name('polling.report');
+    Route::get('/polling/activate/{id}','PollingController@activate')->name('polling.activate');
+    Route::get('/polling/deactivate/{id}','PollingController@deactivate')->name('polling.deactivate');
     Route::get('/','HomeController@admin')->name('admin');
     Route::get('/user/import', 'InvitationController@import')->name('user.import');
     Route::post('/user/import', 'InvitationController@process_import')->name('user.process_import');
