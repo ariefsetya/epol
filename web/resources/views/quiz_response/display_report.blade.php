@@ -37,10 +37,10 @@
                   @foreach($report as $key => $row)
                   <tr>
                     <td class="text-center"  style="width:8%">{{$key+=1}}</td>
-                    <td class="text-center" >{{$row->user->name}}</td>
-                    <td class="text-center"  style="width:30%">{{$row->user->company}}</td>
-                    <td class="text-center" >{{$row->polling_response_count}}</td>
-                    <td class="text-center" >{{date_format($row->created_at,"H:i:s")}}</td>
+                    <td class="text-center" >{{$row['name']}}</td>
+                    <td class="text-center"  style="width:30%">{{$row['company']}}</td>
+                    <td class="text-center" >{{$row['polling_response_count']}}</td>
+                    <td class="text-center" >{{date_format($row['created_at'],"H:i:s")}}</td>
                   </tr>
                   @endforeach
                 </tbody>

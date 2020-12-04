@@ -93,12 +93,27 @@ class PollingController extends Controller
     }
     public function display_report($id)
     {
-        $data['report'] = PollingParticipant::withCount(['polling_response'=>function($query) use ($id)
+        $report = PollingParticipant::withCount(['polling_response'=>function($query) use ($id)
         {
             $query->whereEventId(Session::get('event_id'))->wherePollingId($id)->whereIsWinner(1);
         }])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortByDesc(function($data){
             $data->polling_response_count;
         });
+
+        $arr = [];
+        foreach ($report as $key) {
+            $arr[] = [
+                'name'=>$key->user->name,
+                'company'=>$key->user->company,
+                'polling_response_count'=>$key->polling_response_count,
+                'created_at'=>$key->created_at,
+            ];
+        }
+
+        $collection = collect($arr);
+        $collection->sortByDesc('polling_response_count');
+
+        $data['report'] = $collection;
 
         return view('quiz_response.display_report')->with($data);
     }
