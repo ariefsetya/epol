@@ -5,6 +5,7 @@
 	<div style="margin-top:25%;">
 		
 		<b>{!! $polling_question[0]->content !!}</b>
+		<br>
 		@foreach($polling_answer as $key)
 		<div class="form-check">
 			@if($polling->polling_type_id==5)
