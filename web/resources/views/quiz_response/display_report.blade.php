@@ -30,17 +30,17 @@
                     <th class="text-center" style="width:8%">No</th>
                     <th class="text-center">Nama Dealer</th>
                     <th class="text-center" style="width:30%">Kota</th>
-                    <th class="text-center">Skor</th>
-                    <th class="text-center">Waktu</th>
+                    <th class="text-center" style="width:10%">Skor</th>
+                    <th class="text-center" style="width:10%">Waktu</th>
                 </thead>
                 <tbody id="data">
                   @foreach($report as $key => $row)
                   <tr>
-                    <td class="text-center"  style="width:8%">{{$key+=1}}</td>
-                    <td class="text-center" >{{$row['name']}}</td>
-                    <td class="text-center"  style="width:30%">{{$row['company']}}</td>
-                    <td class="text-center" >{{$row['polling_response_count']}}</td>
-                    <td class="text-center" >{{date_format($row['created_at'],"H:i:s")}}</td>
+                    <td class="text-center" style="width:8%">{{$key+=1}}</td>
+                    <td class="text-center">{{$row['name']}}</td>
+                    <td class="text-center" style="width:30%">{{$row['company']}}</td>
+                    <td class="text-center" style="width:10%">{{$row['polling_response_count']}}</td>
+                    <td class="text-center" style="width:10%">{{date_format($row['created_at'],"H:i:s")}}</td>
                   </tr>
                   @endforeach
                 </tbody>
