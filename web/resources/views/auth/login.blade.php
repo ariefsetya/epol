@@ -53,7 +53,9 @@
         @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
         Silahkan masukkan Nomor Handphone Anda untuk konfirmasi kehadiran
         @else
+        <div style="position: fixed;bottom:60%;width: calc(100% - 20px);">
         Silahkan masukan<br>Nomor Undangan Anda<br>untuk melanjutkan
+        </div>
         @endif
       </div>
       <br>
@@ -61,7 +63,7 @@
       @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
       <input class="input-large" required type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
       @else
-      <div style="margin: 0 10%;" class="text-center">
+      <div style="position: fixed;bottom:50%;width: calc(100% - 20px);" class="text-center">
         <input class="input-large text-center" style="text-align: center;" required type="text" name="code" id="code" placeholder="Nomor Undangan">
       </div>
       @endif
