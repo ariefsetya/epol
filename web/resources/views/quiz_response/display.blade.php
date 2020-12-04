@@ -30,7 +30,7 @@
                     <th class="text-center" style="width:8%">No</th>
                     <th class="text-center">Nama Dealer</th>
                     <th class="text-center" style="width:20%">Kota</th>
-                    <th class="text-center" style="width:15%">Skor</th>
+                    <th class="text-center" style="width:10%">Skor</th>
                     <th class="text-center" style="width:15%">Waktu</th>
                 </thead>
                 <tbody id="data">
@@ -54,7 +54,7 @@
         $("#data").html('');
         var html;
         for (var i = 0; i < winner.length; i++) {
-            html += "<tr><td class='text-center' style='width:8%'>"+(i+1)+"</td><td class='text-center'>"+winner[i][0]+"</td><td class='text-center' style='width:20%'>"+winner[i][1]+"</td><td class='text-center' style='width:15%'>"+winner[i][2]+"</td><td class='text-center' style='width:15%'>"+winner[i][3]+"</td></tr>";
+            html += "<tr><td class='text-center' style='width:8%'>"+(i+1)+"</td><td class='text-center'>"+winner[i][0]+"</td><td class='text-center' style='width:20%'>"+winner[i][1]+"</td><td class='text-center' style='width:10%'>"+winner[i][2]+"</td><td class='text-center' style='width:15%'>"+winner[i][3]+"</td></tr>";
         }
         $("#data").html(html);
 
