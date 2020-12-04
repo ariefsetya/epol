@@ -109,9 +109,10 @@ class PollingController extends Controller
         }
 
         $collection = collect($arr);
-        $collection->sortBy('polling_response_count', SORT_NUMERIC, true)->values();
+        $collection->sortByDesc('polling_response_count')->values();
 
         $data['report'] = $collection;
+        dd($data);
 
         return view('quiz_response.display_report')->with($data);
     }
