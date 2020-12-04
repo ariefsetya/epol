@@ -278,7 +278,7 @@ class HomeController extends Controller
 
                         $w = $this->winner_data($data->polling_id);
 
-                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()->name."|".Auth::user()->company."|".$w['benar']."|".$w['time']],200);
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()->name."|".Auth::user()->company."|".$w['benar']."|".$w['endtime']],200);
                     }else{
                         return response()->json(['message'=>'saved!','win'=>false],200);
                     }
@@ -300,6 +300,7 @@ class HomeController extends Controller
         $data['benar'] = $benar;
         $starttime = $data['polling_response'][0]->created_at;
         $endtime = $data['polling_response'][sizeof($data['polling_response'])-1]->created_at;
+        $date['endtime'] = $endtime;
         $data['time'] = str_replace([" after"," before","seconds","second", "minutes","minute","hours","hour"], ["","","detik","detik","menit","menit","jam","jam"], Carbon::parse($endtime)->diffForHumans($starttime));
 
         return $data;
