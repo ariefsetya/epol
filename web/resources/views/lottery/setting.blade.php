@@ -30,7 +30,7 @@
 	var s2 = io("{{env("SOCKET_URL")}}");
 
 	function applyproperty() {
-		var data = $("#property").val().split("|");
+		var data = $("#property").val();
 		s2.emit('change-background', data, function(data){
 			console.log(data)
 		});
