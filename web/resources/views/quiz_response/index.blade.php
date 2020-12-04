@@ -38,7 +38,7 @@
   }
 
   function finish_quiz() {
-    window.location='{{route('finish_quiz',$polling->id)}}';
+    redirect_home();
   }
   function redirect_home() {
     if(winner.win){
