@@ -109,7 +109,7 @@ class PollingController extends Controller
         }
 
         $collection = collect($arr);
-        $collection->sortBy('polling_response_count',SORT_NUMERIC, true);
+        $collection->sortBy('polling_response_count', SORT_NUMERIC, true)->values();
 
         $data['report'] = $collection;
 
