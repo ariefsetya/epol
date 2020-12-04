@@ -106,8 +106,8 @@ class HomeController extends Controller
             $answer['check'] = $r->input('check');
             $answer['essay'] = $r->input('essay');
             $polling_id = PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id;
-            if(PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('uuid',\Session::get('uuid'))->exists()){
-                $id = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('uuid',\Session::get('uuid'))->first()->id;
+            if(PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('user_id',Auth::user()->id)->exists()){
+                $id = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('user_id',Auth::user()->id)->first()->id;
                 $data = PollingResponse::where('event_id',Session::get('event_id'))->whereId($id)->first();
                 $data->polling_answer_id = 0;
                 $data->answer_text = json_encode($answer);
@@ -120,7 +120,7 @@ class HomeController extends Controller
                 $data = new PollingResponse;
                 $data->event_id = Session::get('event_id');
                 $data->polling_id = $polling_id;
-                $data->uuid = \Session::get('uuid');
+                $data->user_id = Auth::user()->id;
                 $data->polling_question_id = $polling_question_id;
                 $data->polling_answer_id = 0;
                 $data->answer_text = json_encode($answer);

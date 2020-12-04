@@ -10,6 +10,8 @@ use App\PollingParticipant;
 use DB;
 use Session;
 use Illuminate\Http\Request;
+use App\Exports\PollingEssayExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PollingController extends Controller
 {
@@ -94,10 +96,23 @@ class PollingController extends Controller
         $data['report'] = PollingParticipant::withCount(['polling_response'=>function($query) use ($id)
         {
             $query->whereEventId(Session::get('event_id'))->wherePollingId($id)->whereIsWinner(1);
-        }])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortBy(function($data){
+        }])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortByDesc(function($data){
             $data->polling_response_count;
-        },null,true);
+        });
 
         return view('quiz_response.display_report')->with($data);
+    }
+    public function polling_essay_report($id)
+    {
+        $data['polling'] = Polling::find($id);
+        $data['polling_response'] = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_id',$id)->get();
+
+        return view('quiz_response.polling_essay_report')->with($data);
+    }
+    public function polling_essay_export_excel($id)
+    {
+        $polling = Polling::whereId($id)->first();
+        $exporter = app()->makeWith(PollingEssayExport::class, compact('id')); 
+        return Excel::download($exporter,'laporan_polling_essay_'.$polling->name.'.xlsx');
     }
 }

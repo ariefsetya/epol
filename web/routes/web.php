@@ -19,6 +19,7 @@ Route::get('/lottery/report','LotteryController@report');
 Route::get('/lottery/display','LotteryController@display');
 Route::get('/quiz/display','PollingController@display');
 Route::get('/quiz/display_report/{id}','PollingController@display_report')->name('quiz_display_report');
+Route::get('/polling/essay_report/{id}','PollingController@polling_essay_report')->name('polling_essay_report');
 Route::get('/participant/list','LotteryController@participant');
 Route::get('/participant_category/list','LotteryController@participant_category');
 Route::post('/upload/csv','LotteryController@upload_csv');
@@ -86,6 +87,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/product/chart/{id}','HomeController@product_chart')->name('product.chart');
     Route::get('/product/report','HomeController@product_report')->name('product.report');
     Route::get('/product/report/excel','HomeController@product_export_excel')->name('product.export_excel');
+    Route::get('/polling_essay/report/excel/{id}','PollingController@polling_essay_export_excel')->name('polling_essay.export_excel');
     Route::get('/presence/report','InvitationController@report')->name('presence.report');
     Route::get('/presence/export/excel', 'InvitationController@export_excel')->name('user.export_excel');
     Route::get('/quiz/export/excel/{polling_id}', 'HomeController@quiz_export_excel')->name('quiz.export_excel');

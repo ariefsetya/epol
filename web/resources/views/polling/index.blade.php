@@ -25,7 +25,7 @@
     				<td>{{$key->polling_type->name}}</td>
     				<td>{{$key->name}}</td>
                     <td>{{$key->finish_message}}</td>
-    				<td><a class="button warning" href="{{route('quiz_display_report',[$key->id])}}">Quiz Report</a></td>
+    				<td>@if($key->polling_type_id==3)<a class="button warning" href="{{route('quiz_display_report',[$key->id])}}">Quiz Display Report</a>@elseif($key->polling_type_id==5)<a class="button warning" href="{{route('polling_essay_report',[$key->id])}}">Polling Essay Report</a>@endif</td>
                     <td><a class="button warning" href="{{route('polling.edit',[$key->id])}}">Edit</a></td>
     				<td><form method="POST" action="{{route('polling.destroy',[$key->id])}}">{{csrf_field()}}<input type="hidden" name="_method" value="DELETE">
     					<button type="submit" class="button danger">Delete</button></form></td>
