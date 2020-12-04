@@ -38,15 +38,10 @@
   }
 
   function finish_quiz() {
-    redirect_home();
-  }
-  function redirect_home() {
     if(winner.win){
       socket.emit('quiz',winner.user);
-      window.location = '{{route('removeRedirectToHome')}}';
-    }else{
-      window.location = '{{route('removeRedirectToHome')}}';
     }
+    window.location='{{route('finish_quiz',$polling->id)}}';
   }
 
   preventBack();
