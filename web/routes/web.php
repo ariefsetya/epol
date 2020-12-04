@@ -18,7 +18,7 @@ Route::get('/lottery/scan','LotteryController@scan');
 Route::get('/lottery/report','LotteryController@report');
 Route::get('/lottery/display','LotteryController@display');
 Route::get('/quiz/display','PollingController@display');
-Route::get('/quiz/display_report/{id}','PollingController@display_report');
+Route::get('/quiz/display_report/{id}','PollingController@display_report')->name('quiz_display_report');
 Route::get('/participant/list','LotteryController@participant');
 Route::get('/participant_category/list','LotteryController@participant_category');
 Route::post('/upload/csv','LotteryController@upload_csv');
