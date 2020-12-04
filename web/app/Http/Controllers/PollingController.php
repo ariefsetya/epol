@@ -96,9 +96,7 @@ class PollingController extends Controller
         $report = PollingParticipant::withCount(['polling_response'=>function($query) use ($id)
         {
             $query->whereEventId(Session::get('event_id'))->wherePollingId($id)->whereIsWinner(1);
-        }])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortByDesc(function($data){
-            $data->polling_response_count;
-        });
+        }])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get();
 
         $arr = [];
         foreach ($report as $key) {
@@ -111,7 +109,7 @@ class PollingController extends Controller
         }
 
         $collection = collect($arr);
-        $collection->sortByDesc('polling_response_count');
+        $collection->sortByDesc('polling_response_count',SORT_NUMERIC);
 
         $data['report'] = $collection;
 
