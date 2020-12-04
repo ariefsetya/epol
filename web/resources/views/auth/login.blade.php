@@ -44,7 +44,7 @@
     <br>
   </div>
   @else
-  <div class="col-md-12" style="width:100%;margin-top:50%;padding:10px;">
+  <div class="col-md-12" style="width:100%;margin-top:40%;padding:10px;">
     @endif
     <form class="form-signin" method="post" action="{{route('phoneLogin')}}">
       {{csrf_field()}}
@@ -61,7 +61,7 @@
       @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
       <input class="input-large" required type="number" name="phone" id="phone" data-role="input" data-prepend="+62" placeholder="Nomor HP">
       @else
-      <div style="margin: 0 10%;display: flex;align-items: center;" class="text-center">
+      <div style="margin: 0 10%;" class="text-center">
         <input class="input-large text-center" style="text-align: center;" required type="text" name="code" id="code" placeholder="Nomor Undangan">
       </div>
       @endif
@@ -70,7 +70,7 @@
     </form>
   </div>
   @else
-  <div style="display: flex;align-items: baseline;" class="text-center">
+  <div style="width: calc(100% - 20px);padding:10px;position: fixed;bottom:0;" class="text-center">
     <button class="mt-1 button primary large" style="width:60%;border-radius: 100px;left:0;bottom: 0;" type="submit">MASUK</button>
     <br>
     <br>
