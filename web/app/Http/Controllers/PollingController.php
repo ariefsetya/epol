@@ -91,7 +91,10 @@ class PollingController extends Controller
     }
     public function display_report($id)
     {
-        $data['report'] = PollingParticipant::with(['polling_response'])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortBy(function($data){
+        $data['report'] = PollingParticipant::with(['polling_response'=>function($query) use ($id)
+        {
+            $query->whereEventId(Session::get('event_id'))->wherePollingId($id)->whereIsWinner(1);
+        }])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortBy(function($data){
             $data->polling_response->whereUserId($data->polling_response->user_id)->whereEventId(Session::get('event_id'))->whereIsWinner(1)->count();
         },null,true);
 
