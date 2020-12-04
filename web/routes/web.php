@@ -38,6 +38,7 @@ Route::get('/setting/reset_polling','HomeController@reset_polling')->name('reset
 Route::get('/setting/reset_quiz','HomeController@reset_quiz')->name('reset_quiz');
 Route::get('/setting/reset_lottery','HomeController@reset_lottery')->name('reset_lottery');
 Route::get('/polling_setting','PollingController@polling_setting')->name('polling_setting');
+Route::get('/lottery_setting','LotteryController@lottery_setting')->name('lottery_setting');
 Route::get('/quiz_join/{id}','HomeController@quiz_join')->name('quiz_join');
 Route::get('/finish_quiz/{id}','HomeController@finish_quiz')->name('finish_quiz');
 Route::get('/polling_question/{id?}','HomeController@polling_question')->name('polling_question');
@@ -74,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    Route::resource('lottery_property','LotteryPropertyController');
     Route::resource('event_detail','EventDetailController');
     Route::resource('user','InvitationController');
     Route::resource('polling','PollingController');

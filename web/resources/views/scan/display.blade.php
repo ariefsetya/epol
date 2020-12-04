@@ -45,5 +45,10 @@
         $('#name').html(data[1]);
         $('#city').html(data[2]);
     });
+    s2.on('display_image', function(msg){
+        console.log(msg)
+        var data = msg.split("|") 
+        $('#background').css('background-image','url('+data[0]+')');
+    });
 </script>
 </html>

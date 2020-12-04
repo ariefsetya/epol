@@ -28,8 +28,8 @@
             <table class="table striped">
                 <thead>
                     <th class="text-center" style="width:8%">No</th>
-                    <th class="text-center" style="width:10%">Kode</th>
-                    <th class="text-center">Nama</th>
+                    <th class="text-center" style="width:10%">Kupon</th>
+                    <th class="text-center">Nama Dealer</th>
                     <th class="text-center" style="width:30%">Kota</th>
                 </thead>
                 <tbody id="data">
@@ -60,6 +60,11 @@
         // $('#code').html(data[0]);
         // $('#name').html(data[1]);
         // $('#city').html(data[2]);
+    });
+    s2.on('display_image', function(msg){
+        console.log(msg)
+        var data = msg.split("|") 
+        $('#background').css('background-image','url('+data[1]+')');
     });
 </script>
 </html>

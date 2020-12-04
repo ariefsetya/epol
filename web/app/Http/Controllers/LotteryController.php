@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Session;
+use App\LotteryProperty;
 
 class LotteryController extends Controller
 {
@@ -53,4 +55,9 @@ class LotteryController extends Controller
 		$data = \App\LotteryParticipant::select(DB::raw('concat(number, "|" ,name) as name'))->orderBy(DB::raw('rand()'))->limit(10)->get()->pluck('name')->toArray();
 		return implode("-", $data);
 	}
+    public function lottery_setting()
+    {
+    	$data['lottery_property'] = LotteryProperty::whereEventId(Session::get('event_id'))->get();
+        return view('lottery.setting')->with($data);
+    }
 }

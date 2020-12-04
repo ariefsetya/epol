@@ -101,12 +101,15 @@
                 <a href="{{url('/participant/list')}}" data-role="tile" class="bg-indigo fg-white" data-size="wide">
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Participant</span>
-                    <span class="badge-bottom">10</span>
+                </a>
+                <a href="{{url('/admin/lottery_property/list')}}" data-role="tile" class="bg-indigo fg-white" data-size="wide">
+                    <span class="mif-cog icon"></span>
+                    <span class="branding-bar">Property</span>
                 </a>
             </div>
 
-            <div href="{{url('lottery_setting')}}" class="tiles-grid tiles-group size-2 fg-white" data-group-title="Settings">
-                <a data-role="tile" class="bg-green fg-white">
+            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Settings">
+                <a href="{{url('lottery_setting')}}" data-role="tile" class="bg-green fg-white">
                     <span class="mif-cog icon"></span>
                     <span class="branding-bar">Lottery</span>
                 </a>

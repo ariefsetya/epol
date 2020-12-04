@@ -132,6 +132,10 @@ func main() {
 		server.BroadcastToRoom("", "bcast", "initialize", msg)
 		return "initialized";
 	})
+	server.OnEvent("/", "change-background", func(s socketio.Conn, msg string) string {
+		server.BroadcastToRoom("", "bcast", "display_image", msg)
+		return "changed";
+	})
 	server.OnEvent("/", "start", func(s socketio.Conn, msg string) string {
 		server.BroadcastToRoom("", "bcast", "start", msg)
 		return "started";
