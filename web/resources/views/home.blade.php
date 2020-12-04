@@ -138,7 +138,7 @@
             </div>
             </div>
             @else
-            <h2>Please scan again later</h2>
+            <h2>Please scan QR again later</h2>
             @endif
 
             @if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode', 'rsvp']))

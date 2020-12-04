@@ -65,6 +65,8 @@
         console.log(msg)
         var data = msg.split("|") 
         $('#background').css('background-image','url('+data[1]+')');
+        winner = [];
+        $("#data").html('');
     });
 </script>
 </html>

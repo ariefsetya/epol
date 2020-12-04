@@ -21,7 +21,7 @@
                     <center>
                         <div class="agileits_newsletter" style="margin-top: 50px">
                             <div id="terpilih">
-                                <h1 id="name" style="font-size: 60px;color:black;font-weight:bold;font-family:Segoe UI;"></h1>
+                                <h1 id="name" style="font-size: 50px;color:black;font-weight:bold;font-family:Segoe UI;"></h1>
                                 <h3 id="city" style="font-size: 40px;color:black;font-weight:normal;font-family:Segoe UI;"></h3>
                             </div>
                         </div>
@@ -49,6 +49,9 @@
         console.log(msg)
         var data = msg.split("|") 
         $('#background').css('background-image','url('+data[0]+')');
+        $("#code").html('XXXXXXXXX');
+        $("#name").html('');
+        $("#city").html('');
     });
 </script>
 </html>

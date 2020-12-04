@@ -85,4 +85,8 @@ class PollingController extends Controller
     {
         return view('polling.setting');
     }
+    public function display()
+    {
+        return view('quiz_response.display');
+    }
 }

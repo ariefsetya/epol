@@ -72,6 +72,10 @@
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Answer</span>
                 </a>
+                <a href="{{url('admin/quiz_report/2')}}" data-role="tile" class="bg-red fg-white">
+                    <span class="mif-earth icon"></span>
+                    <span class="branding-bar">Quiz Report</span>
+                </a>
             </div>
 
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Report">
