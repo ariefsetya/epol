@@ -39,7 +39,7 @@
                     <td class="text-center"  style="width:8%">{{$key+=1}}</td>
                     <td class="text-center" >{{$row->user->name}}</td>
                     <td class="text-center"  style="width:30%">{{$row->user->company}}</td>
-                    <td class="text-center" >{{$row->polling_response->count()}}</td>
+                    <td class="text-center" >{{$row->polling_responseCount}}</td>
                     <td class="text-center" >{{date_format($row->created_at,"H:i:s")}}</td>
                   </tr>
                   @endforeach
