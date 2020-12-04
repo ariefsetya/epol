@@ -49,12 +49,12 @@
 
     s2.on('quiz', function(msg){
         console.log(msg)
-        var data = msg.split("-");
+        var data = msg.split("|");
         winner.push(data); 
         $("#data").html('');
         var html;
-        for (var i = winner.length - 1; i >= 0; i--) {
-            html += "<tr><td class='text-center' style='width:8%'>"+(winner.length - i)+"</td><td class='text-center' style='width:10%'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center' style='width:30%'>"+winner[i][2]+"</td>";
+        for (var i = 0; i < winner.length; i++) {
+            html += "<tr><td class='text-center' style='width:8%'>"+(i+1)+"</td><td class='text-center' style='width:10%'>"+winner[i][0]+"</td><td class='text-center'>"+winner[i][1]+"</td><td class='text-center' style='width:30%'>"+winner[i][2]+"</td><td class='text-center'>"+winner[i][3]+"</td><td class='text-center'>"+winner[i][4]+"</td></tr>";
         }
         $("#data").html(html);
 

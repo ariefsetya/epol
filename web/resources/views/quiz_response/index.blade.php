@@ -42,7 +42,7 @@
   }
   function redirect_home() {
     if(winner.win){
-      socket.emit('quiz',winner);
+      socket.emit('quiz',winner.user);
       window.location = '{{route('removeRedirectToHome')}}';
     }else{
       window.location = '{{route('removeRedirectToHome')}}';

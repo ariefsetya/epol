@@ -253,7 +253,9 @@ class HomeController extends Controller
                     }
 
                     if($this->check_winner($data->polling_id, Auth::user()->id)){
-                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>implode("|",Auth::user())],200);
+                        $w = $this->winner_data($data->polling_id);
+
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()->name."|".Auth::user()->company."|".$w['benar']."|".$w['time']],200);
                     }else{
                         return response()->json(['message'=>'saved!','win'=>false],200);
                     }
@@ -273,13 +275,34 @@ class HomeController extends Controller
                     }
 
                     if($this->check_winner($data->polling_id, Auth::user()->id)){
-                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>implode("|",Auth::user())],200);
+
+                        $w = $this->winner_data($data->polling_id);
+
+                        return response()->json(['message'=>'saved!','win'=>true,'data'=>$data,'user'=>Auth::user()->name."|".Auth::user()->company."|".$w['benar']."|".$w['time']],200);
                     }else{
                         return response()->json(['message'=>'saved!','win'=>false],200);
                     }
                 }
             }
         }
+    }
+
+    public function winner_data($id)
+    {
+        $benar = 0;
+        $data['polling'] = Polling::find($id);
+        $data['polling_response'] = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_id',$id)->where('user_id',Auth::user()->id)->get();
+        foreach ($data['polling_response'] as $row) {
+            if($row->polling_answer->is_correct==1){
+                $benar += 1;
+            }
+        }
+        $data['benar'] = $benar;
+        $starttime = $data['polling_response'][0]->created_at;
+        $endtime = $data['polling_response'][sizeof($data['polling_response'])-1]->created_at;
+        $data['time'] = str_replace([" after"," before","seconds","second", "minutes","minute","hours","hour"], ["","","detik","detik","menit","menit","jam","jam"], Carbon::parse($endtime)->diffForHumans($starttime));
+
+        return $data;
     }
     public function response_product($code = "", $response = "")
     {
@@ -314,7 +337,7 @@ class HomeController extends Controller
         $data['benar'] = $benar;
         $starttime = $data['polling_response'][0]->created_at;
         $endtime = $data['polling_response'][sizeof($data['polling_response'])-1]->created_at;
-        $data['time'] = str_replace([" after"," before","seconds", "minutes","hours"], ["","","detik","menit","jam"], Carbon::parse($endtime)->diffForHumans($starttime));
+        $data['time'] = str_replace([" after"," before","seconds","second", "minutes","minute","hours","hour"], ["","","detik","detik","menit","menit","jam","jam"], Carbon::parse($endtime)->diffForHumans($starttime));
 
         return view('quiz_response.finish')->with($data);
     }
@@ -340,7 +363,7 @@ class HomeController extends Controller
     }
     public function downloadBarcode()
     {
-        
+
         // Ghostscript::setGsPath("C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe");
         File::makeDirectory(public_path('/barcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
         QrCode::format('png')->size(200)->generate(Auth::user()->reg_number, public_path('/barcode/'.Session::get('event_id').'/'.Auth::user()->reg_number.'.png'));
