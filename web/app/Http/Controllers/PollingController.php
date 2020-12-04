@@ -89,4 +89,12 @@ class PollingController extends Controller
     {
         return view('quiz_response.display');
     }
+    public function display_report($id)
+    {
+        $data['report'] = PollingParticipant::with(['polling_response'])->whereEventId(Session::get('event_id'))->wherePollingId($id)->get()->sortBy(function($data){
+            $data->polling_response->whereIsWinner(1)->count();
+        },null,true);
+
+        return view('quiz_response.display_report')->with($data);
+    }
 }

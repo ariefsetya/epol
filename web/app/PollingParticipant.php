@@ -22,4 +22,8 @@ class PollingParticipant extends Model
     {
         return $this->belongsTo('App\Polling')->withDefault();
     }
+    public function polling_response()
+    {
+        return $this->belongsTo('App\PollingResponse')->withDefault();
+    }
 }
