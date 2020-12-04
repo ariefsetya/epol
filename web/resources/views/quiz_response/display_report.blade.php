@@ -7,7 +7,7 @@
 
         table tbody {
           display: block;
-          max-height: 1720px;
+          max-height: 785px;
           overflow-y: scroll;
       }
 
