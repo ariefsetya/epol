@@ -24,11 +24,11 @@ class PresenceExport implements FromCollection
                 'Telp ',
                 'Guest / Quota ',
                 'RSVP ',
+    			'Log In'
                 'Alamat ',
                 'Nomor Meja ',
                 'Sesi ',
                 'Jam ',
-    			'Check In'
     		];
     	foreach ($data as $key) {
     		if($key->user->user_type_id==2){
@@ -39,10 +39,10 @@ class PresenceExport implements FromCollection
                     $key->user->phone,
                     ($key->user->rsvp->guest_qty ?? 0) . "/" . $key->user->custom_field_1,
                     $key->user->rsvp->confirm_status ?? '',
+        			$key->start_time
                     $key->user->rsvp->address_location ?? '',
                     $key->user->rsvp->session_invitation ?? '',
                     $key->user->rsvp->event_time ?? '',
-        			$key->start_time
         		];
             }
     	}
@@ -57,10 +57,10 @@ class PresenceExport implements FromCollection
                     ($key->rsvp->guest_qty ?? 0) . "/" . $key->custom_field_1,
                     $key->rsvp->confirm_status ?? '',
                     $key->user->rsvp->confirm_status ?? '',
+                    ''
                     $key->user->rsvp->address_location ?? '',
                     $key->user->rsvp->session_invitation ?? '',
                     $key->user->rsvp->event_time ?? '',
-                    ''
                 ];
         }
 
