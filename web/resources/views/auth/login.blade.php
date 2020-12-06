@@ -33,7 +33,7 @@
     <br>
     Tanggal : 13 Desember 2020
     <br>
-    Tempat : Hotel Bidaraka, Birawa Assembly Hall
+    Tempat : Hotel Bidakara, Birawa Assembly Hall
     <br>
     Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran
     <br>

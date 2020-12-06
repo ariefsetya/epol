@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/core', 'LotteryController@core');
+Route::get('/lottery/history','LotteryController@history');
 Route::get('/lottery/scan','LotteryController@scan');
 Route::get('/lottery/report','LotteryController@report');
 Route::get('/lottery/display','LotteryController@display');
@@ -91,6 +92,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/presence/report','InvitationController@report')->name('presence.report');
     Route::get('/presence/export/excel', 'InvitationController@export_excel')->name('user.export_excel');
     Route::get('/quiz/export/excel/{polling_id}', 'HomeController@quiz_export_excel')->name('quiz.export_excel');
+    Route::get('/scan_history/export/excel/', 'LotteryController@scan_history_export_excel')->name('scan_history.export_excel');
     Route::get('/user/{id}/clear','InvitationController@clear')->name('user.clear');
     Route::get('/user/reset','InvitationController@reset')->name('user.reset');
     Route::get('/polling/report','PollingController@report')->name('polling.report');

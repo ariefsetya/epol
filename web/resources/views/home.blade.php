@@ -28,7 +28,7 @@
                 Hari : Minggu<br>
                 Tanggal : 13 Desember 2020<br>
                 Waktu : {{Auth::user()->rsvp->event_time}}<br>
-                Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br><br>
+                Lokasi : Hotel Bidakara, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br><br>
                 Undangan : {{Auth::user()->rsvp->guest_qty}} orang
             </div>
             <br>
@@ -168,7 +168,7 @@
                     Hari : Minggu<br>                   
                     Tanggal : 13 Desember 2020<br>                   
                     Waktu : {{Auth::user()->rsvp->event_time}}<br>       
-                    Lokasi : Hotel Bidaraka, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br>    
+                    Lokasi : Hotel Bidakara, Birawa Assembly Hall, Jl. Jend. Gatot Subroto Kav. 71-73 Pancoran, Jakarta Selatan<br>    
                     Undangan : {{Auth::user()->rsvp->guest_qty}} orang<br><br>  
                     <div style="text-align: left;">
                         <b>Mengacu kepada peraturan protokol kesehatan, untuk itu kami mengharapkan Bapak/Ibu</b><br>

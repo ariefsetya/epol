@@ -33,8 +33,8 @@ class PresenceExport implements FromCollection
                     $key->user->name,
                     $key->user->email,
                     $key->user->phone,
-                    $key->user->rsvp->guest_qty . "/" . $key->user->custom_field_1,
-                    $key->user->rsvp->confirm_status,
+                    ($key->user->rsvp->guest_qty ?? 0) . "/" . $key->user->custom_field_1,
+                    $key->user->rsvp->confirm_status ?? '',
         			$key->start_time
         		];
             }
@@ -47,8 +47,8 @@ class PresenceExport implements FromCollection
                     $key->name,
                     $key->email,
                     $key->phone,
-                    $key->rsvp->guest_qty . "/" . $key->custom_field_1,
-                    $key->rsvp->confirm_status,
+                    ($key->rsvp->guest_qty ?? 0) . "/" . $key->custom_field_1,
+                    $key->rsvp->confirm_status ?? '',
                     ''
                 ];
         }

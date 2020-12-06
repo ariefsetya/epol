@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use App\LotteryProperty;
+use App\LotteryHistory;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ScanHistoryExport;
 
 class LotteryController extends Controller
 {
@@ -59,5 +62,15 @@ class LotteryController extends Controller
     {
     	$data['lottery_property'] = LotteryProperty::whereEventId(Session::get('event_id'))->get();
         return view('lottery.setting')->with($data);
+    }
+    public function history()
+    {
+    	$data['history'] = LotteryHistory::get();
+        return view('scan.history')->with($data);
+    }
+    public function scan_history_export_excel()
+    {
+        $exporter = app()->makeWith(ScanHistoryExport::class); 
+        return Excel::download($exporter,'laporan_scan_history.xlsx');
     }
 }
