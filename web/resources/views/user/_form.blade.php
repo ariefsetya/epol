@@ -41,5 +41,25 @@
     <label for="custom_field_3">Custom Field 3</label>
     <input type="text" class="form-control" name="custom_field_3" id="custom_field_3" placeholder="Custom Field 3" value="{{$user->custom_field_3 ?? ''}}">
   </div>
+  @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
+  <h4>RSVP</h4>
+  <hr>
+  <div class="form-group">
+    <label for="seat_number">Nomor Meja</label>
+    <input type="text" class="form-control" required name="seat_number" id="seat_number" placeholder="Nomor Meja" value="{{$user->rsvp->seat_number ?? ''}}">
+  </div>
+  <div class="form-group">
+    <label for="guest_qty">Konfirmasi Jumlah Tamu</label>
+    <input type="text" class="form-control" required name="guest_qty" id="guest_qty" placeholder="Konfirmasi Jumlah Tamu" value="{{$user->rsvp->guest_qty ?? ''}}">
+  </div>
+  <div class="form-group">
+    <label for="session_invitation">Sesi Undangan</label>
+    <input type="text" class="form-control" required name="session_invitation" id="session_invitation" placeholder="Sesi Undangan" value="{{$user->rsvp->session_invitation ?? ''}}">
+  </div>
+  <div class="form-group">
+    <label for="event_time">Jam</label>
+    <input type="text" class="form-control" required name="event_time" id="event_time" placeholder="Jam" value="{{$user->rsvp->event_time ?? ''}}">
+  </div>
+  @endif
   <br>
   <button type="submit" class="button primary">Submit</button>

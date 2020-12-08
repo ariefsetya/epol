@@ -33,7 +33,14 @@ class InvitationController extends Controller
     }
     public function store(Request $request)
     {
-        User::create($request->all());
+        User::create($request->except(['seat_number','guest_qty','session_invitation','event_time']));
+
+        if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp'){
+
+            $rsvp = new RSVP;
+            $rsvp->fill($request->only(['seat_number','guest_qty','session_invitation','event_time']));
+            $rsvp->save();
+        }
 
         return redirect()->route('user.index');
     }
@@ -46,8 +53,15 @@ class InvitationController extends Controller
     public function update(Request $request, $id)
     {
         $inv = User::where('event_id',Session::get('event_id'))->whereId($id)->first();
-        $inv->fill($request->all());
+        $inv->fill($request->except(['seat_number','guest_qty','session_invitation','event_time']));
         $inv->save();
+
+        if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp'){
+
+            $rsvp = RSVP::where('event_id',Session::get('event_id'))->whereUserId($id)->first();
+            $rsvp->fill($request->only(['seat_number','guest_qty','session_invitation','event_time']));
+            $rsvp->save();
+        }
 
         return redirect()->route('user.index');
     }
