@@ -68,13 +68,13 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
- Route::get('/polling_response/{polling_id}/{user_id}/reset','PollingController@polling_response_reset')->name('polling_response.reset');
- Route::get('/quiz_response/{id}','HomeController@quiz_response')->name('quiz_response');
- Route::get('/quiz_response/{question_id?}/{answer_id?}','HomeController@select_quiz_response')->name('select_quiz_response');
- Route::get('/user/register/face', 'InvitationController@register_face')->name('user.register_face');
- Route::get('/user/check_in/face', 'InvitationController@check_in_face')->name('user.check_in_face');
- Route::post('/user/check_id', 'InvitationController@check_id')->name('user.check_id');
- Route::post('/user/register/face', 'InvitationController@process_register_face')->name('user.process_register_face');
+   Route::get('/polling_response/{polling_id}/{user_id}/reset','PollingController@polling_response_reset')->name('polling_response.reset');
+   Route::get('/quiz_response/{id}','HomeController@quiz_response')->name('quiz_response');
+   Route::get('/quiz_response/{question_id?}/{answer_id?}','HomeController@select_quiz_response')->name('select_quiz_response');
+   Route::get('/user/register/face', 'InvitationController@register_face')->name('user.register_face');
+   Route::get('/user/check_in/face', 'InvitationController@check_in_face')->name('user.check_in_face');
+   Route::post('/user/check_id', 'InvitationController@check_id')->name('user.check_id');
+   Route::post('/user/register/face', 'InvitationController@process_register_face')->name('user.process_register_face');
 
 });
 
@@ -101,6 +101,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/','HomeController@admin')->name('admin');
     Route::get('/user/import', 'InvitationController@import')->name('user.import');
     Route::post('/user/import', 'InvitationController@process_import')->name('user.process_import');
+    Route::post('/user/import/update', 'InvitationController@process_import_update')->name('user.process_import_update');
     Route::get('/polling/{polling_id?}/{question_id?}','PollingController@detail')->name('polling.detail');
     Route::get('/screen','HomeController@screen')->name('screen');
 });
@@ -109,6 +110,12 @@ Route::get('qrcode/{text}', 'HomeController@qrcode');
 Route::post('/rsvp/confirm','RSVPController@confirm')->name('rsvp.confirm');
 Route::post('/rsvp/update','RSVPController@update')->name('rsvp.update');
 Route::get('/rsvp/reset','RSVPController@reset')->name('rsvp.reset');
+Route::get('/rsvp/scan/{id}','RSVPController@scan')->name('rsvp.scan');
+Route::get('/rsvp/print/{id}/{info}','RSVPController@print')->name('rsvp.print');
+Route::get('/rsvp/print_qr/{id}','RSVPController@print_qr')->name('rsvp.print_qr');
+Route::get('/rsvp/checkin/{id}','RSVPController@checkin')->name('rsvp.checkin');
+Route::get('/rsvp/helpdesk','RSVPController@helpdesk')->name('rsvp.helpdesk');
+Route::get('/rsvp/search/{id}','RSVPController@search')->name('rsvp.search');
 
 Route::get('/lottery/operator', 'LotteryController@operator');
 Route::get('/lottery/apps', 'LotteryController@apps');

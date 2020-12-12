@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use Auth;
 use App\RSVP;
+use App\Presence;
 use App\User;
 
 class RSVPController extends Controller
@@ -51,5 +52,51 @@ class RSVPController extends Controller
 		$rsvp->save();
 
 		return redirect(url('/'));
+	}
+	public function scan($id)
+	{
+		$data['id'] = $id;
+		return view('rsvp.scan')->with($data);
+	}
+	public function print($id, $info)
+	{
+		$data['guest'] = User::whereRegNumber($id)->first();
+		
+		$p = new Presence;
+		$p->event_id = Session::get('event_id');
+		$p->user_id = $data['guest']->id;
+		$p->via = 'scan';
+		$p->via_info = $info;
+		$p->save();
+
+		return view('rsvp.print')->with($data);
+	}
+	public function print_qr($id)
+	{
+		$data['guest'] = User::whereRegNumber($id)->first();
+		
+		$p = new Presence;
+		$p->event_id = Session::get('event_id');
+		$p->user_id = $data['guest']->id;
+		$p->via = 'search';
+		$p->via_info = 'Helpdesk';
+		$p->save();
+				
+		return view('rsvp.print_qr')->with($data);
+	}
+	public function helpdesk()
+	{
+		return view('rsvp.helpdesk');
+	}
+	public function checkin($id)
+	{
+		$data['guest'] = User::whereRegNumber($id)->first();
+		$data['rsvp'] = User::whereRegNumber($id)->first()->rsvp;
+		return response()->json($data);
+	}
+	public function search($param)
+	{
+		$data = User::where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
+		return response()->json($data);
 	}
 }

@@ -15,6 +15,7 @@ use File;
 use Session;
 use Illuminate\Http\Request;
 use App\Imports\InvitationImport;
+use App\Imports\InvitationImportUpdate;
 use App\Exports\PresenceExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -121,6 +122,12 @@ class InvitationController extends Controller
         }
 
         $exc = Excel::import(new InvitationImport, request()->file('excel_file'));
+
+        return redirect()->route('user.index');
+    }
+    public function process_import_update(Request $r)
+    {
+        $exc = Excel::import(new InvitationImportUpdate, request()->file('excel_file'));
 
         return redirect()->route('user.index');
     }

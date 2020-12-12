@@ -19,6 +19,8 @@ class CreatePresencesTable extends Migration
             $table->integer('user_id');
             $table->string('uri');
             $table->string('uuid');
+            $table->string('via'); // web/scan/helpdesk
+            $table->string('via_info');
             $table->timestamps();
         });
     }

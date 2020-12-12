@@ -27,5 +27,17 @@
 		<button type="submit" class="button primary">Submit</button>
 	</form>
 
+	<h2>Update Data Tamu</h2>
+	<form method="POST" enctype="multipart/form-data" action="{{route('user.process_import_update')}}">
+		{{csrf_field()}}
+
+		<div class="form-group">
+			<label for="excel_file">File Excel</label>
+			<input type="file" data-role="file" class="form-control" required name="excel_file" id="excel_file" placeholder="File Excel">
+		</div>
+		<hr>
+		<button type="submit" class="button primary">Submit</button>
+	</form>
+
 </div>
 @endsection

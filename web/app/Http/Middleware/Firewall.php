@@ -47,6 +47,8 @@ class Firewall
         $pre->uri = $request->url();
         $pre->user_id = $user_id;
         $pre->uuid = Session::get('uuid');
+        $pre->via = 'web';
+        $pre->via_info = 'web';
         $pre->save();
 
         return $next($request);

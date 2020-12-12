@@ -112,6 +112,19 @@
                 </a>
             </div>
 
+            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="RSVP">
+                <a data-role="tile" data-size="wide"  class="bg-indigo fg-white" href="{{url('/rsvp/helpdesk/')}}">
+                    <span class="mif-qrcode icon"></span>
+                    <span class="branding-bar">Helpdesk</span>
+                </a>
+                @for($i=1;$i<=\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','scan_qty')->first()->content;$i++)
+                <a data-role="tile" href="{{url('/rsvp/scan/'.$i)}}">
+                    <span class="mif-qrcode icon"></span>
+                    <span class="branding-bar">Operator {{$i}}</span>
+                </a>
+                @endfor
+            </div>
+
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Settings">
                 <a href="{{url('lottery_setting')}}" data-role="tile" class="bg-green fg-white">
                     <span class="mif-cog icon"></span>

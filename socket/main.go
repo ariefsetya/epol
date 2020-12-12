@@ -6,10 +6,11 @@ import (
 	"socket/Config"
 	"fmt"
 	"socket/Models"
-	"log"
+	// "log"
 	"time"
+	"strings"
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/autotls"
+	// "github.com/gin-gonic/autotls"
 	"github.com/jinzhu/gorm"
 
 	socketio "github.com/googollee/go-socket.io"
@@ -126,6 +127,59 @@ func main() {
 			}
 		}
 	})
+	server.OnEvent("/", "checkin", func(s socketio.Conn, msg string) string {
+
+		var u Structs.UserMain
+		fmt.Println("data:", msg);
+		splitted := strings.Split(msg, "-");
+		operator := splitted[0]
+		code := splitted[1]
+		err := Models.GetUserByQRCode(&u, code)
+		fmt.Println("result:", err);
+		if err != nil {
+			fmt.Println("error:", err);
+			return "Data Not Found"
+		} else {
+
+			var rsvp Structs.RSVPMain
+			err_rsvp := Models.GetRSVPByUserId(&rsvp, u.Id)
+
+			if err_rsvp != nil {
+				fmt.Println("error:", err_rsvp);
+				return "RSVP Not Found"
+			} else {
+
+				if(rsvp.ConfirmStatus == "0"){
+					return ""
+				}
+
+
+				currentTime := time.Now();
+
+				var pm Structs.PresenceMain
+				pm.EventId = "2"
+				pm.UserId = u.Id
+				pm.Via = "scan"
+				pm.ViaInfo = "Operator " + operator
+				pm.CreatedAt = currentTime.Format("2006-01-02 15:04:05")
+				pm.UpdatedAt = currentTime.Format("2006-01-02 15:04:05")
+
+				err := Models.CreatePresence(&pm)
+
+				if err != nil {
+					fmt.Println("error:", err);
+					return "Data Not Saved"
+				} else {
+
+					var result = u.RegNumber + "-" + u.Name+ "-" + u.Email+ "-" + u.Phone+ "-" + u.Company+ "-" + u.CustomField1+ "-" + u.CustomField2+ "-" + u.CustomField3+ "-" + rsvp.SeatNumber+ "-" + rsvp.GuestQty+ "-" + rsvp.SessionInvitation+ "-" + rsvp.EventTime
+					fmt.Println("result:", result);
+
+					// server.BroadcastToRoom("", "bcast", "greeting", result)
+					return result
+				}
+			}
+		}
+	})
 	
 
 	server.OnEvent("/", "winners", func(s socketio.Conn, msg string) string {
@@ -156,7 +210,7 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	router.Use(GinMiddleware("https://aqjndg2020.com"))
+	router.Use(GinMiddleware("http://smartarena.xyz"))
 		router.GET("/socket.io/*any", gin.WrapH(server))
 		router.POST("/socket.io/*any", gin.WrapH(server))
 		router.StaticFS("/public", http.Dir("../asset"))
@@ -198,7 +252,7 @@ func main() {
 			}
 		})
 
-		// router.Run(":3000")
-		log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
+		router.Run(":3000")
+		// log.Fatal(autotls.Run(router, "socket.aqjndg2020.com"))
 
 	}

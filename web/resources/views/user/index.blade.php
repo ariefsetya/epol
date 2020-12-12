@@ -19,6 +19,7 @@
     		<tr>
                <th>Nomor Induk</th>
                <th>Nama</th>
+               <th>Nomor Meja</th>
                <th>Email</th>
                <th>Nomor HP</th>
                <th>Perusahaan</th>
@@ -32,6 +33,7 @@
           <tr>
             <td>{{$key->reg_number}}</td>
             <td>{{$key->name}}</td>
+            <td>{{$key->rsvp->seat_number ?? ''}}</td>
             <td>{{$key->email}}</td>
             <td>+{{$key->country->phonecode."  ".$key->phone}}</td>
             <td>{{$key->company}}</td>
