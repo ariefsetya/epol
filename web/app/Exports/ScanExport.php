@@ -21,6 +21,8 @@ class ScanExport implements FromCollection
                 ->groupBy('users.id')
                 ->get();
 
+                dd($data);
+
     	$arr[] = [
     			'Kode',
                 'Nama',
