@@ -14,7 +14,7 @@ class ScanExport implements FromCollection
     public function collection()
     {
     	$data = DB::table('presences')
-                ->select(DB::raw("users.id, users.reg_number, users.email, users.phone, users.name,group_concat( concat(presences.via, ' / ', presences.via_info,' / ',presences.created_at)) as info, count(users.id)"))
+                ->selectRaw("users.id, users.reg_number, users.email, users.phone, users.name,group_concat( concat(presences.via, ' / ', presences.via_info,' / ',presences.created_at)) as info, count(users.id)")
                 ->join('users','users.id','=','presences.user_id')
                 ->where(DB::raw('presences.via in ("scan", "search")'))
                 ->where('users.event_id',Session::get('event_id'))
