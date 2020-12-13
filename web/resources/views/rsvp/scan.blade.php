@@ -35,8 +35,8 @@
 </body>
 
 <!-- <script src="{{url('vendors/socket.io/socket.io.js')}}"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"/>
-<script src="{{url('vendors/jquery/jquery-3.4.1.min.js')}}"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+<script src="{{url('vendors/jquery/jquery-3.4.1.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("#qrcode").focus();
