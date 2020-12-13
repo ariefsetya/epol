@@ -13,33 +13,28 @@ class ScanExport implements FromCollection
     */
     public function collection()
     {
-    	$data = DB::table('users')
-                ->join('presences','users.id','=','presences.user_id')
-                ->where(DB::raw('presences.via in ("scan", "search")'))
-                ->where('presences.event_id',Session::get('event_id'))
-                ->groupBy('users.id')
-                ->select('users.id', 'users.reg_number', 'users.email', 'users.phone', 'users.name',DB::raw("group_concat(presences.via_info)"), DB::raw('count(users.id)'))
-                ->get();
+    	$data = DB::select('select users.id, users.reg_number, users.email, users.phone, users.name,group_concat( concat(presences.via, ' / ', presences.via_info,' / ',presences.created_at)) as scan_info, count(users.id) from presences join users on users.id = presences.user_id
+            where users.event_id='.Session::get('event_id').' and presences.via in ("scan","search") group by users.id');
 
-                dd($data);
+        dd($data);
 
-    	$arr[] = [
-    			'Kode',
-                'Nama',
-                'E-Mail ',
-                'Telp ',
-                'Scan Info '
-    		];
-    	foreach ($data as $key) {
-                $arr[] = [
-        			$key->reg_number,
-                    $key->name,
-                    $key->email,
-                    $key->phone,
-        			$key->scan_info
-        		];
-    	}
+        $arr[] = [
+         'Kode',
+         'Nama',
+         'E-Mail ',
+         'Telp ',
+         'Scan Info '
+     ];
+     foreach ($data as $key) {
+        $arr[] = [
+         $key->reg_number,
+         $key->name,
+         $key->email,
+         $key->phone,
+         $key->scan_info
+     ];
+ }
 
-        return collect($arr);
-    }
+ return collect($arr);
+}
 }
