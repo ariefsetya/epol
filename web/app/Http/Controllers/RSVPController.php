@@ -81,7 +81,7 @@ class RSVPController extends Controller
 		$p->via = 'search';
 		$p->via_info = 'Helpdesk';
 		$p->save();
-				
+
 		return view('rsvp.print_qr')->with($data);
 	}
 	public function helpdesk()
@@ -99,4 +99,14 @@ class RSVPController extends Controller
 		$data = User::where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
 		return response()->json($data);
 	}
+
+	/*public function seat($session = "")
+	{
+		$data = [];
+		if($session == ""){
+			$data['session'] = RSVP::select(DB::raw('session_invitation, count(id) as jumlah'))->groupBy('session_invitation')->get();
+			dd($data);
+		}
+		return view('rsvp.seat')->with($data);
+	}*/
 }

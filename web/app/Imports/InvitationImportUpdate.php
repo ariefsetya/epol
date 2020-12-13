@@ -52,6 +52,8 @@ class InvitationImportUpdate implements ToModel
 
                     $rsvp = RSVP::whereUserId($user->id)->first();
                     $rsvp->seat_number = $row[4];
+                    $rsvp->session_invitation = $row[6];
+                    $rsvp->event_time = $row[7];
                     if($row[5]!=""){
                         $rsvp->guest_qty = $row[5];
                     }
