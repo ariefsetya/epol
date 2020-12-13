@@ -35,7 +35,7 @@ class ScanExport implements FromCollection
                     $key->name,
                     $key->email,
                     $key->phone,
-        			explode($key->info)[0]
+        			explode(",",$key->info)[0]
         		];
     	}
 
