@@ -7,7 +7,7 @@
 
 <body style="overflow:hidden;background-color: #2d89ef;">
     <input class="my-input" id="qrcode" style="opacity: 0;font-size: 1pt;position: absolute;" autofocus>
-    <div style="width: 1920px;height:1080px;margin:auto;">
+    <div style="width: 1366px;height:768px;margin:auto;">
         <div id="background" @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','scan_qr_background')->exists()) style="border:0px solid #000;width: 1920px;height:1080px;background-image:url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','scan_qr_background')->first()->content}});background-position: all;background-repeat: no-repeat; background-size: cover;" @endif>
             <div class="main" style="margin-left: 37%;">  
                 <h1 id="title" style="margin: 0;padding: 0;">&nbsp;</h1>
