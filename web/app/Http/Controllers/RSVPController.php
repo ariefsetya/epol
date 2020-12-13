@@ -7,6 +7,7 @@ use Session;
 use Auth;
 use App\RSVP;
 use App\Presence;
+use DB;
 use App\User;
 
 class RSVPController extends Controller
@@ -96,7 +97,7 @@ class RSVPController extends Controller
 	}
 	public function search($param)
 	{
-		$data = User::where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
+		$data = User::where('event_id',Session::get('event_id'))->where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
 		$arr = [];
 		foreach ($data as $key) {
 			$arr[] = ['name'=>$key->name,'phone'=>$key->phone,'email'=>$key->email,'reg_number'=>$key->reg_number, 'id'=>$key->id, 'seat_number'=>$key->rsvp->seat_number ?? ''];
@@ -104,7 +105,7 @@ class RSVPController extends Controller
 		return response()->json($arr);
 	}
 
-	/*public function seat($session = "")
+	public function seat($session = "")
 	{
 		$data = [];
 		if($session == ""){
@@ -112,5 +113,5 @@ class RSVPController extends Controller
 			dd($data);
 		}
 		return view('rsvp.seat')->with($data);
-	}*/
+	}
 }
