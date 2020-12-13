@@ -97,11 +97,7 @@ class RSVPController extends Controller
 	public function search($param)
 	{
 		$data = User::where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
-		$arr = [];
-		foreach ($data as $key) {
-			$arr[] = ['name'=>$key->name,'phone'=>$key->phone,'email'=>$key->email,'reg_number'=>$key->reg_number, 'id'=>$key->id, 'seat_number'=>$key->rsvp->seat_number];
-		}
-		return response()->json($arr);
+		return response()->json($data);
 	}
 
 	/*public function seat($session = "")
