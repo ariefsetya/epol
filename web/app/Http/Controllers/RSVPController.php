@@ -112,7 +112,7 @@ class RSVPController extends Controller
 		$data = [];
 		$data['session'] = RSVP::select(DB::raw('session_invitation, count(id) as jumlah'))->where('event_id',Session::get('event_id'))->groupBy('session_invitation')->get();
 		if($session <> ""){
-			$data['result']['seat'] = RSVP::select(DB::raw('seat_number, count(id) as jumlah'))->where('event_id',Session::get('event_id'))->where('session_invitation',$session)->groupBy('seat_number')->orderBy('seat_number')->get();
+			$data['result']['seat'] = RSVP::select(DB::raw('seat_number, count(id) as jumlah'))->where('event_id',Session::get('event_id'))->where('session_invitation',$session)->groupBy('seat_number')->orderBy(DB::raw('length(seat_number), seat_number'))->get();
 			$data['result']['session'] = $session;
 		}else{
 			$data['result'] = false;
