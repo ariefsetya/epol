@@ -21,7 +21,8 @@ class ScanExport implements FromCollection
          'Nama',
          'E-Mail ',
          'Telp ',
-         'Scan Info '
+         'Scan Time ',
+         'Scan Via '
      ];
      foreach ($data as $key) {
         $arr[] = [
@@ -29,7 +30,8 @@ class ScanExport implements FromCollection
          $key->name,
          $key->email,
          $key->phone,
-         explode(",",$key->scan_info)[0]
+         explode(" / ",explode(",",$key->scan_info)[0])[0],
+         explode(" / ",explode(",",$key->scan_info)[0])[1],
      ];
  }
 

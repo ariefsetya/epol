@@ -16,7 +16,8 @@
                 <th>Nama</th>
                 <th>E-Mail</th>
                 <th>Telp</th>
-                <th>Scan Info</th>
+                <th>Scan Time</th>
+                <th>Scan Via</th>
 	    	</tr>
     	</thead>
     	<tbody>
@@ -28,6 +29,7 @@
                         <td>{{$key[2]}}</td>
                         <td>{{$key[3]}}</td>
                         <td>{{$key[4]}}</td>
+                        <td>{{$key[5]}}</td>
         			</tr>
         		@endif
             @endforeach
