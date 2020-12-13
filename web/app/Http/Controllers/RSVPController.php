@@ -101,7 +101,7 @@ class RSVPController extends Controller
 		$data = User::where('event_id',Session::get('event_id'))->where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
 		$arr = [];
 		foreach ($data as $key) {
-			$arr[] = ['name'=>$key->name,'phone'=>$key->phone,'email'=>$key->email,'reg_number'=>$key->reg_number, 'id'=>$key->id, 'seat_number'=>$key->rsvp->seat_number ?? ''];
+			$arr[] = ['name'=>$key->name,'phone'=>$key->phone,'email'=>$key->email,'reg_number'=>$key->reg_number, 'id'=>$key->id, 'seat_number'=>$key->rsvp->seat_number ?? '', 'session_invitation'=>$key->rsvp->session_invitation ?? ''];
 		}
 		return response()->json($arr);
 	}
