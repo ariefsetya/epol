@@ -10,6 +10,7 @@ use App\Presence;
 use DB;
 use App\User;
 use App\Exports\ScanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RSVPController extends Controller
 {
