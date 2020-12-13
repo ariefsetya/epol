@@ -98,7 +98,7 @@ class RSVPController extends Controller
 	}
 	public function search($param)
 	{
-		$data = User::where('event_id',Session::get('event_id'))->where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->orWhere('email','like','%'.$param.'%')->get();
+		$data = User::where('event_id',Session::get('event_id'))->where('phone','like','%'.$param.'%')->orWhere('name','like','%'.$param.'%')->where('event_id',Session::get('event_id'))->orWhere('email','like','%'.$param.'%')->where('event_id',Session::get('event_id'))->get();
 		$arr = [];
 		foreach ($data as $key) {
 			$arr[] = ['name'=>$key->name,'phone'=>$key->phone,'email'=>$key->email,'reg_number'=>$key->reg_number, 'id'=>$key->id, 'seat_number'=>$key->rsvp->seat_number ?? '', 'session_invitation'=>$key->rsvp->session_invitation ?? ''];
@@ -123,7 +123,7 @@ class RSVPController extends Controller
     {
         $x = new ScanExport;
         $data['scan'] = $x->collection();
-        dd($data);
+
         return view('rsvp.report')->with($data);
     }
     public function export_excel()
