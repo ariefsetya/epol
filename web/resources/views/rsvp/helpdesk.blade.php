@@ -17,7 +17,7 @@
 				<th>Name</th>
 				<th>Email</th>
 				<th>Phone</th>
-				<th>Nomor Meja</th>
+				<th>Seat Number</th>
 				<th>Print Seat Number</th>
 				<th>Print QR Code</th>
 			</tr>
