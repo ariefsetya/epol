@@ -13,7 +13,7 @@ class ScanExport implements FromCollection
     */
     public function collection()
     {
-    	$data = DB::select('select users.id, users.reg_number, users.email, users.phone, users.name,group_concat( concat(presences.via, ' / ', presences.via_info,' / ',presences.created_at)) as scan_info, count(users.id) from presences join users on users.id = presences.user_id
+    	$data = DB::select('select users.id, users.reg_number, users.email, users.phone, users.name,group_concat( concat(presences.via, " / ", presences.via_info," / ",presences.created_at)) as scan_info, count(users.id) from presences join users on users.id = presences.user_id
             where users.event_id='.Session::get('event_id').' and presences.via in ("scan","search") group by users.id');
 
         dd($data);
