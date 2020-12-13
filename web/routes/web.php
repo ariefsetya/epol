@@ -91,6 +91,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/polling_essay/report/excel/{id}','PollingController@polling_essay_export_excel')->name('polling_essay.export_excel');
     Route::get('/presence/report','InvitationController@report')->name('presence.report');
     Route::get('/presence/export/excel', 'InvitationController@export_excel')->name('user.export_excel');
+    Route::get('/rsvp/report','RSVPController@report')->name('rsvp.report');
+    Route::get('/rsvp/export/excel', 'RSVPController@export_excel')->name('rsvp.export_excel');
     Route::get('/quiz/export/excel/{polling_id}', 'HomeController@quiz_export_excel')->name('quiz.export_excel');
     Route::get('/scan_history/export/excel/', 'LotteryController@scan_history_export_excel')->name('scan_history.export_excel');
     Route::get('/user/{id}/clear','InvitationController@clear')->name('user.clear');
@@ -115,6 +117,7 @@ Route::get('/rsvp/print/{id}/{info}','RSVPController@print')->name('rsvp.print')
 Route::get('/rsvp/print_qr/{id}','RSVPController@print_qr')->name('rsvp.print_qr');
 Route::get('/rsvp/checkin/{id}','RSVPController@checkin')->name('rsvp.checkin');
 Route::get('/rsvp/helpdesk','RSVPController@helpdesk')->name('rsvp.helpdesk');
+Route::get('/rsvp/seat/{session?}','RSVPController@seat')->name('rsvp.seat');
 Route::get('/rsvp/search/{id}','RSVPController@search')->name('rsvp.search');
 
 Route::get('/lottery/operator', 'LotteryController@operator');

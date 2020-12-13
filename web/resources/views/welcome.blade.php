@@ -83,6 +83,14 @@
                     <span class="mif-users icon"></span>
                     <span class="branding-bar">Presence</span>
                 </a>
+                <a href="{{url('admin/rsvp/report')}}" data-role="tile" class="bg-green fg-white" >
+                    <span class="mif-qrcode icon"></span>
+                    <span class="branding-bar">RSVP</span>
+                </a>
+                <a href="{{url('rsvp/seat')}}" data-role="tile" class="bg-red fg-white" >
+                    <span class="mif-users icon"></span>
+                    <span class="branding-bar">Seat</span>
+                </a>
                 <div data-role="tile" class="bg-orange fg-white">
                     <span class="mif-chart-pie icon"></span>
                     <span class="branding-bar">Polling</span>

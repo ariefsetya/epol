@@ -9,6 +9,7 @@ use App\RSVP;
 use App\Presence;
 use DB;
 use App\User;
+use App\Exports\ScanExport;
 
 class RSVPController extends Controller
 {
@@ -108,10 +109,24 @@ class RSVPController extends Controller
 	public function seat($session = "")
 	{
 		$data = [];
-		if($session == ""){
-			$data['session'] = RSVP::select(DB::raw('session_invitation, count(id) as jumlah'))->groupBy('session_invitation')->get();
-			dd($data);
+		$data['session'] = RSVP::select(DB::raw('session_invitation, count(id) as jumlah'))->where('event_id',Session::get('event_id'))->groupBy('session_invitation')->get();
+		if($session <> ""){
+			$data['result']['seat'] = RSVP::select(DB::raw('seat_number, count(id) as jumlah'))->where('event_id',Session::get('event_id'))->where('session_invitation',$session)->groupBy('seat_number')->get();
+			$data['result']['session'] = $session;
+		}else{
+			$data['result'] = false;
 		}
 		return view('rsvp.seat')->with($data);
 	}
+
+    public function report()
+    {
+        $x = new ScanExport;
+        $data['scan'] = $x->collection();
+        return view('rsvp.report')->with($data);
+    }
+    public function export_excel()
+    {
+        return Excel::download(new ScanExport, 'laporan_scan_qr.xlsx');
+    }
 }
