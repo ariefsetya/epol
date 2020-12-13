@@ -123,6 +123,7 @@ class RSVPController extends Controller
     {
         $x = new ScanExport;
         $data['scan'] = $x->collection();
+        dd($data);
         return view('rsvp.report')->with($data);
     }
     public function export_excel()
