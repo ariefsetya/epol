@@ -7,6 +7,7 @@ use App\Presence;
 use App\EventDetail;
 use App\User;
 use Session;
+use Validator;
 use Illuminate\Http\Request;
 
 class CustomAuthController extends Controller
@@ -17,7 +18,23 @@ class CustomAuthController extends Controller
 	}
 	public function register_user(Request $r)
 	{
+		$validator = Validator::make($request->all(), [
+			'name' => 'required|max:255',
+			'email' => 'required|unique:users',
+			'phone' => 'required|unique:users',
+		], [
+			'name.required' => 'Kolom Nama harus diisi.',
+			'email.required' => 'Kolom Email harus diisi.',
+			'phone.required' => 'Kolom Nomor WhatsApp harus diisi.',
+			'email.unique' => 'Email yang Anda isi sudah terdaftar.',
+			'phone.unique' => 'Nomor WhatsApp yang Anda isi sudah terdaftar.',
+		]);
 
+		if ($validator->fails()) {
+			return redirect(route('register'))
+			->withErrors($validator)
+			->withInput();
+		}
 		$last = User::orderBy('id','desc')->first();
 		if(isset($last->reg_number)){
 			if($last->reg_number==''){
