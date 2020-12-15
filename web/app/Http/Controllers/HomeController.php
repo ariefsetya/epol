@@ -337,6 +337,7 @@ class HomeController extends Controller
     {
         $benar = 0;
         $data['polling'] = Polling::find($id);
+        $data['question'] = PollingQuestion::wherePollingId($id)->count();
         $data['polling_response'] = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_id',$id)->where('user_id',Auth::user()->id)->get();
         foreach ($data['polling_response'] as $row) {
             if($row->polling_answer->is_correct==1){

@@ -32,7 +32,7 @@
 
       $(".for_button").removeClass("disabled");
       $(".for_button").removeClass("secondary");
-      $(".for_button").addClass("primary");
+      $(".for_button").css("background-color","#EB2228");
     }
   });
   }

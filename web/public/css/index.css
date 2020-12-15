@@ -1,5 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 *{
-  font-family: 'Segoe UI', sans-serif !important;
+  color: white !important;
+  font-family: 'Lato' !important;
+}
+input, button{
+  font-weight: 700;
+  border-radius: 10px;
+}
+input{
+  background: rgba(0,0,0,0.2) !important;
+  border: 3px solid white !important;
+  text-align: center !important;
+  color: white !important;
+}
+input:hover,input:focus, .filled {
+  background: rgba(0,0,0,0.7) !important;
 }
 body {
   background-color: #ECF0F5;

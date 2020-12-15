@@ -30,6 +30,7 @@ table{border-collapse:collapse;border-spacing:0;}
 	src: local('Trajan Pro Bold'), url('/fonts/TrajanPro-Bold.woff') format('woff');
 }
 
+
 a{text-decoration:none;}
 .txt-rt{text-align:right;}/* text align right */
 .txt-lt{text-align:left;}/* text align left */

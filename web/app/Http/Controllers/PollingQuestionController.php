@@ -6,18 +6,19 @@ use App\Polling;
 use App\PollingQuestion;
 use App\PollingAnswer;
 use Illuminate\Http\Request;
+use Session;
 
 class PollingQuestionController extends Controller
 {
 
     public function index()
     {
-        $data['polling_question'] = PollingQuestion::with(['polling'])->paginate(10);
+        $data['polling_question'] = PollingQuestion::with(['polling'])->whereEventId(Session::get('event_id'))->paginate(10);
         return view('polling_question.index')->with($data);
     }
     public function create()
     {
-        $data['polling'] = Polling::all();
+        $data['polling'] = Polling::whereEventId(Session::get('event_id'))->get();
         return view('polling_question.add')->with($data);
     }
     public function store(Request $request)
@@ -37,7 +38,7 @@ class PollingQuestionController extends Controller
     }
     public function edit($id)
     {
-        $data['polling'] = Polling::all();
+        $data['polling'] = Polling::whereEventId(Session::get('event_id'))->get();
         $data['polling_question'] = PollingQuestion::find($id);
         $data['polling_answer'] = PollingAnswer::where('polling_question_id',$id)->get();
         return view('polling_question.edit')->with($data);

@@ -47,9 +47,9 @@
 		if (flag >= 3 && $("#reason").val().trim().length>=10) {
 			$(".for_button").removeClass("disabled");
 			$(".for_button").removeClass("secondary");
-			$(".for_button").addClass("primary");
+			$(".for_button").css("background-color","#EB2228");
 		}else{
-			$(".for_button").removeClass("primary");
+			$(".for_button").css("background-color","#eee");
 			$(".for_button").addClass("disabled secondary");
 		}
 	}
@@ -95,7 +95,7 @@
 			success: function(result){
 				$(".for_button").removeClass("disabled");
 				$(".for_button").removeClass("secondary");
-				$(".for_button").addClass("primary");
+				$(".for_button").css("background-color","#EB2228");
 			}
 		});
 	}

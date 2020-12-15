@@ -82,7 +82,7 @@
         @endif
 
         @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website','register_face']))
-        <div class="text-center col-md-12" style="margin:50% auto;">
+        <div class="text-center col-md-12" style="margin:20% auto;">
             <h6>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
                 <br>
                 <br>
@@ -113,22 +113,22 @@
                 @if($row->polling_type_id==3)
                 @if(Auth::check())
                 @if(\App\PollingResponse::where('event_id',Session::get('event_id'))->where('user_id',Auth::user()->id)->count()==\App\PollingQuestion::where('event_id',Session::get('event_id'))->where('polling_id',$row->id)->count())
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" class="button large col-md-12">{{$row->name}}</a>
+                <a style="padding:0px 25px;color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;border-radius: 10px;width:60%;margin:0 auto;" class="button mb-2">{{$row->name}}</a>
                 <br>
                 @else
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('quiz_response',[$row->id])}}" class="button @if($row->is_active) primary @endif large col-md-12">{{$row->name}}</a>
+                <a style="padding:0px 25px; @if($row->is_active) background-color: #EB2228;@endif color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;border-radius: 10px;width:60%;margin:0 auto;" href="{{route('quiz_response',[$row->id])}}" class="button mb-2">{{$row->name}}</a>
                 <br>
                 @endif
                 @else
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('quiz_join',[$row->id])}}" class="button primary large col-md-12">{{$row->name}}</a>
+                <a style="padding:0px 25px;background-color: #EB2228;color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;border-radius: 10px;width:60%;margin:0 auto;" href="{{route('quiz_join',[$row->id])}}" class="button mb-2">{{$row->name}}</a>
                 <br>
                 @endif
                 @else
                 @if(\Session::has('polling_'.$row->id))
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" class="button large col-md-12">{{$row->name}}</a>
+                <a style="padding:0px 25px;color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;border-radius: 10px;width:60%;margin:0 auto;" class="button mb-2">{{$row->name}}</a>
                 <br>
                 @else
-                <a style="border-radius: 100px;width:60%;margin:0 auto;" href="{{route('polling_response',[$row->id])}}" class="button @if($row->is_active) primary @endif large col-md-12">{{$row->name}}</a>
+                <a style="padding:0px 25px;@if($row->is_active) background-color: #EB2228;@endif color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;border-radius: 10px;width:60%;margin:0 auto;" href="{{route('polling_response',[$row->id])}}" class="button mb-2">{{$row->name}}</a>
                 <br>
                 @endif
                 @endif
