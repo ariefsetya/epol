@@ -46,6 +46,12 @@ class EventController extends Controller
 			['event_id'=>$evt->id,'type'=>'text','name'=>'barcode_success_message','content'=>'REGISTRATION SUCCESS!', 'choices'=>''],
 			['event_id'=>$evt->id,'type'=>'text','name'=>'barcode_email_sent_message','content'=>'QR code is sent to your e-mail', 'choices'=>''],
 			['event_id'=>$evt->id,'type'=>'text','name'=>'login_first','content'=>'1', 'choices'=>''],
+			['event_id'=>$evt->id,'type'=>'image','name'=>'lottery_display_background','content'=>'', 'choices'=>''],
+			['event_id'=>$evt->id,'type'=>'image','name'=>'lottery_report_background','content'=>'', 'choices'=>''],
+			['event_id'=>$evt->id,'type'=>'image','name'=>'quiz_report_background','content'=>'', 'choices'=>''],
+			['event_id'=>$evt->id,'type'=>'text','name'=>'admin_email','content'=>'', 'choices'=>''],
+			['event_id'=>$evt->id,'type'=>'text','name'=>'scan_qty','content'=>'0', 'choices'=>''],
+			['event_id'=>$evt->id,'type'=>'image','name'=>'scan_qr_background','content'=>'0', 'choices'=>''],
 		];
 
 		foreach ($data as $key) {

@@ -120,6 +120,8 @@
                 </a>
             </div>
 
+            @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content == 'rsvp')
+
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="RSVP">
                 <a data-role="tile" data-size="wide"  class="bg-indigo fg-white" href="{{url('/rsvp/helpdesk/')}}">
                     <span class="mif-qrcode icon"></span>
@@ -132,6 +134,8 @@
                 </a>
                 @endfor
             </div>
+
+            @endif
 
             <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Settings">
                 <a href="{{url('lottery_setting')}}" data-role="tile" class="bg-green fg-white">
