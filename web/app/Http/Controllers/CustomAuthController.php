@@ -18,7 +18,7 @@ class CustomAuthController extends Controller
 	}
 	public function register_user(Request $r)
 	{
-		$validator = Validator::make($request->all(), [
+		$validator = Validator::make($r->all(), [
 			'name' => 'required|max:255',
 			'email' => 'required|unique:users',
 			'phone' => 'required|unique:users',
