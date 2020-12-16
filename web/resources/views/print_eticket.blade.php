@@ -19,20 +19,20 @@
     </style>
 </head>
 <body>
-    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;width:500px;height:500px;" @endif>
+    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;width:500px;height:1000px;" @endif>
         <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
             <div style="padding: 5px;">{{Auth::user()->name}}</div>
             <div style="padding: 5px;">{{Auth::user()->email}}</div>
             <div style="padding: 5px;">{{Auth::user()->phone}}</div>
             <div style="padding: 5px;">Order Info</div>
-            <div style="padding: 5px 5px 10px;">No #INV{{str_replace([":","-"],"",Auth::user()->created_at)}}. by <i>{{Auth::user()->name}}</i></div>
+            <div style="padding: 5px 5px 10px;">No #INV{{str_replace([":","-"," "],"",Auth::user()->created_at)}}. by <i>{{Auth::user()->name}}</i></div>
             <span style="margin: 10px 5px;border: 2px solid #000;padding: 5px;">{{Auth::user()->reg_number}}</span>
             <br>
             <br>
         </div>
     </div>
     <div class="page-break"></div>
-    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:500px;height:500px;" @endif>
+    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:500px;height:1000px;" @endif>
 
         <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
             <div style="display: inline-block;border: 2px solid #000;">
@@ -44,7 +44,7 @@
                 <div style="padding: 5px;">{{Auth::user()->email}}</div>
                 <div style="padding: 5px;">{{Auth::user()->phone}}</div>
                 <div style="padding: 5px;">Order Info</div>
-                <div style="padding: 5px 5px 10px;">No #INV{{str_replace([":","-"],"",Auth::user()->created_at)}}. by <i>{{Auth::user()->name}}</i></div>
+                <div style="padding: 5px 5px 10px;">No #INV{{str_replace([":","-"," "],"",Auth::user()->created_at)}}. by <i>{{Auth::user()->name}}</i></div>
                 <span style="margin: 10px 5px;border: 2px solid #000;padding: 5px;">{{Auth::user()->reg_number}}</span>
                 <br>
                 <br>
