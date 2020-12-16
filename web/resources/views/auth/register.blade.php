@@ -16,7 +16,7 @@
       <div>{{ $error }}</div>
       @endforeach
       @endif
-      <div>EMAIL</div>
+      <div>DBS E-MAIL</div>
       <input class="input mb-1" required type="email" name="email" id="email" value="{{ old('email') }}">
       @if ($errors->any())
       @foreach ($errors->get('email') as $error)

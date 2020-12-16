@@ -26,6 +26,7 @@
     </style>
 </head>
 <body>
+    @if(false)
     <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
         <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
             <div style="padding: 5px;font-size: 25pt;">{{Auth::user()->name}}</div>
@@ -39,6 +40,7 @@
         </div>
     </div>
     <div class="page-break"></div>
+    @endif
     <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
         <div style="text-align: center;color: white;padding-top: 350px;font-size: 18pt;">
             <img src="{{url('images/e4.png')}}" style="height: 35px;">

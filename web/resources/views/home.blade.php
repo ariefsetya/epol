@@ -139,7 +139,7 @@
             </div>
             </div>
             @else
-            <h2>Please scan QR again later</h2>
+            <h2 style="color: white;">The E-Ticket has been sent to your E-Mail</h2>
             @endif
 
             @if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode', 'rsvp']))
