@@ -226,13 +226,6 @@
         @endif
         <script type="text/javascript">
 
-            @if(\Session::has('success'))
-            Metro.dialog.create({
-                title: "Informasi",
-                content: "{{\Session::get('success')}}",
-                closeButton: true
-            });
-            @endif
             function confirm_present() {
                 Metro.dialog.create({
                     title: "Konfirmasi Jumlah Undangan",
