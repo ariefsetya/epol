@@ -36,7 +36,7 @@
 
         <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
             <div style="display: inline-block;">
-                <img src="{{url('images/qrcode.jpeg')}}" style="width: 200px;">
+                <img src="{{url('images/qrcode.jpeg')}}" style="width: 230px;">
             </div>
             <div style="display: inline-block;margin-left: 20px;">
                 <div style="padding: 5px;font-size: 25pt;">{{Auth::user()->name}}</div>
