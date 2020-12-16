@@ -35,8 +35,7 @@
     <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
 
         <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
-            <div style="display: inline-block;border: 2px solid #000;">
-                <div style="padding: 5px;text-align: center;display: inline-block;">Photo Booth</div>
+            <div style="display: inline-block;">
                 <img src="{{url('images/qrcode.jpeg')}}" style="width: 200px;">
             </div>
             <div style="display: inline-block;margin-left: 20px;">
