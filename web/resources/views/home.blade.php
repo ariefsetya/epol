@@ -141,7 +141,9 @@
             </div>
             </div>
             @else
+            <div style="text-align: center;margin: 30% auto;">
             <h2 style="color: white;">The E-Ticket has been sent to your E-Mail ({{Auth::user()->email}})</h2>
+            </div>
             @endif
 
             @if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode', 'rsvp']))
