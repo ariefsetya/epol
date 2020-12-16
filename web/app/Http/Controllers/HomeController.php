@@ -18,11 +18,11 @@ use Auth;
 use App\Mail\sendBarcode;
 use App\Mail\sendWA;
 use App\Mail\sendAdmin;
-use DB;
 use PDF;
 use File;
-use Validator;
 use Mail;
+use DB;
+use Validator;
 use Session;
 use Carbon\Carbon;
 use Response;
@@ -370,6 +370,10 @@ class HomeController extends Controller
     public function viewBarcode()
     {
         return view('print_pdf',['status'=>'print']);
+    }
+    public function viewEticket()
+    {
+        return view('print_eticket');
     }
     public function downloadBarcode()
     {

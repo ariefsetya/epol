@@ -9,6 +9,10 @@ use App\User;
 use Session;
 use Validator;
 use Illuminate\Http\Request;
+use App\Mail\sendEticket;
+use PDF;
+use File;
+use Mail;
 
 class CustomAuthController extends Controller
 {
@@ -54,6 +58,8 @@ class CustomAuthController extends Controller
 
 		Auth::loginUsingId($inv->id);
 
+		sendEmailEticket();
+
 		return redirect()->route('home');
 	}
 
@@ -61,6 +67,16 @@ class CustomAuthController extends Controller
 	{
 		return redirect()->route('home');
 	}
+
+
+    public function sendEmailEticket()
+    {
+        File::makeDirectory(public_path('/eticket/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+        $pdf = PDF::loadView('print_eticket')->setPaper([0,0,1000,1497], 'potrait');
+        $pdf->save(public_path('/eticket/'.Session::get('event_id').'/'.Auth::user()->reg_number."-".Auth::user()->name.'.pdf'));
+        Mail::to(Auth::user()->email)->send(new sendEticket());
+        return redirect()->route('home')->with('success','E-ticket sudah dikirim ke email Anda');
+    }
 
 	public function phoneLogin(Request $r)
 	{	

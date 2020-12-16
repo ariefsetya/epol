@@ -27,7 +27,6 @@ Route::post('/upload/csv','LotteryController@upload_csv');
 
 // Route::get('/home', 'HomeController@index');
 
-
 //--------------------------import from er
 Route::post('/register_user', 'CustomAuthController@register_user')->name('register_user');
 Route::get('/loginPage','CustomAuthController@loginPage')->name('loginPage');
@@ -57,6 +56,7 @@ Route::get('/quiz_result_data/{polling_id}','HomeController@quiz_result_data')->
 Route::post('/join_quiz/{id}', 'HomeController@join_quiz')->name('join_quiz');
 Route::get('/downloadBarcode', 'HomeController@downloadBarcode')->name('downloadBarcode');
 Route::get('/viewBarcode', 'HomeController@viewBarcode')->name('viewBarcode');
+Route::get('/viewEticket', 'HomeController@viewEticket')->name('viewEticket');
 Route::get('/sendEmailBarcode', 'HomeController@sendEmailBarcode')->name('sendEmailBarcode');
 Route::get('/setEmail', 'HomeController@setEmail')->name('setEmail');
 Route::get('/sendEmailWA', 'HomeController@sendEmailWA')->name('sendEmailWA');
