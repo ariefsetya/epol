@@ -57,7 +57,7 @@
         </div>
         <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
 
-            <div style="display: inline-block;width: 230px">
+            <div style="display: inline-block;width: 230px;text-align: center;">
                 <div>Virtual Photobooth</div>
                 <img src="{{url('images/qrcode.jpeg')}}" style="width: 230px;">
             </div>
