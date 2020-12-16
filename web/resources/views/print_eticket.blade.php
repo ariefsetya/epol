@@ -27,7 +27,7 @@
 </head>
 <body>
     <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
-        <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
+        <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
             <div style="padding: 5px;font-size: 25pt;">{{Auth::user()->name}}</div>
             <div style="padding: 5px;">{{Auth::user()->email}}</div>
             <div style="padding: 5px;">{{Auth::user()->phone}}</div>
@@ -44,7 +44,7 @@
             <img src="{{url('images/e4.png')}}" style="height: 30px;">
             <div>As a first time participant using DBS laptop,<br>you must follow this One Time Webex Setup guide prior to the event.<br>This will install Webex Meeting App from DBS Software<br>Centre for optimal streaming experience!</div><br><br><div>On the day of the event, click on this hyperlink:</div><br>
             <div><a href="https://dbs.webex.com/dbs/onstage/g.php?MTID=eadfc61710aea7d42d633412f4db7637d">CLICK HERE TO WATCH</a></div>
-            <br><br><div>Enter your First Name, Last Name, Email Address and click on [Join Now]</div><br><br>
+            <br><br><div style="font-family: 'Lato' !important;">Enter your First Name, Last Name, Email Address and click on [Join Now]</div><br><br>
             <img src="{{url('images/e5.png')}}" style="height: 30px;">
             <br>
             <div>Download Webex Meeting App</div><br>
@@ -53,7 +53,7 @@
             <div style="color:yellow;">176 070 7355</div><br>
             <div>Input Password: <span style="color:yellow;">App2020</span></div>
         </div>
-        <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
+        <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
 
             <div style="display: inline-block;">
                 <img src="{{url('images/qrcode.jpeg')}}" style="width: 230px;">
