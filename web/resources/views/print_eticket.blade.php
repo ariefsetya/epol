@@ -16,7 +16,7 @@
             font-family: 'Lato';
             font-style: normal;
             font-weight: normal;
-            src: url('/fonts/lato-v14-latin-ext_latin-700.woff') format('woff');
+            src: url('{{public_path()}}/fonts/lato-v14-latin-ext_latin-700.woff') format('woff');
         }
         @page { margin: 0px !important; }
         body { margin: 0px !important; }
@@ -47,11 +47,8 @@
             <br><br><div style="font-family: 'Lato' !important;">Enter your First Name, Last Name, Email Address and click on [Join Now]</div><br><br>
             <img src="{{url('images/e5.png')}}" style="height: 30px;">
             <br>
-            <div>Download Webex Meeting App</div><br>
-            <div>from Apple App Store or Google PlayStore</div><br>
-            <div>Click on Join Meeting & Input Meeting Number:</div><br>
-            <div style="color:yellow;">176 070 7355</div><br>
-            <div>Input Password: <span style="color:yellow;">App2020</span></div>
+            <div>Download Webex Meeting App<br>from Apple App Store or Google PlayStore<br>Click on Join Meeting & Input Meeting Number:<br>
+            <div style="color:yellow;">176 070 7355</div><br>Input Password: <span style="color:yellow;">App2020</span></div>
         </div>
         <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
 
