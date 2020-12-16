@@ -33,12 +33,12 @@
     </div>
     <div class="page-break"></div>
     <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
-        <div style="text-align: center;color: white;margin-top: 100px;">
-            <img src="{{url('images/e4.png')}}" style="height: 50px;">
+        <div style="text-align: center;color: white;padding-top: 100px;">
+            <img src="{{url('images/e4.png')}}" style="height: 30px;">
             <div>As a first time participant using DBS laptop, you must follow this One Time Webex Setup guide prior to the event. This will install Webex Meeting App from DBS Software Centre for optimal streaming experience!</div><br><br><div>On the day of the event, click on this hyperlink:</div><br>
             <div><a href="https://dbs.webex.com/dbs/onstage/g.php?MTID=eadfc61710aea7d42d633412f4db7637d">CLICK HERE TO WATCH</a></div>
             <br><br><div>Enter your First Name, Last Name, Email Address and click on [Join Now]</div><br><br>
-            <img src="{{url('images/e5.png')}}" style="height: 50px;">
+            <img src="{{url('images/e5.png')}}" style="height: 30px;">
             <br>
             <div>Download Webex Meeting App</div><br>
             <div>from Apple App Store or Google PlayStore</div><br>
