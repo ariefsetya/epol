@@ -45,7 +45,7 @@
             <br>
             <br>
             <div>As a first time participant using DBS laptop,<br>you must follow this One Time Webex Setup guide prior to the event.<br>This will install Webex Meeting App from DBS Software<br>Centre for optimal streaming experience!</div><br><br><div>On the day of the event, click on this hyperlink:</div><br>
-            <div style="text-align: center;"><a style="padding:5px 45px;color:white;font-family: 'Lato';font-weight: 700;border-radius: 10px;margin:0 auto;background-color: #EB2228;text-decoration: none;" href="https://dbs.webex.com/dbs/onstage/g.php?MTID=eadfc61710aea7d42d633412f4db7637d"><img src="{{url('images/download.png')}}" style="height: 25px"></a></div>
+            <div style="text-align: center;"><a style="text-decoration: none;" href="https://dbs.webex.com/dbs/onstage/g.php?MTID=eadfc61710aea7d42d633412f4db7637d"><img src="{{url('images/download.png')}}" style="height: 25px"></a></div>
             <br><br><div style="font-family: 'Lato' !important;">Enter your First Name, Last Name, Email Address and<br>click on [Join Now]</div><br><br>
             <img src="{{url('images/e5.png')}}" style="height: 35px;">
             <br>
