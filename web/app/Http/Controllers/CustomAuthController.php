@@ -58,7 +58,7 @@ class CustomAuthController extends Controller
 
 		Auth::loginUsingId($inv->id);
 
-		sendEmailEticket();
+		$this->sendEmailEticket();
 
 		return redirect()->route('home');
 	}
