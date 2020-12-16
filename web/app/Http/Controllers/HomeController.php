@@ -378,7 +378,7 @@ class HomeController extends Controller
     public function viewEticketPDF()
     {
         File::makeDirectory(public_path('/eticket/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-        $pdf = PDF::loadView('print_eticket')->setPaper([0,0,1000,1000], 'potrait');
+        $pdf = PDF::loadView('print_eticket')->setPaper([0,0,800,1497], 'potrait');
         return $pdf->stream('file.pdf');
     }
     public function downloadBarcode()
