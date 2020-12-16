@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-3" style="margin:0 auto;">
+<div class="" style="margin:0 auto;color: white;padding: 10px;">
   <div style="margin-top:25%;">
     <h4>{{ $polling_question[0]->content }}</h4>
     @foreach($polling_answer as $key)

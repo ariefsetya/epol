@@ -1,4 +1,4 @@
-<div style="width: calc(100% - 20px);padding:10px;position: fixed;bottom:0;" class="text-center">
+<div style="width: 100%;padding:10px;position: relative;" class="text-center">
 	@if ($paginator->hasPages())
 	<nav>
 		<div class="text-center">

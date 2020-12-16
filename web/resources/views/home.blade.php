@@ -7,6 +7,9 @@
         background-color: #82603B;
         color: white;
     }
+    *{
+        color: white;
+    }
 </style>
 
 @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='rsvp')
@@ -75,8 +78,6 @@
     @endif
     @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_barcode')
     <div class="text-center col-md-12" style="margin:0 auto;">
-
-
         @if($message = Session::get('success'))
         <p class="text-center" style="color:white;">{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','barcode_email_sent_message')->first()->content}}</p>
         @endif
@@ -106,7 +107,7 @@
 
             @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','idle')->first()->content==0)
 
-            <div style="width: calc(100% - 20px);padding:10px;position: fixed;bottom:0;">
+            <div style="width: 100%;padding:10px;position: relative;margin-top:50%;">
             <div class="text-center">
                 @foreach(\App\Polling::where('event_id',Session::get('event_id'))->get() as $row)
 

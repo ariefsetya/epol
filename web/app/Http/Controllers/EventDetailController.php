@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EventDetail;
 use Session;
+use File;
 use Illuminate\Http\Request;
 
 class EventDetailController extends Controller
@@ -39,7 +40,8 @@ class EventDetailController extends Controller
             $file = $request->file('content');
 
             $path = 'img/'.Session::get('event_id').'/';
-     
+            File::makeDirectory(public_path($path), $mode = 0777, true, true);
+
                     // upload file
             $file->move($path,$file->getClientOriginalName());
             $data = $request->all();
