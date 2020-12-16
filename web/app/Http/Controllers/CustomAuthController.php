@@ -72,7 +72,7 @@ class CustomAuthController extends Controller
     public function sendEmailEticket()
     {
         File::makeDirectory(public_path('/eticket/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-        $pdf = PDF::loadView('print_eticket')->setPaper([0,0,400,1000], 'potrait');
+        $pdf = PDF::loadView('print_eticket')->setPaper([0,0,1000,1497], 'potrait');
         $pdf->save(public_path('/eticket/'.Session::get('event_id').'/'.Auth::user()->reg_number."-".Auth::user()->name.'.pdf'));
         Mail::to(Auth::user()->email)->send(new sendEticket());
         return redirect()->route('home')->with('success','E-ticket sudah dikirim ke email Anda');
