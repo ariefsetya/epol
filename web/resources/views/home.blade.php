@@ -83,6 +83,7 @@
         @endif
 
         @elseif(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content,['polling_website','register_face']))
+        @if(false)
         <div class="text-center col-md-12" style="margin:20% auto;">
             <h6>{{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','greeting_text')->first()->content}}
                 <br>
@@ -95,6 +96,7 @@
                 @endif
                 <br>
             </h6>
+            @endif
             @endif
 
             @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content=='register_face')
@@ -139,7 +141,7 @@
             </div>
             </div>
             @else
-            <h2 style="color: white;">The E-Ticket has been sent to your E-Mail</h2>
+            <h2 style="color: white;">The E-Ticket has been sent to your E-Mail ({{Auth::user()->email}})</h2>
             @endif
 
             @if(in_array(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','mode')->first()->content, ['register_barcode', 'rsvp']))
