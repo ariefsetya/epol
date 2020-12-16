@@ -16,7 +16,7 @@
             font-family: 'Lato';
             font-style: normal;
             font-weight: normal;
-            src: url('{{public_path()}}/fonts/lato-v14-latin-ext_latin-700.woff') format('woff');
+            src: url('{{url('/fonts/lato-v14-latin-ext_latin-700.woff')}}') format('woff');
         }
         @page { margin: 0px !important; }
         body { margin: 0px !important; }
@@ -40,15 +40,18 @@
     </div>
     <div class="page-break"></div>
     <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
-        <div style="text-align: center;color: white;padding-top: 400px;">
-            <img src="{{url('images/e4.png')}}" style="height: 30px;">
+        <div style="text-align: center;color: white;padding-top: 350px;font-size: 18pt;">
+            <img src="{{url('images/e4.png')}}" style="height: 35px;">
+            <br>
+            <br>
             <div>As a first time participant using DBS laptop,<br>you must follow this One Time Webex Setup guide prior to the event.<br>This will install Webex Meeting App from DBS Software<br>Centre for optimal streaming experience!</div><br><br><div>On the day of the event, click on this hyperlink:</div><br>
-            <div><a href="https://dbs.webex.com/dbs/onstage/g.php?MTID=eadfc61710aea7d42d633412f4db7637d">CLICK HERE TO WATCH</a></div>
-            <br><br><div style="font-family: 'Lato' !important;">Enter your First Name, Last Name, Email Address and click on [Join Now]</div><br><br>
-            <img src="{{url('images/e5.png')}}" style="height: 30px;">
+            <div><a style="padding:5px 45px;color:white;font-family: 'Lato';font-weight: 700;border-radius: 10px;width:60%;margin:0 auto;background-color: #EB2228;text-decoration: none;" href="https://dbs.webex.com/dbs/onstage/g.php?MTID=eadfc61710aea7d42d633412f4db7637d">CLICK HERE TO WATCH</a></div>
+            <br><br><div style="font-family: 'Lato' !important;">Enter your First Name, Last Name, Email Address and<br>click on [Join Now]</div><br><br>
+            <img src="{{url('images/e5.png')}}" style="height: 35px;">
+            <br>
             <br>
             <div>Download Webex Meeting App<br>from Apple App Store or Google PlayStore<br>Click on Join Meeting & Input Meeting Number:<br>
-            <div style="color:yellow;">176 070 7355</div><br>Input Password: <span style="color:yellow;">App2020</span></div>
+            <span style="color:yellow;">176 070 7355</span><br>Input Password: <span style="color:yellow;">App2020</span></div>
         </div>
         <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
 
