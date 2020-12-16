@@ -11,17 +11,16 @@
 
     <!-- Styles -->
     <style type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,700&display=swap');
         @page { margin: 0px !important; }
         body { margin: 0px !important; }
         .page-break {page-break-after: always;}
-        *{font-family: 'Lato' !important;}
+        *{font-family: Verdana !important;}
 
     </style>
 </head>
 <body>
-    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
-        <div style="position: absolute;bottom:0;width: 100%;font-family: 'Lato';font-size: 20pt;padding: 10px;">
+    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image')->first()->content}});background-size: 100%;min-height: 100% !important;width:500px;height:500px;" @endif>
+        <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
             <div style="padding: 5px;">{{Auth::user()->name}}</div>
             <div style="padding: 5px;">{{Auth::user()->email}}</div>
             <div style="padding: 5px;">{{Auth::user()->phone}}</div>
@@ -33,12 +32,12 @@
         </div>
     </div>
     <div class="page-break"></div>
-    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:1000px;height:1497px;" @endif>
+    <div @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->exists()) style="position: relative;background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','eticket_background_image_qr')->first()->content}});background-size: 100%;min-height: 100% !important;width:500px;height:500px;" @endif>
 
-        <div style="position: absolute;bottom:0;width: 100%;font-family: sans-serif;font-size: 20pt;padding: 10px;">
+        <div style="position: absolute;bottom:0;width: 100%;font-family: Verdana;font-size: 20pt;padding: 10px;">
             <div style="display: inline-block;border: 2px solid #000;">
                 <div style="padding: 5px;text-align: center;">Photo Booth</div>
-                <img src="{{url('images/qrcode.jpeg')}}" style="width: 230px;">
+                <img src="{{url('images/qrcode.jpeg')}}" style="width: 200px;">
             </div>
             <div style="display: inline-block;margin-left: 20px;">
                 <div style="padding: 5px;">{{Auth::user()->name}}</div>
