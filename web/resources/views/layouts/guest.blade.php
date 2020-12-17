@@ -15,7 +15,7 @@
 </head>
 <body style="position: relative;background-color: white;
 @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->exists())
-background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content ?? ''}});background-size: 100%;background-repeat: no-repeat;
+background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','website_background_image')->first()->content ?? ''}});background-size: 100%;background-repeat: no-repeat;background-attachment: fixed;
 @endif
 min-height: 100% !important;">
 <div id="app" style="
