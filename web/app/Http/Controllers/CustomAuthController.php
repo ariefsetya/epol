@@ -24,8 +24,8 @@ class CustomAuthController extends Controller
 	{
 		$validator = Validator::make($r->all(), [
 			'name' => 'required|max:255',
-			'email' => 'required|unique:users',
-			'phone' => 'required|unique:users',
+			'email' => 'required|unique:users,email,NULL,id,event_id,'.Session::get('event_id'),
+			'phone' => 'required|unique:users,phone,NULL,id,event_id,'.Session::get('event_id'),
 		], [
 			'name.required' => 'Kolom Nama harus diisi.',
 			'email.required' => 'Kolom Email harus diisi.',
