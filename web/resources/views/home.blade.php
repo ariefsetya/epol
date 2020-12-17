@@ -141,8 +141,8 @@
             </div>
             </div>
             @else
-            <div style="text-align: center;margin: 30% auto;">
-            <h2 style="color: white;">The E-Ticket has been sent to your E-Mail ({{Auth::user()->email}})</h2>
+            <div style="text-align: center;margin: 50% auto;padding: 10px;">
+            <h4 style="color: white;">The E-Ticket has been sent to your E-Mail ({{Auth::user()->email}})</h4>
             </div>
             @endif
 
