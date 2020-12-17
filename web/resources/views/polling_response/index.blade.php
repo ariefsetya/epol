@@ -10,6 +10,7 @@
 		<div class="form-check" @if($polling->polling_type_id==6) style="display:inline-block;width: 49%;" @endif>
 			@if($polling->polling_type_id==6)
 			<div style="padding: 5px;text-align: center;">
+				<label style="color:white" class="form-check-label form-control-lg" for="customRadio{{$key->id}}"><strong>{{$key->content}}</strong></label>
 				<img src="https://cf.shopee.co.id/file/1740a66d75c848b38c85ade20a2505e2" style="width: 100%;">
 				<input style="width: 35px;height: 35px;" onclick="selectdata('{{$polling_question[0]->id}}', '{{$key->id}}')" type="radio" id="customRadio{{$key->id}}" name="customRadio{{$polling_question[0]->id}}" class="form-check-input input-lg">
 			</div>
