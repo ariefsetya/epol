@@ -32,6 +32,7 @@ class CustomAuthController extends Controller
 			'phone.required' => 'Kolom Nomor WhatsApp harus diisi.',
 			'email.unique' => 'Email yang Anda isi sudah terdaftar.',
 			'phone.unique' => 'Nomor WhatsApp yang Anda isi sudah terdaftar.',
+			// 'email.regex' => 'Silahkan masukkan email DBS Anda.',
 		]);
 
 		if ($validator->fails()) {
