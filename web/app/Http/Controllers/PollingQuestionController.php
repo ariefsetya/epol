@@ -71,9 +71,13 @@ class PollingQuestionController extends Controller
             $inv = new PollingAnswer;
             $inv->content = $value;
 
-            $request->file('image')[$key]->move($path,$request->file('image')[$key]->getClientOriginalName());
-            
-            $inv->image_url = url($path.$request->file('image')[$key]->getClientOriginalName());
+            if($request->file('image')!== null){
+                $request->file('image')[$key]->move($path,$request->file('image')[$key]->getClientOriginalName());
+                
+                $inv->image_url = url($path.$request->file('image')[$key]->getClientOriginalName());
+            }else{
+                $inv->image_url = "";
+            }
             $inv->polling_question_id = $polling_question->id;
             $inv->is_correct = $request->input('is_correct')[$key];
             $inv->event_id = $request->input('event_id');
