@@ -61,9 +61,16 @@ class PollingQuestionController extends Controller
 
         PollingAnswer::where('polling_question_id',$polling_question->id)->delete();
 
+        $path = 'polling_answer/'.Session::get('event_id').'/';
+        File::makeDirectory(public_path($path), $mode = 0777, true, true);
+
         foreach ($request->input('answer') as $key => $value) {
             $inv = new PollingAnswer;
             $inv->content = $value;
+
+            $value->move($path,$request->file('image')[$key]->getClientOriginalName());
+            
+            $inv->image_url = url($path.$request->file('image')[$key]->getClientOriginalName());
             $inv->polling_question_id = $polling_question->id;
             $inv->is_correct = $request->input('is_correct')[$key];
             $inv->event_id = $request->input('event_id');
