@@ -35,7 +35,7 @@ class PollingQuestionController extends Controller
             $inv = new PollingAnswer;
             $inv->content = $value;
 
-            $value->move($path,$request->file('image')[$key]->getClientOriginalName());
+            $request->file('image')[$key]->move($path,$request->file('image')[$key]->getClientOriginalName());
 
             $inv->image_url = url($path.$request->file('image')[$key]->getClientOriginalName());
             $inv->polling_question_id = $polling_question->id;
@@ -68,7 +68,7 @@ class PollingQuestionController extends Controller
             $inv = new PollingAnswer;
             $inv->content = $value;
 
-            $value->move($path,$request->file('image')[$key]->getClientOriginalName());
+            $request->file('image')[$key]->move($path,$request->file('image')[$key]->getClientOriginalName());
             
             $inv->image_url = url($path.$request->file('image')[$key]->getClientOriginalName());
             $inv->polling_question_id = $polling_question->id;
