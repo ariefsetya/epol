@@ -88,9 +88,9 @@ class PollingController extends Controller
         Polling::where('event_id',Session::get('event_id'))->whereId($id)->delete();
         return redirect()->route('polling.index');
     }
-    public function report()
+    public function report($id)
     {
-        $data['polling'] = Polling::where('event_id',Session::get('event_id'))->get();
+        $data['polling'] = Polling::find($id);
         return view('polling.report')->with($data);
     }
     public function polling_response_reset($polling_id, $user_id)

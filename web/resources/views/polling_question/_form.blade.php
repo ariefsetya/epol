@@ -69,7 +69,7 @@
   <script type="text/javascript">
     function adddata() {
       // $("div.answer_data").clone().appendTo("#answer_lists");
-      $("#answer_lists").append('<div class="input-group mb-3 answer_data"><input type="text" class="form-control" required name="image[]" placeholder="Jawaban" value=""><input type="file" class="form-control" required name="answer[]" placeholder="Jawaban" value=""><select type="text" class="form-control" name="is_correct[]"><option value="1">Jawaban Benar</option><option value="0">Jawaban Salah</option></select><div class="input-group-append"><span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span><span class="input-group-text" onclick="cleardata(this)"><i class="mif mif-minus"></i></span></div></div>');
+      $("#answer_lists").append('<div class="input-group mb-3 answer_data"><input type="text" class="form-control" required name="answer[]" placeholder="Jawaban" value=""><input type="file" class="form-control" name="image[]" placeholder="Jawaban" value=""><select type="text" class="form-control" name="is_correct[]"><option value="1">Jawaban Benar</option><option value="0">Jawaban Salah</option></select><div class="input-group-append"><span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span><span class="input-group-text" onclick="cleardata(this)"><i class="mif mif-minus"></i></span></div></div>');
     }
     function cleardata(e) {
       $(e).parent().parent().remove();
