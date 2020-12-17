@@ -142,7 +142,7 @@
             </div>
             @else
             <div style="text-align: center;margin: 60% auto;padding: 10px;">
-              <h5 style="color: white;">The E-Ticket has been sent to your E-Mail ({{Auth::user()->email}})</h5>
+              <h5 style="color: white;">The E-Ticket has been sent to your E-Mail<br>({{Auth::user()->email}})</h5>
           </div>
           @endif
 
