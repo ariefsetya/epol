@@ -19,6 +19,7 @@
     @if(isset($polling_answer))
       @foreach($polling_answer as $key)
         <div class="input-group mb-3 answer_data">
+          <input type="file" class="form-control" name="image[]" placeholder="Jawaban" value="{{$key->content}}">
           <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="{{$key->content}}">
           <select type="text" class="form-control" name="is_correct[]">
             <option value="1" {{$key->is_correct==1?'selected':''}}>Jawaban Benar</option>
@@ -35,6 +36,7 @@
 
       @if(sizeof($polling_answer)==0)
       <div class="input-group mb-3 answer_data">
+        <input type="file" class="form-control" name="image[]" placeholder="Jawaban" value="">
         <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="">
         <select type="text" class="form-control" name="is_correct[]">
           <option value="1">Jawaban Benar</option>
@@ -47,6 +49,7 @@
       @endif
     @else
       <div class="input-group mb-3 answer_data">
+        <input type="file" class="form-control" name="image[]" placeholder="Jawaban" value="">
         <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="">
         <select type="text" class="form-control" name="is_correct[]">
           <option value="1">Jawaban Benar</option>
@@ -66,7 +69,7 @@
   <script type="text/javascript">
     function adddata() {
       // $("div.answer_data").clone().appendTo("#answer_lists");
-      $("#answer_lists").append('<div class="input-group mb-3 answer_data"><input type="text" class="form-control" required name="answer[]" placeholder="Jawaban" value=""><select type="text" class="form-control" name="is_correct[]"><option value="1">Jawaban Benar</option><option value="0">Jawaban Salah</option></select><div class="input-group-append"><span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span><span class="input-group-text" onclick="cleardata(this)"><i class="mif mif-minus"></i></span></div></div>');
+      $("#answer_lists").append('<div class="input-group mb-3 answer_data"><input type="text" class="form-control" required name="image[]" placeholder="Jawaban" value=""><input type="text" class="form-control" required name="answer[]" placeholder="Jawaban" value=""><select type="text" class="form-control" name="is_correct[]"><option value="1">Jawaban Benar</option><option value="0">Jawaban Salah</option></select><div class="input-group-append"><span class="input-group-text" onclick="adddata()"><i class="mif mif-plus"></i></span><span class="input-group-text" onclick="cleardata(this)"><i class="mif mif-minus"></i></span></div></div>');
     }
     function cleardata(e) {
       $(e).parent().parent().remove();

@@ -10,7 +10,7 @@
 <div class="p-4">
     
     <h2>Tambah Data Pertanyaan Polling</h2>
-    <form method="POST" action="{{route('polling_question.store')}}">
+    <form method="POST" action="{{route('polling_question.store')}}" enctype="multipart/form-data">
     	@include('polling_question._form')
     </form>
 

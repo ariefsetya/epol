@@ -10,7 +10,7 @@
 <div class="p-4">
     
     <h2>Ubah Data Pertanyaan Polling</h2>
-    <form method="POST" action="{{route('polling_question.update',[$polling_question->id])}}">
+    <form method="POST" action="{{route('polling_question.update',[$polling_question->id])}}" enctype="multipart/form-data">
     	<input type="hidden" name="_method" value="PUT">
     	@include('polling_question._form')
     </form>
