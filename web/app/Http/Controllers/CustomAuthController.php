@@ -24,7 +24,7 @@ class CustomAuthController extends Controller
 	{
 		$validator = Validator::make($r->all(), [
 			'name' => 'required|max:255',
-			'email' => ['required','unique:users,email,NULL,id,event_id,'.Session::get('event_id'),'regex:/dbs|live|absoluteeo/'],
+			'email' => ['required','unique:users,email,NULL,id,event_id,'.Session::get('event_id')/*,'regex:/dbs|live|absoluteeo/'*/],
 			'phone' => 'required|unique:users,phone,NULL,id,event_id,'.Session::get('event_id'),
 		], [
 			'name.required' => 'Kolom Nama harus diisi.',
@@ -32,7 +32,7 @@ class CustomAuthController extends Controller
 			'phone.required' => 'Kolom Nomor WhatsApp harus diisi.',
 			'email.unique' => 'Email yang Anda isi sudah terdaftar.',
 			'phone.unique' => 'Nomor WhatsApp yang Anda isi sudah terdaftar.',
-			'email.regex' => 'Silahkan masukkan email DBS Anda.',
+			// 'email.regex' => 'Silahkan masukkan email DBS Anda.',
 		]);
 
 		if ($validator->fails()) {
