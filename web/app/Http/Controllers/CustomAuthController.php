@@ -203,7 +203,7 @@ class CustomAuthController extends Controller
 			$polling = Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(3)->first();
 			return redirect(url('quiz_response/'.$polling->id));
 		}else{
-			return view('auth.polling_login')->with(['route'=>'process_login_quiz','next'=>'quiz']);
+			return view('auth.polling_login')->with(['route','process_login_quiz','next'=>'quiz']);
 		}
 	}
 
@@ -212,7 +212,7 @@ class CustomAuthController extends Controller
 		$next = $r->input('next');
 		$code = trim($r->input('email'));
 		if(strlen(trim($code))==0){
-			return redirect(url($next))->with(['message'=>'Email DBS Anda harus diisi']);
+			return redirect(url($next))->withErrors(['email'=>'E-mail DBS Anda harus diisi']);
 		}
 		if(User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->exists()){
 			$user = User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->first();
@@ -224,9 +224,9 @@ class CustomAuthController extends Controller
 			$inv->need_login = 0;
 			$inv->save();
 
-			return redirect(url('vote'));
+			return redirect(url($next));
 		}else{
-			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
+			return redirect(url($next))->withErrors(['email','E-mail DBS Anda tidak ditemukan']);
 		}
 	}
 
@@ -235,7 +235,7 @@ class CustomAuthController extends Controller
 		$next = $r->input('next');
 		$code = trim($r->input('email'));
 		if(strlen(trim($code))==0){
-			return redirect(url($next))->with(['message'=>'Email DBS Anda harus diisi']);
+			return redirect(url($next))->withErrors(['email','Email DBS Anda harus diisi']);
 		}
 		if(User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->exists()){
 			$user = User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->first();
@@ -247,9 +247,9 @@ class CustomAuthController extends Controller
 			$inv->need_login = 0;
 			$inv->save();
 
-			return redirect(url('quiz'));
+			return redirect(url($next));
 		}else{
-			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
+			return redirect(url($next))->withErrors(['email','E-mail DBS Anda tidak ditemukan']);
 		}
 	}
 	public function generateQR(Request $r)
