@@ -132,6 +132,38 @@ class HomeController extends Controller
         }
         return true;
     }
+    public function save_vote_essay(Request $r)
+    {
+        if($r->input('answer_id') > 0 and $r->input('essay') != "" and $r->input('question_id') > 0){
+            $polling_question_id = $r->input('question_id');
+            $polling_id = PollingQuestion::where('event_id',Session::get('event_id'))->whereId($polling_question_id)->first()->polling_id;
+            if(PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('user_id',Auth::user()->id)->exists()){
+                $id = PollingResponse::where('event_id',Session::get('event_id'))->where('polling_question_id',$polling_question_id)->where('polling_id',$polling_id)->where('user_id',Auth::user()->id)->first()->id;
+                $data = PollingResponse::where('event_id',Session::get('event_id'))->whereId($id)->first();
+                $data->polling_answer_id = $r->input('answer_id');
+                $data->answer_text = $r->input('essay');
+                $data->save();
+
+                \Session::put('polling_'.$polling_id,true);
+
+                return response()->json(['message'=>'saved!'],200);
+            }else{
+                $data = new PollingResponse;
+                $data->event_id = Session::get('event_id');
+                $data->polling_id = $polling_id;
+                $data->user_id = Auth::user()->id;
+                $data->polling_question_id = $polling_question_id;
+                $data->polling_answer_id = $r->input('answer_id');
+                $data->answer_text = $r->input('essay');
+                $data->save();
+
+                \Session::put('polling_'.$polling_id,true);
+
+                return response()->json(['message'=>'saved!'],200);
+            }
+        }
+        return true;
+    }
     public function polling_response($id)
     {
         $data['polling'] = Polling::where('event_id',Session::get('event_id'))->whereId($id)->first();

@@ -19,6 +19,7 @@
     @if(isset($polling_answer))
       @foreach($polling_answer as $key)
         <div class="input-group mb-3 answer_data">
+          <input type="hidden" class="form-control" name="answer_id[]" value="{{$key->id}}">
           <input type="file" class="form-control" name="image[]" placeholder="Jawaban" value="{{$key->content}}">
           <input type="text" class="form-control" name="answer[]" placeholder="Jawaban" value="{{$key->content}}">
           <select type="text" class="form-control" name="is_correct[]">

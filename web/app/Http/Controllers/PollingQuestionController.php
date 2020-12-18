@@ -58,24 +58,30 @@ class PollingQuestionController extends Controller
     }
     public function update(Request $request, $id)
     {
+
+        // dd($request->input());
         $polling_question = PollingQuestion::find($id);
         $polling_question->fill($request->all());
         $polling_question->save();
 
-        PollingAnswer::where('polling_question_id',$polling_question->id)->delete();
+        // PollingAnswer::where('polling_question_id',$polling_question->id)->delete();
 
         $path = 'polling_answer/'.Session::get('event_id').'/';
         File::makeDirectory(public_path($path), $mode = 0777, true, true);
 
         foreach ($request->input('answer') as $key => $value) {
             $inv = new PollingAnswer;
+            if($request->input('answer_id')[$key]!==null){
+                $inv = PollingAnswer::find($request->input('answer_id')[$key]);
+                dd($request->input('answer_id')[$key]);
+            }
             $inv->content = $value;
 
-            if($request->file('image')!== null){
+            if($request->file('image')[$key] !== null){
                 $request->file('image')[$key]->move($path,$request->file('image')[$key]->getClientOriginalName());
                 
                 $inv->image_url = url($path.$request->file('image')[$key]->getClientOriginalName());
-            }else{
+            }else if($request->input('answer_id')[$key] == null and $request->file('image')[$key] == null){
                 $inv->image_url = "";
             }
             $inv->polling_question_id = $polling_question->id;

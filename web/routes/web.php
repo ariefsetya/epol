@@ -48,6 +48,7 @@ Route::get('/polling_question/{id?}','HomeController@polling_question')->name('p
 Route::get('/polling_response/{id}','HomeController@polling_response')->name('polling_response');
 Route::get('/polling_response/{question_id?}/{answer_id?}','HomeController@select_polling_response')->name('select_polling_response');
 Route::post('/checkbox_essay','HomeController@save_checkbox_essay')->name('save_checkbox_essay');
+Route::post('/vote_essay','HomeController@save_vote_essay')->name('save_vote_essay');
 Route::get('/set_winner/{response_id?}/{user_id?}','HomeController@set_winner')->name('set_winner');
 Route::get('/quiz_report/{polling_id?}','HomeController@quiz_report')->name('quiz_report');
 Route::get('/quiz_result/{polling_id?}','HomeController@quiz_result')->name('quiz_result');
@@ -124,3 +125,8 @@ Route::get('/rsvp/search/{id}','RSVPController@search')->name('rsvp.search');
 Route::get('/lottery/operator', 'LotteryController@operator');
 Route::get('/lottery/apps', 'LotteryController@apps');
 Route::get('/lottery/winners', 'LotteryController@winners');
+
+Route::get('/vote', 'CustomAuthController@vote');
+Route::get('/process_login/vote', 'CustomAuthController@process_login')->name('process_login_vote');
+Route::get('/quiz', 'CustomAuthController@quiz');
+Route::get('/process_login/quiz', 'CustomAuthController@process_login')->name('process_login_quiz');

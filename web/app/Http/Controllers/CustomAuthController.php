@@ -70,14 +70,14 @@ class CustomAuthController extends Controller
 	}
 
 
-    public function sendEmailEticket()
-    {
-        File::makeDirectory(public_path('/eticket/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-        $pdf = PDF::loadView('print_eticket')->setPaper([0,0,750,1150], 'potrait');
-        $pdf->save(public_path('/eticket/'.Session::get('event_id').'/'.Auth::user()->reg_number."-".Auth::user()->name.'.pdf'));
-        Mail::to(Auth::user()->email)->send(new sendEticket());
-        return redirect()->route('home')->with('success','E-ticket sudah dikirim ke email Anda');
-    }
+	public function sendEmailEticket()
+	{
+		File::makeDirectory(public_path('/eticket/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+		$pdf = PDF::loadView('print_eticket')->setPaper([0,0,750,1150], 'potrait');
+		$pdf->save(public_path('/eticket/'.Session::get('event_id').'/'.Auth::user()->reg_number."-".Auth::user()->name.'.pdf'));
+		Mail::to(Auth::user()->email)->send(new sendEticket());
+		return redirect()->route('home')->with('success','E-ticket sudah dikirim ke email Anda');
+	}
 
 	public function phoneLogin(Request $r)
 	{	
@@ -184,5 +184,46 @@ class CustomAuthController extends Controller
 		Session::flush();
 
 		return redirect()->route('home');
+	}
+
+	public function vote()
+	{
+		if(Auth::check()){
+			$polling = Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(6)->first();
+			return redirect(url('polling_response/'.$polling->id));
+		}else{
+			return view('auth.polling_login')->with(['route'=>'process_login_vote']);
+		}
+	}
+	public function quiz()
+	{
+		if(Auth::check()){
+			$polling = Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(6)->first();
+			return redirect(url('quiz_response/'.$polling->id));
+		}else{
+			return view('auth.polling_login')->with(['route'=>'process_login_quiz']);
+		}
+	}
+
+	public function process_login(Request $r, $next)
+	{	
+		$code = trim($r->input('email'));
+		if(strlen(trim($code))==0){
+			return redirect(url($next))->with(['message'=>'Email DBS Anda harus diisi']);
+		}
+		if(User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->exists()){
+			$user = User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->first();
+
+
+			Auth::loginUsingId($user->id);
+
+			$inv = User::where('event_id',Session::get('event_id'))->whereId($user->id)->first();
+			$inv->need_login = 0;
+			$inv->save();
+
+			return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+		}else{
+			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
+		}
 	}
 }
