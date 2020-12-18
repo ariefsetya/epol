@@ -121,7 +121,7 @@
 					},
 					ticks: {
 						fontColor: "#ffffff",
-						fontSize: 20,
+						fontSize: 17,
 						beginAtZero: true
 					}
 				}]
