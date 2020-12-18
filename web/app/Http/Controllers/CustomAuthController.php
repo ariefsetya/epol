@@ -6,6 +6,7 @@ use Auth;
 use App\Presence;
 use App\EventDetail;
 use App\User;
+use App\Polling;
 use Session;
 use Validator;
 use Illuminate\Http\Request;
