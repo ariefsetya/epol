@@ -5,23 +5,16 @@
 	<br>
 	<h3 class="text-center" style="color:#000000;font-weight: bold;">{{$polling->id==3?"IDOL TERFAVORIT":$polling_question->content}}</h3>
 	<hr>
-	<canvas id="myChart"></canvas>
+	<div id="canvas_wrapper">
+		<canvas id="myChart"></canvas>
+	</div>
 
 
 </div>
 @endsection
 
 @section('footer')
-<!-- <script type="text/javascript" src="{{url('')}}:9000/socket.io/socket.io.js"></script> -->
 <script type="text/javascript">
-/*	var socket = io("{{url('')}}:9000");
-
-	socket.on('screen.change',function(msg) {
-		$("body").fadeOut(500);
-		setTimeout(function () {
-			window.location = msg
-		},500);
-	});*/
 	var bgColor = [
 	'rgba(255, 99, 132, 0.7)',
 	'rgba(54, 162, 235, 0.7)',
@@ -44,30 +37,31 @@
 
 	var data = {
 		labels:[
-		@foreach($polling_response as $row)
-		'{!!$row->polling_answer->content!!}',
-		@endforeach
+			@foreach($polling_response as $row)
+			'{!!$row->polling_answer->content!!}',
+			@endforeach
 		],
-		datasets: [
-		{
-			data: [ 
-			@foreach($polling_response as $row)
-			'{{$row->total}}',
-			@endforeach
-			],
-			backgroundColor:[
-			@foreach($polling_response as $row)
-			bgColor[{{$i++}}],
-			@endforeach
-			],
-			<?php $i=0; ?>
-			backgroundColor:[
-			@foreach($polling_response as $row)
-			bdColor[{{$i++}}],
-			@endforeach
-			],
-			borderWidth: 1
-		},
+		datasets: 
+		[
+			{
+				data: [ 
+				@foreach($polling_response as $row)
+				'{{$row->total}}',
+				@endforeach
+				],
+				backgroundColor:[
+				@foreach($polling_response as $row)
+				bgColor[{{$i++}}],
+				@endforeach
+				],
+				<?php $i=0; ?>
+				backgroundColor:[
+				@foreach($polling_response as $row)
+				bdColor[{{$i++}}],
+				@endforeach
+				],
+				borderWidth: 1
+			},
 
 
 		]
@@ -112,7 +106,7 @@
 						display: false
 					},
 					ticks: {
-						max: Math.max(...data.datasets[0].data) + 10,
+						max: Math.max(...data.datasets[0].data) + 20,
 						display: false,
 						beginAtZero: true
 					}
