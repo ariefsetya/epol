@@ -12,16 +12,16 @@
 @endsection
 
 @section('footer')
-<script type="text/javascript" src="{{url('')}}:9000/socket.io/socket.io.js"></script>
+<!-- <script type="text/javascript" src="{{url('')}}:9000/socket.io/socket.io.js"></script> -->
 <script type="text/javascript">
-  var socket = io("{{url('')}}:9000");
+/*	var socket = io("{{url('')}}:9000");
 
-	  socket.on('screen.change',function(msg) {
-	    $("body").fadeOut(500);
-	    setTimeout(function () {
-	      window.location = msg
-	    },500);
-	  });
+	socket.on('screen.change',function(msg) {
+		$("body").fadeOut(500);
+		setTimeout(function () {
+			window.location = msg
+		},500);
+	});*/
 	var bgColor = [
             'rgba(255, 99, 132, 0.7)',
             'rgba(54, 162, 235, 0.7)',

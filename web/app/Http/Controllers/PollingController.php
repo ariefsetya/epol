@@ -117,6 +117,7 @@ class PollingController extends Controller
         $arr = [];
         foreach ($report as $key) {
             $arr[] = [
+                'email'=>$key->user->email,
                 'name'=>$key->user->name,
                 'company'=>$key->user->company,
                 'polling_response_count'=>(int)$key->polling_response_count,
