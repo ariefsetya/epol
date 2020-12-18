@@ -93,12 +93,12 @@
 					});
 				}
 			},
-			labels: {
-				fontColor: "#fff",
-				fontSize: 20
-			},
 			legend: {
-				"display": false
+				"display": false,
+				labels: {
+					fontColor: "#fff",
+					fontSize: 20
+				}
 			},
 			tooltips: {
 				"enabled": false
@@ -120,6 +120,8 @@
 						display: false
 					},
 					ticks: {
+						fontColor: "#ffffff",
+						fontSize: 20,
 						beginAtZero: true
 					}
 				}]
