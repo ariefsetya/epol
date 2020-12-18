@@ -212,7 +212,7 @@ class CustomAuthController extends Controller
 		$next = $r->input('next');
 		$code = trim($r->input('email'));
 		if(strlen(trim($code))==0){
-			return redirect(url($next))->withErrors(['email'=>'E-mail DBS Anda harus diisi']);
+			return redirect(url($next))->withErrors(['email'=>['E-mail DBS Anda harus diisi']]);
 		}
 		if(User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->exists()){
 			$user = User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->first();
@@ -226,7 +226,7 @@ class CustomAuthController extends Controller
 
 			return redirect(url($next));
 		}else{
-			return redirect(url($next))->withErrors(['email','E-mail DBS Anda tidak ditemukan']);
+			return redirect(url($next))->withErrors(['email'=>['E-mail DBS Anda tidak ditemukan']]);
 		}
 	}
 
@@ -235,7 +235,7 @@ class CustomAuthController extends Controller
 		$next = $r->input('next');
 		$code = trim($r->input('email'));
 		if(strlen(trim($code))==0){
-			return redirect(url($next))->withErrors(['email','Email DBS Anda harus diisi']);
+			return redirect(url($next))->withErrors(['email'=>['Email DBS Anda harus diisi']]);
 		}
 		if(User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->exists()){
 			$user = User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->first();
@@ -249,7 +249,7 @@ class CustomAuthController extends Controller
 
 			return redirect(url($next));
 		}else{
-			return redirect(url($next))->withErrors(['email','E-mail DBS Anda tidak ditemukan']);
+			return redirect(url($next))->withErrors(['email'=>['E-mail DBS Anda tidak ditemukan']]);
 		}
 	}
 	public function generateQR(Request $r)
