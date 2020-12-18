@@ -12,11 +12,9 @@
 
   <title>E-Registration | Admin</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-
-  <!-- Custom styles for this template-->
-  <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{url('vendors/metro4/css/metro-all.min.css')}}">
+  <link rel="stylesheet" href="{{url('css/index.css')}}">
 
 
 </head>
