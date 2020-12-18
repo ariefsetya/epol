@@ -193,7 +193,7 @@ class CustomAuthController extends Controller
 			$polling = Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(6)->first();
 			return redirect(url('polling_response/'.$polling->id));
 		}else{
-			return view('auth.polling_login')->with(['route'=>'process_login_vote']);
+			return view('auth.polling_login')->with(['route'=>'process_login_vote','next'=>'vote']);
 		}
 	}
 	public function quiz()
@@ -202,12 +202,36 @@ class CustomAuthController extends Controller
 			$polling = Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(3)->first();
 			return redirect(url('quiz_response/'.$polling->id));
 		}else{
-			return view('auth.polling_login')->with(['route'=>'process_login_quiz']);
+			return view('auth.polling_login')->with(['route'=>'process_login_quiz','next'=>'quiz']);
 		}
 	}
 
-	public function process_login($next, Request $r)
+	public function process_login_vote(Request $r)
 	{	
+		$next = $r->input('next');
+		$code = trim($r->input('email'));
+		if(strlen(trim($code))==0){
+			return redirect(url($next))->with(['message'=>'Email DBS Anda harus diisi']);
+		}
+		if(User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->exists()){
+			$user = User::where('event_id',Session::get('event_id'))->where(['email'=>$code])->first();
+
+
+			Auth::loginUsingId($user->id);
+
+			$inv = User::where('event_id',Session::get('event_id'))->whereId($user->id)->first();
+			$inv->need_login = 0;
+			$inv->save();
+
+			return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+		}else{
+			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
+		}
+	}
+
+	public function process_login_quiz(Request $r)
+	{	
+		$next = $r->input('next');
 		$code = trim($r->input('email'));
 		if(strlen(trim($code))==0){
 			return redirect(url($next))->with(['message'=>'Email DBS Anda harus diisi']);

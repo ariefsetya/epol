@@ -8,6 +8,7 @@
       {{csrf_field()}}
       <input type="hidden" name="country_id" value="100">
       <input type="hidden" name="event_id" value="{{Session::get('event_id')}}">
+      <input type="hidden" name="next" value="{{Session::get('event_id')}}">
 
       <div>DBS E-MAIL</div>
       <input class="input mb-1" required type="email" name="email" id="email" value="{{ old('email') }}">
