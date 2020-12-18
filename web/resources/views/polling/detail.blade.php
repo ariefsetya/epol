@@ -93,12 +93,12 @@
 					});
 				}
 			},
+			labels: {
+				fontColor: "#fff",
+				fontSize: 20
+			},
 			legend: {
-				"display": false,
-				labels: {
-					fontColor: "#fff",
-					fontSize: 20
-				}
+				"display": false
 			},
 			tooltips: {
 				"enabled": false
