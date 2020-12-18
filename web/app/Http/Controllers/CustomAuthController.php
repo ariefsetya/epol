@@ -203,7 +203,7 @@ class CustomAuthController extends Controller
 			$polling = Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(3)->first();
 			return redirect(url('quiz_response/'.$polling->id));
 		}else{
-			return view('auth.polling_login')->with(['next_route','process_login_quiz','next'=>'quiz']);
+			return view('auth.polling_login')->with(['next_route'=>'process_login_quiz','next'=>'quiz']);
 		}
 	}
 
