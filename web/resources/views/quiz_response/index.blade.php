@@ -18,10 +18,10 @@
 @endsection
 
 @section('footer')
-<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<!-- <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script> -->
 <script type="text/javascript">
   var winner = [];
-  var socket = io("{{env("SOCKET_URL")}}");
+  // var socket = io("{{env("SOCKET_URL")}}");
   function selectdata(question_id, answer_id) {
     $.ajax({
      url: "{{route('select_quiz_response')}}/"+question_id+'/'+answer_id, 
@@ -39,7 +39,7 @@
 
   function finish_quiz() {
     if(winner.win){
-      socket.emit('quiz',winner.user);
+      // socket.emit('quiz',winner.user);
     }
     window.location='{{route('finish_quiz',$polling->id)}}';
   }

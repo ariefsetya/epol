@@ -20,14 +20,14 @@
       font-size: 30pt;
     }
     th{
-      color: white;
+      color: white !important;
     }
   </style>
 </head>
 <body style="overflow:hidden;background-color: #2d89ef;">
   <div style="width: 1920px;height:1080px;margin:auto;">
     <div id="background" @if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','quiz_report_background')->exists()) style="border:0px solid #000;width: 1920px;height:1080px;background-image:url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','quiz_report_background')->first()->content}});background-position: all;background-repeat: no-repeat; background-size: cover;" @endif>
-      <div style="height: 200px"></div>
+      <div style="height: 210px"></div>
       <table class="table striped">
         <thead>
           <th class="text-center" style="width:8%">No</th>
