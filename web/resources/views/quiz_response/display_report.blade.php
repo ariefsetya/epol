@@ -9,6 +9,7 @@
       display: block;
       max-height: 785px;
       overflow-y: scroll;
+      background-color: white;
     }
 
     table thead, table tbody tr {
