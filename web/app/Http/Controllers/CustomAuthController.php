@@ -223,7 +223,7 @@ class CustomAuthController extends Controller
 			$inv->need_login = 0;
 			$inv->save();
 
-			return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+			return redirect(url('vote'));
 		}else{
 			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
 		}
@@ -246,7 +246,7 @@ class CustomAuthController extends Controller
 			$inv->need_login = 0;
 			$inv->save();
 
-			return redirect()->route('home')->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('success_login')->first()->content]);
+			return redirect(url('quiz'));
 		}else{
 			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
 		}
