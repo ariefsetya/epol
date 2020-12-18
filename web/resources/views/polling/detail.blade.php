@@ -94,7 +94,11 @@
 				}
 			},
 			legend: {
-				"display": false
+				"display": false,
+				labels: {
+					fontColor: "#fff",
+					fontSize: 20
+				}
 			},
 			tooltips: {
 				"enabled": false
