@@ -45,7 +45,7 @@
 	var data = {
 		labels:[
 		@foreach($polling_response as $row)
-		'{{$row->polling_answer->content}}',
+		'{!!$row->polling_answer->content!!}',
 		@endforeach
 		],
 		datasets: [
