@@ -14,6 +14,7 @@ use App\Mail\sendEticket;
 use PDF;
 use File;
 use Mail;
+use QrCode;
 
 class CustomAuthController extends Controller
 {
@@ -250,5 +251,10 @@ class CustomAuthController extends Controller
 		}else{
 			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
 		}
+	}
+	public function generateQR($value)
+	{
+		File::makeDirectory(public_path('/qrcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+		QrCode::format('png')->size(2000)->generate($value, public_path('/qrcode/'.Session::get('event_id').'/'.$value.'.png'));
 	}
 }
