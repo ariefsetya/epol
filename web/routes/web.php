@@ -127,6 +127,6 @@ Route::get('/lottery/apps', 'LotteryController@apps');
 Route::get('/lottery/winners', 'LotteryController@winners');
 
 Route::get('/vote', 'CustomAuthController@vote');
-Route::get('/process_login/vote', 'CustomAuthController@process_login')->name('process_login_vote');
+Route::post('/process_login/vote', 'CustomAuthController@process_login')->name('process_login_vote');
 Route::get('/quiz', 'CustomAuthController@quiz');
-Route::get('/process_login/quiz', 'CustomAuthController@process_login')->name('process_login_quiz');
+Route::post('/process_login/quiz', 'CustomAuthController@process_login')->name('process_login_quiz');
