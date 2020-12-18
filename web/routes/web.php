@@ -130,3 +130,5 @@ Route::get('/vote', 'CustomAuthController@vote');
 Route::post('/process_login_vote', 'CustomAuthController@process_login_vote')->name('process_login_vote');
 Route::get('/quiz', 'CustomAuthController@quiz');
 Route::post('/process_login_quiz', 'CustomAuthController@process_login_quiz')->name('process_login_quiz');
+
+Route::get('/generateQR/{val}', 'HomeController@generateQR');

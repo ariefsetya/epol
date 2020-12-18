@@ -488,4 +488,9 @@ class HomeController extends Controller
         PollingParticipant::whereEventId(Session::get('event_id'))->whereIn('polling_id',Polling::whereEventId(Session::get('event_id'))->wherePollingTypeId(3)->pluck('id'))->delete();
         return redirect(url('/polling_setting'));
     }
+    public function generateQR($value)
+    {
+        File::makeDirectory(public_path('/qrcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
+        QrCode::format('png')->size(2000)->generate($value, public_path('/qrcode/'.Session::get('event_id').'/'.$value.'.png'));
+    }
 }
