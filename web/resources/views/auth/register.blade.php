@@ -30,7 +30,7 @@
       <div>{{ $error }}</div>
       @endforeach
       @endif
-      <button type="submit" class="button mt-5" style="padding:0px 25px;background-color: #EB2228;color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;">REGISTER</button>
+      <button type="submit" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();" class="button mt-5" style="padding:0px 25px;background-color: #EB2228;color:white;font-family: 'Lato';font-weight: 700;font-size: 17pt;">REGISTER</button>
       <br>
     </form>
   </div>
