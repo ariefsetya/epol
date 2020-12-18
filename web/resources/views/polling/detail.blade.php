@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container">
-	<br>
-	<h3 class="text-center" style="color:#000000;font-weight: bold;">{{$polling->id==3?"IDOL TERFAVORIT":$polling_question->content}}</h3>
-	<hr>
+	<h3 class="text-center" style="font-size:30pt;margin-top:10%;color:#ffffff;font-weight: bold;">{{$polling->id==3?"IDOL TERFAVORIT":$polling_question->content}}</h3>
 	<div id="canvas_wrapper">
 		<canvas id="myChart"></canvas>
 	</div>
@@ -37,31 +35,31 @@
 
 	var data = {
 		labels:[
-			@foreach($polling_response as $row)
-			'{!!$row->polling_answer->content!!}',
-			@endforeach
+		@foreach($polling_response as $row)
+		'{!!$row->polling_answer->content!!}',
+		@endforeach
 		],
 		datasets: 
 		[
-			{
-				data: [ 
-				@foreach($polling_response as $row)
-				'{{$row->total}}',
-				@endforeach
-				],
-				backgroundColor:[
-				@foreach($polling_response as $row)
-				bgColor[{{$i++}}],
-				@endforeach
-				],
-				<?php $i=0; ?>
-				backgroundColor:[
-				@foreach($polling_response as $row)
-				bdColor[{{$i++}}],
-				@endforeach
-				],
-				borderWidth: 1
-			},
+		{
+			data: [ 
+			@foreach($polling_response as $row)
+			'{{$row->total}}',
+			@endforeach
+			],
+			backgroundColor:[
+			@foreach($polling_response as $row)
+			bgColor[{{$i++}}],
+			@endforeach
+			],
+			<?php $i=0; ?>
+			backgroundColor:[
+			@foreach($polling_response as $row)
+			bdColor[{{$i++}}],
+			@endforeach
+			],
+			borderWidth: 1
+		},
 
 
 		]
@@ -80,6 +78,7 @@
 					var chartInstance = this.chart,
 					ctx = chartInstance.ctx;
 
+					ctx.fillStyle = "#ffffff"; 
 					ctx.font = Chart.helpers.fontString(25, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 					ctx.textAlign = 'center';
 					ctx.textBaseline = 'bottom';
@@ -88,6 +87,7 @@
 						var meta = chartInstance.controller.getDatasetMeta(i);
 						meta.data.forEach(function(bar, index) {
 							var data = dataset.data[index];
+							ctx.fillStyle = "#ffffff"; 
 							ctx.fillText(data, bar._model.x, bar._model.y - 5);
 						});
 					});
