@@ -18,7 +18,7 @@
       table-layout: fixed;
     }
     *{
-      font-size: 30pt;
+      font-size: 29pt;
     }
     th{
       color: white !important;
