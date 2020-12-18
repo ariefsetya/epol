@@ -78,8 +78,8 @@
 					var chartInstance = this.chart,
 					ctx = chartInstance.ctx;
 
-					ctx.fillStyle = "#ffffff"; 
 					ctx.font = Chart.helpers.fontString(25, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+					ctx.fillStyle = "#ffffff"; 
 					ctx.textAlign = 'center';
 					ctx.textBaseline = 'bottom';
 
