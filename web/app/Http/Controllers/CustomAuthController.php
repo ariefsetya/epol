@@ -252,9 +252,14 @@ class CustomAuthController extends Controller
 			return redirect()->route('process_login_'.$next)->with(['message'=>EventDetail::where('event_id',Session::get('event_id'))->whereName('failed_login')->first()->content]);
 		}
 	}
-	public function generateQR($value)
+	public function generateQR(Request $r)
 	{
+		$value = $r->input('code');
 		File::makeDirectory(public_path('/qrcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
 		QrCode::format('png')->size(2000)->generate($value, public_path('/qrcode/'.Session::get('event_id').'/'.$value.'.png'));
+	}
+	public function generateQRForm()
+	{
+		return view('qrcode.form');
 	}
 }
