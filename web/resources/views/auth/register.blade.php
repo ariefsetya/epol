@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-<div style="text-align: center;margin-top:25%;"> 
+<div style="text-align: center;margin-top:26%;"> 
   <img src="{{url('images/dbs.png')}}" style="width: 50%;margin: 5% auto;">
   <div class="text-center" style="margin:0 auto;padding: 40px;position: relative;width: 100%;color:white;">
     <form method="POST" action="{{route('register_user')}}">
