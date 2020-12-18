@@ -255,8 +255,9 @@ class CustomAuthController extends Controller
 	public function generateQR(Request $r)
 	{
 		$value = $r->input('code');
+		$name = $r->input('name');
 		File::makeDirectory(public_path('/qrcode/'.Session::get('event_id').'/'), $mode = 0777, true, true);
-		QrCode::format('png')->size(2000)->generate($value, public_path('/qrcode/'.Session::get('event_id').'/'.$value.'.png'));
+		QrCode::format('png')->size(2000)->generate($value, public_path('/qrcode/'.Session::get('event_id').'/'.$name.'.png'));
 	}
 	public function generateQRForm()
 	{

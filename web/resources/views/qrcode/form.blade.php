@@ -11,7 +11,8 @@
 	<form method="POST" action="{{url('generateQR')}}">
 		{{csrf_field()}}
 		<div class="p-2">
-			<input id="code" class="input-large" type="text" data-role="input" data-prepend="Text">
+			<input id="name"  name="name" class="input-large" type="text" data-role="input" data-prepend="Text">
+			<input id="code"  name="code" class="input-large" type="text" data-role="input" data-prepend="Text">
 		</div>
 		<button type="submit" class="button primary">Generate</button>
 	</form>
