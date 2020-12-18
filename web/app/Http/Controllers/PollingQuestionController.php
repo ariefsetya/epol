@@ -73,7 +73,7 @@ class PollingQuestionController extends Controller
             $inv = new PollingAnswer;
             if($request->input('answer_id')[$key]!==null){
                 $inv = PollingAnswer::find($request->input('answer_id')[$key]);
-                dd($request->input('answer_id')[$key]);
+                // dd($request->input('answer_id')[$key]);
             }
             $inv->content = $value;
 
