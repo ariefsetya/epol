@@ -19,7 +19,11 @@
 
 </head>
 
-<body  style="display:none;position: relative;/*background-image: url({{ asset('img/BACKGROUND.png') }});*/background-size: 100%;min-height: 100% !important;">
+<body style="position: relative;background-color: white;
+@if(\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','quiz_background_image')->exists())
+background-image: url({{\App\EventDetail::where('event_id',Session::get('event_id'))->where('name','quiz_background_image')->first()->content ?? ''}});background-size: 100%;background-repeat: no-repeat;background-attachment: fixed;
+@endif
+min-height: 100% !important;">
 
   <!-- Page Wrapper -->
   <div>
