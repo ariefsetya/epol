@@ -126,7 +126,7 @@ class PollingController extends Controller
         }
 
         $collection = collect($arr);
-        $xcol = $collection->sortByDesc('polling_response_count')->take(10)->values();
+        $xcol = $collection->sortByDesc('polling_response_count')->values();
 
         $data['report'] = $xcol;
 
