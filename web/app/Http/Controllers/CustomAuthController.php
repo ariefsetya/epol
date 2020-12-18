@@ -206,7 +206,7 @@ class CustomAuthController extends Controller
 		}
 	}
 
-	public function process_login(Request $r, $next)
+	public function process_login($next, Request $r)
 	{	
 		$code = trim($r->input('email'));
 		if(strlen(trim($code))==0){
