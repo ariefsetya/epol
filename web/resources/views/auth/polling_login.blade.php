@@ -4,7 +4,7 @@
 <div style="text-align: center;margin-top:25%;"> 
   <img src="{{url('images/dbs.png')}}" style="width: 50%;margin: 5% auto;">
   <div class="text-center" style="margin:0 auto;padding: 40px;position: relative;width: 100%;color:white;">
-    <form method="POST" action="{{route($route)}}">
+    <form method="POST" action="{{route($next_route)}}">
       {{csrf_field()}}
       <input type="hidden" name="country_id" value="100">
       <input type="hidden" name="event_id" value="{{Session::get('event_id')}}">
