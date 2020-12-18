@@ -1,16 +1,13 @@
 @extends('layouts.chart')
 
 @section('content')
-<div style="overflow:hidden;background-color: #2d89ef;">
-	
-	<div class="container" style="width: 1920px;height: 1080px;margin:0 auto;">
-		<h3 class="text-center" style="font-size:30pt;margin-top:10%;color:#ffffff;font-weight: bold;">{{$polling->id==3?"IDOL TERFAVORIT":$polling_question->content}}</h3>
-		<div id="canvas_wrapper">
-			<canvas id="myChart"></canvas>
-		</div>
-
-
+<div class="container">
+	<h3 class="text-center" style="font-size:30pt;margin-top:10%;color:#ffffff;font-weight: bold;">{{$polling->id==3?"IDOL TERFAVORIT":$polling_question->content}}</h3>
+	<div id="canvas_wrapper">
+		<canvas id="myChart"></canvas>
 	</div>
+
+
 </div>
 @endsection
 
