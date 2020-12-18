@@ -78,7 +78,7 @@
 					var chartInstance = this.chart,
 					ctx = chartInstance.ctx;
 
-					ctx.font = Chart.helpers.fontString(25, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+					ctx.font = Chart.helpers.fontString(35, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 					ctx.fillStyle = "#ffffff"; 
 					ctx.textAlign = 'center';
 					ctx.textBaseline = 'bottom';
@@ -88,7 +88,7 @@
 						meta.data.forEach(function(bar, index) {
 							var data = dataset.data[index];
 							ctx.fillStyle = "#ffffff"; 
-							ctx.fillText(data, bar._model.x, bar._model.y - 5);
+							ctx.fillText(data, bar._model.x, bar._model.y + 15);
 						});
 					});
 				}
