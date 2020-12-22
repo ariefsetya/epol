@@ -119,6 +119,7 @@ class PollingController extends Controller
             $arr[] = [
                 'email'=>$key->user->email,
                 'name'=>$key->user->name,
+                'reg_number'=>$key->user->reg_number,
                 'company'=>$key->user->company,
                 'polling_response_count'=>(int)$key->polling_response_count,
                 'created_at'=>$key->created_at,
